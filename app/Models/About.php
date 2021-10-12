@@ -11,9 +11,9 @@ class About extends Model
     protected $fillable = [
         'about_ar',
         'about_en',
-        'mission_ar',
-        'mission_en',
-        'vision_ar',
-        'vision_en',
+        'polices_ar',
+        'polices_en',
+        'terms_ar',
+        'terms_en',
     ];
 }

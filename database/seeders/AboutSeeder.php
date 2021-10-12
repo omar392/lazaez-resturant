@@ -16,11 +16,11 @@ class AboutSeeder extends Seeder
     {
         About::create([
             'about_ar'=>'من نحن',
-            'about_en'=>'about_en',
-            'mission_ar'=>'الرسالة',
-            'mission_en'=>'mission_en',
-            'vision_ar'=>'الرؤية',
-            'vision_en'=>'vision_en',
+            'about_en'=>'about us ',
+            'polices_ar'=>'السياسات السياسات السياسات ',
+            'polices_en'=>'Polices Polices Polices',
+            'terms_ar'=>'الشروط و الاحكام  الشروط و الاحكام ',
+            'terms_en'=>'Terms and conditions Terms and conditions ',
         ]);
     }
 }

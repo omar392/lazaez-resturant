@@ -3,12 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Team;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Str;
+use App\Models\Banner;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
-class TeamController extends Controller
+class BannerController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,8 +16,8 @@ class TeamController extends Controller
      */
     public function index()
     {
-        $team = Team::get();
-        return view('admin.team.index',compact('team'));
+        $banner = Banner::get();
+        return view('admin.banner.index',compact('banner'));
     }
 
     /**
@@ -40,36 +39,39 @@ class TeamController extends Controller
     public function store(Request $request)
     {
         $this->validate($request,[
+            'url'=>'string|required',
             'name_ar'=>'string|required',
             'name_en'=>'string|required',
-            'job_ar'=>'string|required',
-            'job_en'=>'string|required',
+            'description_ar'=>'string|required',
+            'description_en'=>'string|required',
             'image'=>'required',
-            'status'=>'nullable|in:active,inactive',
+            'status'=>'required|in:active,inactive',
         ]);
         $data = $request->all();
         if ($request->file('image')){
             $file = $request->file('image');
+            @unlink(public_path('upload/banners/'.$data->image));
             $filename =date('YmdHi').$file->getClientOriginalName();
-            $file->move(public_path('upload/team'),$filename);
+            $file->move(public_path('upload/banners'),$filename);
             $data['image']=$filename;
         }
-        $status = Team::create($data);
+        $status = Banner::create($data);
         if($status){
-            return redirect()->route('team.index')->with('success','تم الإنشاء بنجاح');
+            return redirect()->route('banner.index')->with('success','تم الإنشاء بنجاح');
         }else{
             return back()->with('error','هناك خطأ ما !!');
         }
+
     }
 
-    public function teamStatus(Request $request){
+    public function bannerStatus(Request $request){
 
         // dd($request->all());
         if($request->mode=='true'){
-            DB::table('teams')->where('id',$request->id)->update(['status'=>'active']);
+            DB::table('banners')->where('id',$request->id)->update(['status'=>'active']);
         }
         else{
-            DB::table('teams')->where('id',$request->id)->update(['status'=>'inactive']);
+            DB::table('banners')->where('id',$request->id)->update(['status'=>'inactive']);
         }
         return response()->json(['msg'=>'تم تغيير الحالة بنجاح','status'=>true]);
         
@@ -86,6 +88,8 @@ class TeamController extends Controller
         //
     }
 
+    
+
     /**
      * Show the form for editing the specified resource.
      *
@@ -94,9 +98,9 @@ class TeamController extends Controller
      */
     public function edit($id)
     {
-        $team = Team::find($id);
-        if($team){
-            return view('admin.team.edit',compact('team'));
+        $banner = Banner::find($id);
+        if($banner){
+            return view('admin.banner.edit',compact('banner'));
         }else{
             return back()->with('error','هذه البيانات غير موجودة');
         }
@@ -111,27 +115,29 @@ class TeamController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $team = Team::find($id);
-        if($team){
+        $banner = Banner::find($id);
+        if($banner){
             $this->validate($request,[
+                'url'=>'string|required',
                 'name_ar'=>'string|required',
                 'name_en'=>'string|required',
-                'job_ar'=>'string|required',
-                'job_en'=>'string|required',
+                'description_ar'=>'string|required',
+                'description_en'=>'string|required',
                 'image'=>'required',
-                'status'=>'nullable|in:active,inactive',
+                'status'=>'required|in:active,inactive',
             ]);
             $data = $request->all();
             if ($request->file('image')){
                 $file = $request->file('image');
-                @unlink(public_path('upload/team/'.$data->image));
+                @unlink(public_path('upload/banners/'.$data->image));
                 $filename =date('YmdHi').$file->getClientOriginalName();
-                $file->move(public_path('upload/team'),$filename);
+                $file->move(public_path('upload/banners'),$filename);
                 $data['image']=$filename;
             }
-            $status = $team->fill($data)->save();
+            $status = $banner->fill($data)->save();
+
             if($status){
-                return redirect()->route('team.index')->with('success','تم التعديل بنجاح');
+                return redirect()->route('banner.index')->with('success','تم التعديل بنجاح');
             }else{
                 return back()->with('error','هناك خطأ ما !!');
             }
@@ -148,11 +154,11 @@ class TeamController extends Controller
      */
     public function destroy($id)
     {
-        $team = Team::find($id);
-        if($team){
-        $status=$team->delete();
+        $banner = Banner::find($id);
+        if($banner){
+        $status=$banner->delete();
         if($status){
-            return redirect()->route('team.index')->with('success','تم الحذف بنجاح');
+            return redirect()->route('banner.index')->with('success','تم الحذف بنجاح');
         }else{
             return redirect()->with('error','هناك خطأ ما !!');
         }

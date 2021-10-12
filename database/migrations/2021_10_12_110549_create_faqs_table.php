@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateAboutsTable extends Migration
+class CreateFaqsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,13 @@ class CreateAboutsTable extends Migration
      */
     public function up()
     {
-        Schema::create('abouts', function (Blueprint $table) {
+        Schema::create('faqs', function (Blueprint $table) {
             $table->id();
-            $table->longText('about_ar');
-            $table->longText('about_en');
-            $table->longText('polices_ar');
-            $table->longText('polices_en');
-            $table->longText('terms_ar');
-            $table->longText('terms_en');
+            $table->string('question_ar');
+            $table->string('question_en');
+            $table->longText('answer_en');
+            $table->longText('answer_ar');
+            $table->enum('status',['active','inactive'])->default('inactive');
             $table->timestamps();
         });
     }
@@ -32,6 +31,6 @@ class CreateAboutsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('abouts');
+        Schema::dropIfExists('faqs');
     }
 }

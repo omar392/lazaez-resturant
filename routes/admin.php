@@ -2,7 +2,9 @@
 
 use App\Http\Controllers\Admin\AboutController;
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\BannerController;
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\FaqController;
 use App\Http\Controllers\Admin\LoginController;
 use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\TeamController;
@@ -22,6 +24,15 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth:admin']], function () 
 Route::resource('category', CategoryController::class);
 Route::post('category_status',[CategoryController::class,'categoryStatus'])->name('category.status');
 Route::post('category/{id}/child',[CategoryController::class,'getChildByParentID']);
+
+
+//banners 
+Route::resource('banner', BannerController::class);
+Route::post('banner_status',[BannerController::class,'bannerStatus'])->name('banner.status');
+
+//faq
+Route::resource('faq', FaqController::class);
+Route::post('faq_status',[FaqController::class,'faqStatus'])->name('faq.status');
 
 //settings
 Route::get('setting',[SettingController::class,'index'])->name('setting');
