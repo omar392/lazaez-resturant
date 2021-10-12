@@ -133,7 +133,7 @@
                                     <tr>
                                         <td>{{$loop->iteration}}</td>
                                         <td>{{$item->name_ar}}</td>
-                                        <td><img src="{{ !empty($item->image) ? url('upload/category/' . $item->image) : url('upload/no_image.jfif') }}"
+                                        <td><img src="{{ !empty($item->image) ? url('upload/category/' . $item->image) : url('upload/no.png') }}"
                                             width="100px" height="110px" alt="image" style="border-radius: 70px;">
                                         </td>
                                          <td>{{$item->is_parent===1 ? 'رئيسى' : 'فرعى'}}</td>

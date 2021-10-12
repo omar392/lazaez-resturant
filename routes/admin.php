@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\AboutController;
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\AdvertController;
 use App\Http\Controllers\Admin\BannerController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\FaqController;
@@ -29,6 +30,10 @@ Route::post('category/{id}/child',[CategoryController::class,'getChildByParentID
 //banners 
 Route::resource('banner', BannerController::class);
 Route::post('banner_status',[BannerController::class,'bannerStatus'])->name('banner.status');
+
+//banners 
+Route::resource('advert', AdvertController::class);
+Route::post('advert_status',[AdvertController::class,'advertStatus'])->name('advert.status');
 
 //faq
 Route::resource('faq', FaqController::class);

@@ -53,16 +53,16 @@
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label for="example-text-input" class="col-sm-2 col-form-label">الفيس بوك </label>
+                                    <label for="example-text-input" class="col-sm-2 col-form-label">رابط الابل</label>
                                     <div class="col-sm-10">
-                                        <input class="form-control" name="facebook" value="{{ $setting->facebook }}"
+                                        <input class="form-control" name="apple_url" value="{{ $setting->apple_url }}"
                                             id="example-text-input" required>
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label for="example-text-input" class="col-sm-2 col-form-label">لينكد ان </label>
+                                    <label for="example-text-input" class="col-sm-2 col-form-label">رابط الاندرويد</label>
                                     <div class="col-sm-10">
-                                        <input class="form-control" name="linkedin" value="{{ $setting->linkedin }}"
+                                        <input class="form-control" name="android_url" value="{{ $setting->android_url }}"
                                             id="example-text-input" required>
                                     </div>
                                 </div>
@@ -70,13 +70,6 @@
                                     <label for="example-text-input" class="col-sm-2 col-form-label">تويتر</label>
                                     <div class="col-sm-10">
                                         <input class="form-control" name="twitter" value="{{ $setting->twitter }}"
-                                            id="example-text-input" required>
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="example-text-input" class="col-sm-2 col-form-label">اليوتيوب</label>
-                                    <div class="col-sm-10">
-                                        <input class="form-control" name="youtube" value="{{ $setting->youtube }}"
                                             id="example-text-input" required>
                                     </div>
                                 </div>

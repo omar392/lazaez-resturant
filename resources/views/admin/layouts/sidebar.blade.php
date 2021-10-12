@@ -23,6 +23,11 @@
                             </a>
                         </li>
                         <li>
+                            <a href="{{route('advert.index')}}" class="waves-effect">
+                                <i class="fas fa-bullhorn"></i><span style="font-family: cairo;">الاعلانات</span>
+                            </a>
+                        </li>
+                        <li>
                             <a href="{{route('faq.index')}}" class="waves-effect">
                                 <i class="fas fa-question"></i><span style="font-family: cairo;">الاسئلة الشائعة</span>
                             </a>
@@ -39,7 +44,7 @@
                         </li>
                         <li>
                             <a href="{{route('setting')}}" class="waves-effect">
-                                <i class="fas fa-cog"></i><span style="font-family: cairo;">إعدادات الموقع</span>
+                                <i class="fas fa-cog"></i><span style="font-family: cairo;">الاعدادت العامة</span>
                             </a>
                         </li>
                     </ul>

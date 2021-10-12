@@ -123,7 +123,7 @@
                                         <td>{{$item->name_en}}</td>
                                         <td>{{$item->job_ar}}</td>
                                         <td>{{$item->job_en}}</td>
-                                        <td><img src="{{ !empty($item->image) ? url('upload/team/' . $item->image) : url('upload/no_image.jfif') }}"
+                                        <td><img src="{{ !empty($item->image) ? url('upload/team/' . $item->image) : url('upload/no.png') }}"
                                             width="100px" height="110px" alt="image" style="border-radius: 70px;"></td>
                                         <td>
                                             <input type="checkbox" name="toogle" value="{{$item->id}}"  data-toggle="toggle" {{$item->status=='active' ? 'checked' : ''}} data-on="active" data-off="inactive" data-size="sm" data-onstyle="success" data-offstyle="danger">

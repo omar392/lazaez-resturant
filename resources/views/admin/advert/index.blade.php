@@ -7,12 +7,12 @@
             <div class="page-title-box">
                 <div class="row align-items-center">
                     <div class="col-sm-6">
-                        <h4 class="page-title" style="font-family: cairo;">البنرات</h4>
+                        <h4 class="page-title" style="font-family: cairo;">معرض الصور</h4>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-right">
                             <li class="breadcrumb-item"><a href="{{ route('adminhome') }}">الرئيسية</a></li>
-                            <li class="breadcrumb-item active">البنرات</li>
+                            <li class="breadcrumb-item active">معرض الصور</li>
                         </ol>
                     </div>
                 </div> <!-- end row -->
@@ -21,7 +21,7 @@
                     <div class="text-center">
                         <!-- Large modal -->
                         <button type="button" class="btn btn-primary waves-effect waves-light" data-toggle="modal"
-                            data-target=".bs-example-modal-lg"><i class="fas fa-plus-circle"></i>إضافة بنر جديد</button>
+                            data-target=".bs-example-modal-lg"><i class="fas fa-plus-circle"></i>إضافة صورة جديدة</button>
                     </div>
                     <!--  Modal content for the above example -->
                     <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog"
@@ -29,64 +29,24 @@
                         <div class="modal-dialog modal-lg">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title mt-0" id="myLargeModalLabel" style="font-family: cairo;">إضافة بنر جديد</h5>
+                                    <h5 class="modal-title mt-0" id="myLargeModalLabel" style="font-family: cairo;">إضافة صورة جديدة</h5>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
                                 </div>
                                 <div class="modal-body">
                                     <div class="card-body">
-                                        <form action="{{ route('banner.store') }}" method="POST"
+                                        <form action="{{ route('advert.store') }}" method="POST"
                                             enctype="multipart/form-data">
                                             @csrf
 
                                             <div class="form-group row">
-                                                <label for="example-text-input"
-                                                    class="col-sm-2 col-form-label">العنوان</label>
-                                                <div class="col-sm-10">
-                                                    <input class="form-control" type="text" name="name_ar"
-                                                        id="example-text-input" placeholder="عنوان الشريحة" required>
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <label for="example-text-input" class="col-sm-2 col-form-label">Title</label>
-                                                <div class="col-sm-10">
-                                                    <input class="form-control" name="name_en"
-                                                        id="example-text-input" placeholder="Slider Title" required>
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <label for="example-text-input" class="col-sm-2 col-form-label">الرابط</label>
-                                                <div class="col-sm-10">
-                                                    <input class="form-control" name="url"
-                                                        id="example-text-input" placeholder="Slider URL" required>
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
                                                 <label class="input-preview" for="img">أضف صورة</label>
                                                 <div class="col-sm-10">
-                                                    <input class="input-preview__src" id="img" name="image" type="file" required />
+                                                    <input class="input-preview__src" id="img" name="image" type="file" />
                                                 </div>
                                             </div>
-                                            <div class="form-group row">
-                                                <label for="example-text-input"
-                                                    class="col-sm-2 col-form-label">الوصف</label>
-                                                <div class="col-sm-10">
-                                                    <textarea class="form-control" name="description_ar" id="editor5"></textarea>
-                                                <script>
-                                                        CKEDITOR.replace( 'editor5' );
-                                                </script>
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <label for="example-text-input" class="col-sm-2 col-form-label">Description</label>
-                                                <div class="col-sm-10">
-                                                    <textarea class="form-control" name="description_en" id="editor"></textarea>
-                                                    <script>
-                                                            CKEDITOR.replace( 'editor' );
-                                                    </script>
-                                                </div>
-                                            </div>
+
                                             <div class="form-group row">
                                                 <label for="example-text-input"
                                                     class="col-sm-2 col-form-label">الحالة</label>
@@ -126,22 +86,18 @@
                                         <tr>
                                             <th>#</th>
                                             <th>الصورة</th>
-                                            <th>العنوان</th>
-                                            <th>Title</th>
                                             <th>الحالة</th>
                                             <th>التحكم</th>
                                         </tr>
                                     </thead>
 
                                     <tbody>
-                                        @foreach ($banner as $item)
+                                        @foreach ($advert as $item)
                                             <tr>
                                                 <td>{{ $loop->iteration }}</td>
-                                                <td><img src="{{ !empty($item->image) ? url('upload/banners/' . $item->image) : url('upload/no.png') }}"
-                                                    width="100px" height="110px" alt="image"
-                                                    style="border-radius: 70px;"></td>
-                                                <td>{{ $item->name_ar }}</td>
-                                                <td>{{ $item->name_en }}</td>
+                                                <td><img src="{{ !empty($item->image) ? url('upload/advert/' . $item->image) : url('upload/no.png') }}"
+                                                        width="100px" height="110px" alt="image"
+                                                        style="border-radius: 70px;"></td>
                                                 <td>
                                                     <input type="checkbox" name="toogle" value="{{ $item->id }}"
                                                         data-toggle="toggle" {{ $item->status == 'active' ? 'checked' : '' }}
@@ -149,12 +105,12 @@
                                                         data-onstyle="success" data-offstyle="danger">
                                                 </td>
                                                 <td>
-                                                    <a href="{{ route('banner.edit', $item->id) }}"><button type="button"
+                                                    <a href="{{ route('advert.edit', $item->id) }}"><button type="button"
                                                             class="float-left btn btn-info" data-size="sm" title="Edit"><i
                                                                 class="fa fa-edit"></i></button></a>
                                                     &ensp;
                                                     <form class="float-left ml-1"
-                                                        action="{{ route('banner.destroy', $item->id) }}" method="POST">
+                                                        action="{{ route('advert.destroy', $item->id) }}" method="POST">
                                                         @csrf
                                                         @method('delete')
                                                         <a data-toggle="tooltip" title="delete"
@@ -216,7 +172,7 @@
             var id = $(this).val();
             // alert(id);
             $.ajax({
-                url: "{{ route('banner.status') }}",
+                url: "{{ route('advert.status') }}",
                 type: "POST",
                 data: {
                     _token: '{{ csrf_token() }}',
