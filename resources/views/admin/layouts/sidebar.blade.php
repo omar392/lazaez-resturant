@@ -18,6 +18,11 @@
                             </a>
                         </li>
                         <li>
+                            <a href="{{route('product.index')}}" class="waves-effect">
+                                <i class="fas fa-briefcase"></i><span style="font-family: cairo;"> المنتجات </span>
+                            </a>
+                        </li>
+                        <li>
                             <a href="{{route('banner.index')}}" class="waves-effect">
                                 <i class="far fa-images"></i><span style="font-family: cairo;">البنرات</span>
                             </a>

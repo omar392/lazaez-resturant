@@ -101,15 +101,6 @@
 
 @endsection
 @section('scripts')
-{{-- <script src="/vendor/laravel-filemanager/js/stand-alone-button.js"></script> --}}
-{{-- <script>
-     $('#lfm').filemanager('image');
-</script> --}}
-{{-- <script id="description">
-    $(document).ready(function() {
-        $('#description').summernote();
-    });
-</script> --}}
 <script>
       $('#is_parent').change(function(e){
         e.preventDefault();

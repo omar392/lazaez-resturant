@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use App\Models\Product;
 
 class ProductController extends Controller
 {
@@ -14,7 +16,20 @@ class ProductController extends Controller
      */
     public function index()
     {
-        //
+        $products = Product::orderBy('id', 'DESC')->get();
+        return view('admin.product.index', compact('products'));
+    }
+
+    public function productStatus(Request $request)
+    {
+
+        // dd($request->all());
+        if ($request->mode == 'true') {
+            DB::table('products')->where('id', $request->id)->update(['status' => 'active']);
+        } else {
+            DB::table('products')->where('id', $request->id)->update(['status' => 'inactive']);
+        }
+        return response()->json(['msg' => 'تم تغيير الحالة بنجاح', 'status' => true]);
     }
 
     /**
@@ -35,7 +50,31 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'name_ar' => 'string|required',
+            'name_en' => 'string|required',
+            'description_ar' => 'string|nullable',
+            'description_en' => 'string|nullable',
+            'price' => 'nullable|numeric',
+            'discount' => 'nullable|numeric',
+            'cat_id' => 'required|exists:categories,id',
+            'child_cat_id' => 'nullable|exists:categories,id',
+            'status' => 'nullable|in:active,inactive',
+        ]);
+        $data = $request->all();
+        if ($request->file('image')) {
+            $file = $request->file('image');
+            $filename = date('YmdHi') . $file->getClientOriginalName();
+            $file->move(public_path('upload/product'), $filename);
+            $data['image'] = $filename;
+        }
+        $data['offer_price'] = (($request->price) - ($request->discount));
+        $status = Product::create($data);
+        if ($status) {
+            return redirect()->route('product.index')->with('success', 'تم الإنشاء بنجاح');
+        } else {
+            return back()->with('error', 'هناك خطأ ما !!');
+        }
     }
 
     /**
@@ -46,7 +85,12 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-        //
+        $product = Product::find($id);
+        if ($product) {
+            return view('admin.product.index', compact(['product']));
+        } else {
+            return back()->with('error', 'هذه البيانات غير موجودة');
+        }
     }
 
     /**
@@ -57,7 +101,12 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
-        //
+        $product = Product::find($id);
+        if ($product) {
+            return view('admin.product.edit', compact(['product']));
+        } else {
+            return back()->with('error', 'هذه البيانات غير موجودة');
+        }
     }
 
     /**
@@ -69,7 +118,37 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $product = Product::find($id);
+        if ($product) {
+            $this->validate($request, [
+                'name_ar' => 'string|required',
+                'name_en' => 'string|required',
+                'description_ar' => 'string|nullable',
+                'description_en' => 'string|nullable',
+                'price' => 'nullable|numeric',
+                'discount' => 'nullable|numeric',
+                'cat_id' => 'required|exists:categories,id',
+                'child_cat_id' => 'nullable|exists:categories,id',
+                'status' => 'nullable|in:active,inactive',
+            ]);
+            $data = $request->all();
+            if ($request->file('image')) {
+                $file = $request->file('image');
+                @unlink(public_path('upload/product/' . $data->image));
+                $filename = date('YmdHi') . $file->getClientOriginalName();
+                $file->move(public_path('upload/product'), $filename);
+                $data['image'] = $filename;
+            }
+            $data['offer_price'] = (($request->price) - ($request->discount));
+            $status = $product->fill($data)->save();
+            if ($status) {
+                return redirect()->route('product.index')->with('success', 'تم التعديل بنجاح');
+            } else {
+                return back()->with('error', 'هناك خطأ ما !!');
+            }
+        } else {
+            return back()->with('error', 'هذه البيانات غير موجودة');
+        }
     }
 
     /**
@@ -80,6 +159,16 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $product = Product::find($id);
+        if ($product) {
+            $status = $product->delete();
+            if ($status) {
+                return redirect()->route('product.index')->with('success', 'تم الحذف بنجاح');
+            } else {
+                return redirect()->with('error', 'هناك خطأ ما !!');
+            }
+        } else {
+            return back()->with('error', 'هذه البيانات غير موجودة');
+        }
     }
 }
