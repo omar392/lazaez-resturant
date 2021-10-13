@@ -33,6 +33,31 @@
                             </a>
                         </li>
                         <li>
+                            <a href="javascript:void(0);" class="waves-effect"><i class="fas fa-mouse-pointer"></i><span style="font-family: cairo;"> الإضافات <span class="float-right menu-arrow"><i class="mdi mdi-chevron-right"></i></span> </span></a>
+                            <ul class="submenu">
+                                <li>
+                                    <a href="{{route('cutting.index')}}" class="waves-effect">
+                                        <i class="fas fa-utensils"></i>&ensp;<span style="font-family: cairo;">طرق التقطيع</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{{route('wrapping.index')}}" class="waves-effect">
+                                        <i class="fas fa-boxes"></i>&ensp;<span style="font-family: cairo;">طرق التغليف</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{{route('cooking.index')}}" class="waves-effect">
+                                        <i class="fas fa-drumstick-bite"></i>&ensp;<span style="font-family: cairo;">طرق الطهى</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{{route('spice.index')}}" class="waves-effect">
+                                        <i class="fas fa-mortar-pestle"></i>&ensp;<span style="font-family: cairo;">التوابل</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
                             <a href="{{route('faq.index')}}" class="waves-effect">
                                 <i class="fas fa-question"></i><span style="font-family: cairo;">الاسئلة الشائعة</span>
                             </a>

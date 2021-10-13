@@ -19,10 +19,31 @@ class Product extends Model
         'discount',
         'status',
         'cat_id',
-        'child_cat_id'
+        'child_cat_id',
+        'cutting_id',
+        'wrapping_id',
+        'cooking_id',
+        'spice_id',
     ];
+
+    public function spice(){
+        return $this->belongsTo('App\Models\Spice');
+    }
+
+    public function cooking(){
+        return $this->belongsTo('App\Models\Cooking');
+    }
+
+    public function cutting(){
+        return $this->belongsTo('App\Models\Cutting');
+    }
+    
+    public function wrapping(){
+        return $this->belongsTo('App\Models\Wrapping');
+    }
+
     public function rel_prods(){
         return $this->hasMany('App\Models\Product','cat_id','cat_id')->where('status','active')->limit(10);
     }
-        
+
 }

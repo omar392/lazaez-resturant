@@ -1,15 +1,20 @@
 <?php
 
+
 use App\Http\Controllers\Admin\AboutController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\AdvertController;
 use App\Http\Controllers\Admin\BannerController;
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\CookingController;
+use App\Http\Controllers\Admin\CuttingController;
 use App\Http\Controllers\Admin\FaqController;
 use App\Http\Controllers\Admin\LoginController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\SettingController;
+use App\Http\Controllers\Admin\SpiceController;
 use App\Http\Controllers\Admin\TeamController;
+use App\Http\Controllers\Admin\WrappingController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -42,6 +47,25 @@ Route::post('advert_status',[AdvertController::class,'advertStatus'])->name('adv
 //faq
 Route::resource('faq', FaqController::class);
 Route::post('faq_status',[FaqController::class,'faqStatus'])->name('faq.status');
+
+
+//cutting
+Route::resource('cutting', CuttingController::class);
+Route::post('cutting_status',[CuttingController::class,'cuttingStatus'])->name('cutting.status');
+
+
+//wrapping
+Route::resource('wrapping', WrappingController::class);
+Route::post('wrapping_status',[WrappingController::class,'wrappingStatus'])->name('wrapping.status');
+
+//cooking
+Route::resource('cooking', CookingController::class);
+Route::post('cooking_status',[CookingController::class,'cookingStatus'])->name('cooking.status');
+
+//spice
+Route::resource('spice', SpiceController::class);
+Route::post('spice_status',[SpiceController::class,'spiceStatus'])->name('spice.status');
+
 
 //settings
 Route::get('setting',[SettingController::class,'index'])->name('setting');

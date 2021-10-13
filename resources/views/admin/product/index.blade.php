@@ -20,7 +20,7 @@
                         <div class="row align-items-center">
                             <div class="text-center">
                                 <!-- Large modal -->
-                                <button type="button" class="btn btn-primary waves-effect waves-light" data-toggle="modal" data-target=".bs-example-modal-lg"><i class="fas fa-plus-circle"></i> إضافة قسم </button>
+                                <button type="button" class="btn btn-primary waves-effect waves-light" data-toggle="modal" data-target=".bs-example-modal-lg"><i class="fas fa-plus-circle"></i> إضافة منتج </button>
                             </div>
                         <!--  Modal content for the above example -->
                         <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
