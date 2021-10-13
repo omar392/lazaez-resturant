@@ -16,10 +16,10 @@ class CreateProductsTable extends Migration
         Schema::create('products', function (Blueprint $table) {
             $table->id();
 
-            $table->unsignedBigInteger('spice_id');
-            $table->unsignedBigInteger('cooking_id');
-            $table->unsignedBigInteger('wrapping_id');
-            $table->unsignedBigInteger('cutting_id');
+            $table->unsignedBigInteger('spice_id')->nullable();
+            $table->unsignedBigInteger('cooking_id')->nullable();
+            $table->unsignedBigInteger('wrapping_id')->nullable();
+            $table->unsignedBigInteger('cutting_id')->nullable();
             $table->unsignedBigInteger('cat_id');
             $table->unsignedBigInteger('child_cat_id')->nullable();
 
@@ -36,7 +36,7 @@ class CreateProductsTable extends Migration
             
             $table->foreign('spice_id')->references('id')->on('spices')->onDelete('cascade');
             $table->foreign('cooking_id')->references('id')->on('cookings')->onDelete('cascade');
-            $table->foreign('wrapping_id')->references('id')->on('cuttings')->onDelete('cascade');
+            $table->foreign('wrapping_id')->references('id')->on('wrappings')->onDelete('cascade');
             $table->foreign('cutting_id')->references('id')->on('cuttings')->onDelete('cascade');
             $table->foreign('cat_id')->references('id')->on('categories')->onDelete('cascade');
             $table->foreign('child_cat_id')->references('id')->on('categories')->onDelete('SET NULL');

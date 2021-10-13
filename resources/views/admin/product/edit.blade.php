@@ -93,6 +93,42 @@
                                         
                                     </select>
                                 </div>
+                                <div class="form-group">
+                                    <label>التقطيع</label>
+                                    <select name="cutting_id" class="form-control show-tick">
+                                        <option value="">--التقطيع--</option>
+                                    @foreach (\App\Models\Cutting::get() as $cutting)
+                                    <option value="{{$cutting->id}}" {{$cutting->id==$product->cutting_id? 'selected' : ''}}>{{$cutting->name_ar}}</option>
+                                    @endforeach
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label>التغليف</label>
+                                    <select name="wrapping_id" class="form-control show-tick">
+                                        <option value="">--التغليف--</option>
+                                    @foreach (\App\Models\Wrapping::get() as $wrapping)
+                                    <option value="{{$wrapping->id}}" {{$wrapping->id==$product->wrapping_id? 'selected' : ''}}>{{$wrapping->name_ar}}</option>
+                                    @endforeach
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label>الطهى</label>
+                                    <select name="cooking_id" class="form-control show-tick">
+                                        <option value="">--الطهى--</option>
+                                    @foreach (\App\Models\Cooking::get() as $cooking)
+                                    <option value="{{$cooking->id}}" {{$cooking->id==$product->cooking_id? 'selected' : ''}}>{{$cooking->name_ar}}</option>
+                                    @endforeach
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label>التوابل</label>
+                                    <select name="spice_id" class="form-control show-tick">
+                                        <option value="">--التوابل--</option>
+                                    @foreach (\App\Models\Spice::get() as $spice)
+                                    <option value="{{$spice->id}}" {{$spice->id==$product->spice_id? 'selected' : ''}}>{{$spice->name_ar}}</option>
+                                    @endforeach
+                                    </select>
+                                </div>
                                 <div class="form-group row">
                                     <label for="example-text-input" class="col-sm-2 col-form-label">الحالة</label>
                                     <div class="col-sm-10">

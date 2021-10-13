@@ -90,7 +90,7 @@
                                                         <input class="input-preview__src" id="img" name="image" type="file" />
                                                     </div>
                                                 </div>
-                                            <div class="form-group">
+                                            <div class="form-group row">
                                                 <label>القسم</label>
                                                 <select id="cat_id" name="cat_id" class="form-control show-tick">
                                                     <option value="">--القسم--</option>
@@ -103,6 +103,42 @@
                                                 <label>القسم الفرعى</label>
                                                 <select id="chil_cat_id" name="child_cat_id" class="form-control show-tick">
                                                     
+                                                </select>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label>التقطيع</label>
+                                                <select name="cutting_id" class="form-control show-tick">
+                                                    <option value="">--التقطيع--</option>
+                                                @foreach (\App\Models\Cutting::get() as $cutting)
+                                                <option value="{{$cutting->id}}" {{old('cutting_id')==$cutting->id? 'selected' : ''}}>{{$cutting->name_ar}}</option>
+                                                @endforeach
+                                                </select>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label>التغليف</label>
+                                                <select name="wrapping_id" class="form-control show-tick">
+                                                    <option value="">--التغليف--</option>
+                                                @foreach (\App\Models\Wrapping::get() as $wrapping)
+                                                <option value="{{$wrapping->id}}" {{old('wrapping_id')==$wrapping->id? 'selected' : ''}}>{{$wrapping->name_ar}}</option>
+                                                @endforeach
+                                                </select>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label>الطهى</label>
+                                                <select name="cooking_id" class="form-control show-tick">
+                                                    <option value="">--الطهى--</option>
+                                                @foreach (\App\Models\Cooking::get() as $cooking)
+                                                <option value="{{$cooking->id}}" {{old('cooking_id')==$cooking->id? 'selected' : ''}}>{{$cooking->name_ar}}</option>
+                                                @endforeach
+                                                </select>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label>التوابل</label>
+                                                <select name="spice_id" class="form-control show-tick">
+                                                    <option value="">--التوابل--</option>
+                                                @foreach (\App\Models\Spice::get() as $spice)
+                                                <option value="{{$spice->id}}" {{old('spice_id')==$spice->id? 'selected' : ''}}>{{$spice->name_ar}}</option>
+                                                @endforeach
                                                 </select>
                                             </div>
                                                 <div class="form-group row">
@@ -212,8 +248,26 @@
                                                     </div>
                                                 </div>
                                                 <div class="row">
+                                                    <div class="col-md-3">
+                                                        <strong>التوابل : </strong>
+                                                        <p>{{ \App\Models\Spice::where('id',$product->spice_id)->value('name_ar') }}</p>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <strong>التقطيع : </strong>
+                                                        <p>{{ \App\Models\Cutting::where('id',$product->cutting_id)->value('name_ar') }}</p>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <strong>الطهى : </strong>
+                                                        <p>{{ \App\Models\Cooking::where('id',$product->cooking_id)->value('name_ar') }}</p>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <strong>التغليف : </strong>
+                                                        <p>{{ \App\Models\Wrapping::where('id',$product->wrapping_id)->value('name_ar') }}</p>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
                                                     <div class="col-md-6">
-                                                        <strong>القسم</strong>
+                                                        <strong>القسم : </strong>
                                                         <p>{{ \App\Models\Category::where('id',$product->cat_id)->value('name_ar') }}</p>
                                                     </div>
                                                 </div>
