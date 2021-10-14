@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Offer;
 use Illuminate\Http\Request;
 
 class OfferController extends Controller
@@ -14,7 +15,8 @@ class OfferController extends Controller
      */
     public function index()
     {
-        //
+        $offer = Offer::get();
+        return view('admin.offer.index',compact('offer'));
     }
 
     /**
@@ -35,7 +37,14 @@ class OfferController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request,[
+            'name_ar'=>'string|required',
+            'name_en'=>'string|required',
+            'description_ar'=>'string|required',
+            'description_en'=>'string|required',
+            'image'=>'required',
+            'status'=>'required|in:active,inactive',
+        ]);
     }
 
     /**

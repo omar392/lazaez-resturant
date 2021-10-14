@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\CookingController;
 use App\Http\Controllers\Admin\CuttingController;
 use App\Http\Controllers\Admin\FaqController;
 use App\Http\Controllers\Admin\LoginController;
+use App\Http\Controllers\Admin\OfferController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\SpiceController;
@@ -35,6 +36,10 @@ Route::post('category/{id}/child',[CategoryController::class,'getChildByParentID
 //Products 
 Route::resource('product', ProductController::class);
 Route::post('product_status',[ProductController::class,'productStatus'])->name('product.status');
+
+//offer
+Route::resource('offer', OfferController::class);
+Route::post('offer_status',[OfferController::class,'offerStatus'])->name('offer.status');
 
 //banners
 Route::resource('banner', BannerController::class);
