@@ -18,10 +18,12 @@
                         </div> <!-- end row -->
                         <br>
                         <div class="row align-items-center">
+                            @if(Auth::guard('admin')->user()->hasPermission('categories-create'))
                             <div class="text-center">
                                 <!-- Large modal -->
                                 <button type="button" class="btn btn-primary waves-effect waves-light" data-toggle="modal" data-target=".bs-example-modal-lg"><i class="fas fa-plus-circle"></i> إضافة قسم </button>
                             </div>
+                            @endif
                         <!--  Modal content for the above example -->
                         <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
                             <div class="modal-dialog modal-lg">
@@ -142,13 +144,17 @@
                                             <input type="checkbox" name="toogle" value="{{$item->id}}"  data-toggle="toggle" {{$item->status=='active' ? 'checked' : ''}} data-on="active" data-off="inactive" data-size="sm" data-onstyle="success" data-offstyle="danger">
                                         </td>
                                         <td>
+                                            @if(Auth::guard('admin')->user()->hasPermission('categories-update'))
                                             <a href="{{route('category.edit',$item->id)}}"><button type="button"  class="float-left btn btn-info" data-size="sm" title="Edit"><i class="fa fa-edit"></i></button></a>
+                                            @endif
                                             &ensp;
+                                            @if(Auth::guard('admin')->user()->hasPermission('categories-delete'))
                                             <form class="float-left ml-1" action="{{route('category.destroy',$item->id)}}" method="POST">
                                                 @csrf
                                                 @method('delete')
                                             <a data-toggle="tooltip" title="delete" data-id="{{$item->id}}" class="dltBtn"><button type="button" data-type="confirm" class="btn btn-danger js-sweetalert" title="Delete"><i class="fa fa-trash"></i></button></a>
                                             </form>
+                                            @endif
                                         </td>
                                     </tr>
                                 

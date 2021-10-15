@@ -9,6 +9,14 @@ use Illuminate\Support\Facades\DB;
 
 class BannerController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('permission:banners-read')->only(['index']);
+        $this->middleware('permission:banners-create')->only(['create','store']);
+        $this->middleware('permission:banners-update')->only(['edit','update']);
+        $this->middleware('permission:banners-delete')->only(['destroy']);
+    }
     /**
      * Display a listing of the resource.
      *

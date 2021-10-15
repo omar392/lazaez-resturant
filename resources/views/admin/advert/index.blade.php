@@ -7,22 +7,24 @@
             <div class="page-title-box">
                 <div class="row align-items-center">
                     <div class="col-sm-6">
-                        <h4 class="page-title" style="font-family: cairo;">معرض الصور</h4>
+                        <h4 class="page-title" style="font-family: cairo;">الاعلانات</h4>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-right">
                             <li class="breadcrumb-item"><a href="{{ route('adminhome') }}">الرئيسية</a></li>
-                            <li class="breadcrumb-item active">معرض الصور</li>
+                            <li class="breadcrumb-item active">الاعلانات</li>
                         </ol>
                     </div>
                 </div> <!-- end row -->
                 <br>
                 <div class="row align-items-center">
+                    @if(Auth::guard('admin')->user()->hasPermission('adverts-create'))
                     <div class="text-center">
                         <!-- Large modal -->
                         <button type="button" class="btn btn-primary waves-effect waves-light" data-toggle="modal"
-                            data-target=".bs-example-modal-lg"><i class="fas fa-plus-circle"></i>إضافة صورة جديدة</button>
+                            data-target=".bs-example-modal-lg"><i class="fas fa-plus-circle"></i>إضافة اعلان جديد</button>
                     </div>
+                    @endif
                     <!--  Modal content for the above example -->
                     <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog"
                         aria-labelledby="myLargeModalLabel" aria-hidden="true">
@@ -105,10 +107,13 @@
                                                         data-onstyle="success" data-offstyle="danger">
                                                 </td>
                                                 <td>
+                                                    @if(Auth::guard('admin')->user()->hasPermission('adverts-update'))
                                                     <a href="{{ route('advert.edit', $item->id) }}"><button type="button"
                                                             class="float-left btn btn-info" data-size="sm" title="Edit"><i
                                                                 class="fa fa-edit"></i></button></a>
+                                                    @endif
                                                     &ensp;
+                                                    @if(Auth::guard('admin')->user()->hasPermission('adverts-delete'))
                                                     <form class="float-left ml-1"
                                                         action="{{ route('advert.destroy', $item->id) }}" method="POST">
                                                         @csrf
@@ -119,6 +124,7 @@
                                                                 class="btn btn-danger js-sweetalert" title="Delete"><i
                                                                     class="fa fa-trash"></i></button></a>
                                                     </form>
+                                                    @endif
                                                 </td>
                                                 
                                             </tr>

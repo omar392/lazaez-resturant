@@ -7,22 +7,22 @@
             <div class="page-title-box">
                 <div class="row align-items-center">
                     <div class="col-sm-6">
-                        <h4 class="page-title" style="font-family: cairo;">البنرات</h4>
+                        <h4 class="page-title" style="font-family: cairo;">العروض</h4>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-right">
                             <li class="breadcrumb-item"><a href="{{ route('adminhome') }}">الرئيسية</a></li>
-                            <li class="breadcrumb-item active">البنرات</li>
+                            <li class="breadcrumb-item active">العروض</li>
                         </ol>
                     </div>
                 </div> <!-- end row -->
                 <br>
                 <div class="row align-items-center">
-                    @if(Auth::guard('admin')->user()->hasPermission('banners-create'))
+                    @if(Auth::guard('admin')->user()->hasPermission('offers-create'))
                     <div class="text-center">
                         <!-- Large modal -->
                         <button type="button" class="btn btn-primary waves-effect waves-light" data-toggle="modal"
-                            data-target=".bs-example-modal-lg"><i class="fas fa-plus-circle"></i>إضافة بنر جديد</button>
+                            data-target=".bs-example-modal-lg"><i class="fas fa-plus-circle"></i>إضافة عرض جديد</button>
                     </div>
                     @endif
                     <!--  Modal content for the above example -->
@@ -31,48 +31,35 @@
                         <div class="modal-dialog modal-lg">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title mt-0" id="myLargeModalLabel" style="font-family: cairo;">إضافة بنر جديد</h5>
+                                    <h5 class="modal-title mt-0" id="myLargeModalLabel" style="font-family: cairo;">إضافة عرض جديد</h5>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
                                 </div>
                                 <div class="modal-body">
                                     <div class="card-body">
-                                        <form action="{{ route('banner.store') }}" method="POST"
+                                        <form action="{{ route('offer.store') }}" method="POST"
                                             enctype="multipart/form-data">
                                             @csrf
 
                                             <div class="form-group row">
                                                 <label for="example-text-input"
-                                                    class="col-sm-2 col-form-label">العنوان</label>
+                                                    class="col-sm-2 col-form-label">اسم العرض</label>
                                                 <div class="col-sm-10">
                                                     <input class="form-control" type="text" name="name_ar"
-                                                        id="example-text-input" placeholder="عنوان الشريحة" required>
+                                                        id="example-text-input" placeholder="اسم العرض" required>
                                                 </div>
                                             </div>
                                             <div class="form-group row">
-                                                <label for="example-text-input" class="col-sm-2 col-form-label">Title</label>
+                                                <label for="example-text-input" class="col-sm-2 col-form-label">Offer Name</label>
                                                 <div class="col-sm-10">
                                                     <input class="form-control" name="name_en"
-                                                        id="example-text-input" placeholder="Slider Title" required>
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <label for="example-text-input" class="col-sm-2 col-form-label">الرابط</label>
-                                                <div class="col-sm-10">
-                                                    <input class="form-control" name="url"
-                                                        id="example-text-input" placeholder="Slider URL" required>
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <label class="input-preview" for="img">أضف صورة</label>
-                                                <div class="col-sm-10">
-                                                    <input class="input-preview__src" id="img" name="image" type="file" required />
+                                                        id="example-text-input" placeholder="Offer name" required>
                                                 </div>
                                             </div>
                                             <div class="form-group row">
                                                 <label for="example-text-input"
-                                                    class="col-sm-2 col-form-label">الوصف</label>
+                                                    class="col-sm-2 col-form-label">التفاصيل</label>
                                                 <div class="col-sm-10">
                                                     <textarea class="form-control" name="description_ar" id="editor5"></textarea>
                                                 <script>
@@ -87,6 +74,26 @@
                                                     <script>
                                                             CKEDITOR.replace( 'editor' );
                                                     </script>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="example-text-input" class="col-sm-2 col-form-label">السعر</label>
+                                                <div class="col-sm-10">
+                                                    <input class="form-control" type="number" name="main_price" value=""
+                                                        id="example-text-input" required>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="example-text-input" class="col-sm-2 col-form-label">الخصم</label>
+                                                <div class="col-sm-10">
+                                                    <input class="form-control" type="number" name="discount" value=""
+                                                        id="example-text-input" required>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="input-preview" for="img">أضف صورة</label>
+                                                <div class="col-sm-10">
+                                                    <input class="input-preview__src" id="img" name="image" type="file" required />
                                                 </div>
                                             </div>
                                             <div class="form-group row">
@@ -127,23 +134,27 @@
                                     <thead>
                                         <tr>
                                             <th>#</th>
+                                            <th>العرض</th>
                                             <th>الصورة</th>
-                                            <th>العنوان</th>
-                                            <th>Title</th>
+                                            <th>السعر</th>
+                                            <th>الخصم</th>
+                                            <th>السعر بعد الخصم</th>
                                             <th>الحالة</th>
                                             <th>التحكم</th>
                                         </tr>
                                     </thead>
 
                                     <tbody>
-                                        @foreach ($banner as $item)
+                                        @foreach ($offer as $item)
                                             <tr>
                                                 <td>{{ $loop->iteration }}</td>
-                                                <td><img src="{{ !empty($item->image) ? url('upload/banners/' . $item->image) : url('upload/no.png') }}"
-                                                    width="100px" height="110px" alt="image"
-                                                    style="border-radius: 70px;"></td>
                                                 <td>{{ $item->name_ar }}</td>
-                                                <td>{{ $item->name_en }}</td>
+                                                <td><img src="{{ !empty($item->image) ? url('upload/offer/' . $item->image) : url('upload/no_image.jfif') }}"
+                                                        width="100px" height="110px" alt="image"
+                                                        style="border-radius: 70px;"></td>
+                                                <td>{{ $item->main_price }}</td>
+                                                <td>{{ $item->discount }}</td>
+                                                <td>{{ $item->end_price }}</td>
                                                 <td>
                                                     <input type="checkbox" name="toogle" value="{{ $item->id }}"
                                                         data-toggle="toggle" {{ $item->status == 'active' ? 'checked' : '' }}
@@ -151,15 +162,15 @@
                                                         data-onstyle="success" data-offstyle="danger">
                                                 </td>
                                                 <td>
-                                                    @if(Auth::guard('admin')->user()->hasPermission('banners-update'))
-                                                    <a href="{{ route('banner.edit', $item->id) }}"><button type="button"
+                                                    @if(Auth::guard('admin')->user()->hasPermission('offers-update'))
+                                                    <a href="{{ route('offer.edit', $item->id) }}"><button type="button"
                                                             class="float-left btn btn-info" data-size="sm" title="Edit"><i
                                                                 class="fa fa-edit"></i></button></a>
                                                     @endif
                                                     &ensp;
-                                                    @if(Auth::guard('admin')->user()->hasPermission('banners-delete'))
+                                                    @if(Auth::guard('admin')->user()->hasPermission('offers-delete'))
                                                     <form class="float-left ml-1"
-                                                        action="{{ route('banner.destroy', $item->id) }}" method="POST">
+                                                        action="{{ route('offer.destroy', $item->id) }}" method="POST">
                                                         @csrf
                                                         @method('delete')
                                                         <a data-toggle="tooltip" title="delete"
@@ -222,7 +233,7 @@
             var id = $(this).val();
             // alert(id);
             $.ajax({
-                url: "{{ route('banner.status') }}",
+                url: "{{ route('offer.status') }}",
                 type: "POST",
                 data: {
                     _token: '{{ csrf_token() }}',

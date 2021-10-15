@@ -18,10 +18,12 @@
                         </div> <!-- end row -->
                         <br>
                         <div class="row align-items-center">
+                            @if(Auth::guard('admin')->user()->hasPermission('products-create'))
                             <div class="text-center">
                                 <!-- Large modal -->
                                 <button type="button" class="btn btn-primary waves-effect waves-light" data-toggle="modal" data-target=".bs-example-modal-lg"><i class="fas fa-plus-circle"></i> إضافة منتج </button>
                             </div>
+                            @endif
                         <!--  Modal content for the above example -->
                         <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
                             <div class="modal-dialog modal-lg">
@@ -201,12 +203,16 @@
                                         </td>
                                         <td>
                                             <a></a><button type="button" class="float-left btn btn-success" data-toggle="modal" data-target="#productID{{$item->id}}" data-size="sm" title="View"><i class="fa fa-eye"></i></button></a>
+                                            @if(Auth::guard('admin')->user()->hasPermission('products-update'))
                                             <a href="{{route('product.edit',$item->id)}}"><button type="button"  class="float-left btn btn-info" data-size="sm" title="Edit"><i class="fa fa-edit"></i></button></a>
+                                            @endif
+                                            @if(Auth::guard('admin')->user()->hasPermission('products-delete'))
                                             <form class="float-left ml-1" action="{{route('product.destroy',$item->id)}}" method="POST">
                                                 @csrf
                                                 @method('delete')
                                             <a data-toggle="tooltip" title="delete" data-id="{{$item->id}}" class="dltBtn"><button type="button" data-type="confirm" class="btn btn-danger js-sweetalert" title="Delete" data-size="sm"><i class="fa fa-trash"></i></button></a>
                                             </form>
+                                            @endif
                                         </td>
                                         <div class="modal" id="productID{{$item->id}}">
                                             <div class="modal-dialog">

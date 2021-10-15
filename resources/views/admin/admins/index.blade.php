@@ -7,22 +7,22 @@
             <div class="page-title-box">
                 <div class="row align-items-center">
                     <div class="col-sm-6">
-                        <h4 class="page-title" style="font-family: cairo;">البنرات</h4>
+                        <h4 class="page-title" style="font-family: cairo;">المديرين</h4>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-right">
                             <li class="breadcrumb-item"><a href="{{ route('adminhome') }}">الرئيسية</a></li>
-                            <li class="breadcrumb-item active">البنرات</li>
+                            <li class="breadcrumb-item active">المديرين</li>
                         </ol>
                     </div>
                 </div> <!-- end row -->
                 <br>
                 <div class="row align-items-center">
-                    @if(Auth::guard('admin')->user()->hasPermission('banners-create'))
+                    @if(Auth::guard('admin')->user()->hasPermission('admins-create'))
                     <div class="text-center">
                         <!-- Large modal -->
                         <button type="button" class="btn btn-primary waves-effect waves-light" data-toggle="modal"
-                            data-target=".bs-example-modal-lg"><i class="fas fa-plus-circle"></i>إضافة بنر جديد</button>
+                            data-target=".bs-example-modal-lg"><i class="fas fa-plus-circle"></i>إضافة مدير</button>
                     </div>
                     @endif
                     <!--  Modal content for the above example -->
@@ -31,64 +31,53 @@
                         <div class="modal-dialog modal-lg">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title mt-0" id="myLargeModalLabel" style="font-family: cairo;">إضافة بنر جديد</h5>
+                                    <h5 class="modal-title mt-0" id="myLargeModalLabel" style="font-family: cairo;">إضافة مدير</h5>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
                                 </div>
                                 <div class="modal-body">
                                     <div class="card-body">
-                                        <form action="{{ route('banner.store') }}" method="POST"
+                                        <form action="{{ route('admins.store') }}" method="POST"
                                             enctype="multipart/form-data">
                                             @csrf
 
                                             <div class="form-group row">
                                                 <label for="example-text-input"
-                                                    class="col-sm-2 col-form-label">العنوان</label>
+                                                    class="col-sm-2 col-form-label">الاسم</label>
                                                 <div class="col-sm-10">
-                                                    <input class="form-control" type="text" name="name_ar"
-                                                        id="example-text-input" placeholder="عنوان الشريحة" required>
+                                                    <input class="form-control" type="text" name="name"
+                                                        id="example-text-input" placeholder="الاسم" required>
                                                 </div>
                                             </div>
                                             <div class="form-group row">
-                                                <label for="example-text-input" class="col-sm-2 col-form-label">Title</label>
+                                                <label for="example-text-input" class="col-sm-2 col-form-label">البريد الالكترونى</label>
                                                 <div class="col-sm-10">
-                                                    <input class="form-control" name="name_en"
-                                                        id="example-text-input" placeholder="Slider Title" required>
+                                                    <input class="form-control" name="email" type="email"
+                                                        id="example-text-input" placeholder="البريد الالكترونى" required>
                                                 </div>
                                             </div>
                                             <div class="form-group row">
-                                                <label for="example-text-input" class="col-sm-2 col-form-label">الرابط</label>
+                                                <label for="example-text-input" class="col-sm-2 col-form-label">الرقم السرى</label>
                                                 <div class="col-sm-10">
-                                                    <input class="form-control" name="url"
-                                                        id="example-text-input" placeholder="Slider URL" required>
+                                                    <input class="form-control" name="password" type="password"
+                                                        id="example-text-input" placeholder="البريد الالكترونى" required>
                                                 </div>
                                             </div>
+
+                                            
                                             <div class="form-group row">
-                                                <label class="input-preview" for="img">أضف صورة</label>
+                                                <label class="col-sm-2 col-form-label">الصلاحية</label>
                                                 <div class="col-sm-10">
-                                                    <input class="input-preview__src" id="img" name="image" type="file" required />
+                                                    <select class="form-control form-control-round" name="role_id" id="role_id" required>
+                                                    <option value="">---</option>
+                                                    @foreach($roles as $role)
+                                                        <option value="{{$role->id}}">{{$role->name}}</option>
+                                                        @endforeach
+                                                    </select>
                                                 </div>
                                             </div>
-                                            <div class="form-group row">
-                                                <label for="example-text-input"
-                                                    class="col-sm-2 col-form-label">الوصف</label>
-                                                <div class="col-sm-10">
-                                                    <textarea class="form-control" name="description_ar" id="editor5"></textarea>
-                                                <script>
-                                                        CKEDITOR.replace( 'editor5' );
-                                                </script>
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <label for="example-text-input" class="col-sm-2 col-form-label">Description</label>
-                                                <div class="col-sm-10">
-                                                    <textarea class="form-control" name="description_en" id="editor"></textarea>
-                                                    <script>
-                                                            CKEDITOR.replace( 'editor' );
-                                                    </script>
-                                                </div>
-                                            </div>
+
                                             <div class="form-group row">
                                                 <label for="example-text-input"
                                                     class="col-sm-2 col-form-label">الحالة</label>
@@ -127,23 +116,19 @@
                                     <thead>
                                         <tr>
                                             <th>#</th>
-                                            <th>الصورة</th>
-                                            <th>العنوان</th>
-                                            <th>Title</th>
+                                            <th>الاسم </th>
+                                            <th>البريد الالكترونى</th>
                                             <th>الحالة</th>
                                             <th>التحكم</th>
                                         </tr>
                                     </thead>
 
                                     <tbody>
-                                        @foreach ($banner as $item)
+                                        @foreach ($admins as $item)
                                             <tr>
                                                 <td>{{ $loop->iteration }}</td>
-                                                <td><img src="{{ !empty($item->image) ? url('upload/banners/' . $item->image) : url('upload/no.png') }}"
-                                                    width="100px" height="110px" alt="image"
-                                                    style="border-radius: 70px;"></td>
-                                                <td>{{ $item->name_ar }}</td>
-                                                <td>{{ $item->name_en }}</td>
+                                                <td>{{ $item->name }}</td>
+                                                <td>{{ $item->email }}</td>
                                                 <td>
                                                     <input type="checkbox" name="toogle" value="{{ $item->id }}"
                                                         data-toggle="toggle" {{ $item->status == 'active' ? 'checked' : '' }}
@@ -151,15 +136,15 @@
                                                         data-onstyle="success" data-offstyle="danger">
                                                 </td>
                                                 <td>
-                                                    @if(Auth::guard('admin')->user()->hasPermission('banners-update'))
-                                                    <a href="{{ route('banner.edit', $item->id) }}"><button type="button"
+                                                    @if(Auth::guard('admin')->user()->hasPermission('admins-update'))
+                                                    <a href="{{ route('admins.edit', $item->id) }}"><button type="button"
                                                             class="float-left btn btn-info" data-size="sm" title="Edit"><i
                                                                 class="fa fa-edit"></i></button></a>
                                                     @endif
                                                     &ensp;
-                                                    @if(Auth::guard('admin')->user()->hasPermission('banners-delete'))
+                                                    @if(Auth::guard('admin')->user()->hasPermission('admins-delete'))
                                                     <form class="float-left ml-1"
-                                                        action="{{ route('banner.destroy', $item->id) }}" method="POST">
+                                                        action="{{ route('admins.destroy', $item->id) }}" method="POST">
                                                         @csrf
                                                         @method('delete')
                                                         <a data-toggle="tooltip" title="delete"
@@ -170,11 +155,9 @@
                                                     </form>
                                                     @endif
                                                 </td>
-                                                
                                             </tr>
                                         @endforeach
                                     </tbody>
-
                                 </table>
                             </div>
                         </div>
@@ -222,7 +205,7 @@
             var id = $(this).val();
             // alert(id);
             $.ajax({
-                url: "{{ route('banner.status') }}",
+                url: "{{ route('admins.status') }}",
                 type: "POST",
                 data: {
                     _token: '{{ csrf_token() }}',

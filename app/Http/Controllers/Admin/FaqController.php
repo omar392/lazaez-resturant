@@ -11,6 +11,13 @@ use Illuminate\Support\Str;
 
 class FaqController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('permission:faqs-read')->only(['index']);
+        $this->middleware('permission:faqs-create')->only(['create', 'store']);
+        $this->middleware('permission:faqs-update')->only(['edit', 'update']);
+        $this->middleware('permission:faqs-delete')->only(['destroy']);
+    }
     /**
      * Display a listing of the resource.
      *

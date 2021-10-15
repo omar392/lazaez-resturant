@@ -9,6 +9,13 @@ use Illuminate\Support\Facades\DB;
 
 class WrappingController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('permission:wrappings-read')->only(['index']);
+        $this->middleware('permission:wrappings-create')->only(['create','store']);
+        $this->middleware('permission:wrappings-update')->only(['edit','update']);
+        $this->middleware('permission:wrappings-delete')->only(['destroy']);
+    }
     /**
      * Display a listing of the resource.
      *

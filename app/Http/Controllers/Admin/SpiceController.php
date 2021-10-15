@@ -9,6 +9,13 @@ use Illuminate\Support\Facades\DB;
 
 class SpiceController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('permission:spices-read')->only(['index']);
+        $this->middleware('permission:spices-create')->only(['create','store']);
+        $this->middleware('permission:spices-update')->only(['edit','update']);
+        $this->middleware('permission:spices-delete')->only(['destroy']);
+    }
     /**
      * Display a listing of the resource.
      *

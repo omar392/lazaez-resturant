@@ -8,6 +8,11 @@ use Illuminate\Http\Request;
 
 class SettingController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('permission:settings-read')->only(['index']);
+        $this->middleware('permission:settings-update')->only(['update']);
+    }
     public function index(){
         $setting = Setting::first();
         return view('admin.setting.edit',compact('setting'));

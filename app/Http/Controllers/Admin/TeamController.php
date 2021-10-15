@@ -10,6 +10,13 @@ use Illuminate\Http\Request;
 
 class TeamController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('permission:teams-read')->only(['index']);
+        $this->middleware('permission:teams-create')->only(['create','store']);
+        $this->middleware('permission:teams-update')->only(['edit','update']);
+        $this->middleware('permission:teams-delete')->only(['destroy']);
+    }
     /**
      * Display a listing of the resource.
      *

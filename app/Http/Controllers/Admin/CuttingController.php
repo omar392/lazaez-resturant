@@ -9,6 +9,14 @@ use Illuminate\Support\Facades\DB;
 
 class CuttingController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('permission:cuttings-read')->only(['index']);
+        $this->middleware('permission:cuttings-create')->only(['create', 'store']);
+        $this->middleware('permission:cuttings-update')->only(['edit', 'update']);
+        $this->middleware('permission:cuttings-delete')->only(['destroy']);
+    }
     /**
      * Display a listing of the resource.
      *

@@ -3,6 +3,7 @@
 
 use App\Http\Controllers\Admin\AboutController;
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\AdminsController;
 use App\Http\Controllers\Admin\AdvertController;
 use App\Http\Controllers\Admin\BannerController;
 use App\Http\Controllers\Admin\CategoryController;
@@ -12,6 +13,7 @@ use App\Http\Controllers\Admin\FaqController;
 use App\Http\Controllers\Admin\LoginController;
 use App\Http\Controllers\Admin\OfferController;
 use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\SpiceController;
 use App\Http\Controllers\Admin\TeamController;
@@ -36,6 +38,14 @@ Route::post('category/{id}/child',[CategoryController::class,'getChildByParentID
 //Products 
 Route::resource('product', ProductController::class);
 Route::post('product_status',[ProductController::class,'productStatus'])->name('product.status');
+
+
+//Admins 
+Route::resource('admins', AdminsController::class);
+Route::post('admins_status',[AdminsController::class,'adminsStatus'])->name('admins.status');
+
+//roles 
+Route::resource('roles', RoleController::class);
 
 //offer
 Route::resource('offer', OfferController::class);

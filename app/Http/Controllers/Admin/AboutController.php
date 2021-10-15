@@ -8,6 +8,13 @@ use Illuminate\Http\Request;
 
 class AboutController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('permission:abouts-read')->only(['index']);
+        $this->middleware('permission:abouts-update')->only(['update']);
+    }
+
     public function index(){
         $about = About::first();
         return view('admin.about.edit',compact('about'));

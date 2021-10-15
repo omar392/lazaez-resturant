@@ -9,6 +9,15 @@ use Illuminate\Support\Facades\DB;
 
 class AdvertController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('permission:adverts-read')->only(['index']);
+        $this->middleware('permission:adverts-create')->only(['create', 'store']);
+        $this->middleware('permission:adverts-update')->only(['edit', 'update']);
+        $this->middleware('permission:adverts-delete')->only(['destroy']);
+    }
+
       /**
      * Display a listing of the resource.
      *

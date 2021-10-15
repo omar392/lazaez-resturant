@@ -101,12 +101,14 @@
                                             rows="10">{{ $setting->address_en }}</textarea>
                                     </div>
                                 </div>
+                                @if(Auth::guard('admin')->user()->hasPermission('settings-update'))
                                 <div class="form-group text-center m-t-20">
                                     <div class="col-12">
                                         <button class="btn btn-success btn-block btn-lg" name="submit"
-                                            type="submit">تعديل</button>
+                                            type="submit">تـــعـــديـــل</button>
                                     </div>
                                 </div>
+                                @endif
                             </form>
                         </div>
                     </div>

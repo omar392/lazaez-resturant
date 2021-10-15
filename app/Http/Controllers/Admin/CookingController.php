@@ -9,6 +9,14 @@ use Illuminate\Support\Facades\DB;
 
 class CookingController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('permission:cookings-read')->only(['index']);
+        $this->middleware('permission:cookings-create')->only(['create', 'store']);
+        $this->middleware('permission:cookings-update')->only(['edit', 'update']);
+        $this->middleware('permission:cookings-delete')->only(['destroy']);
+    }
     /**
      * Display a listing of the resource.
      *
