@@ -139,9 +139,10 @@
                                                 </td>
                                                 <td>
                                                     @if(Auth::guard('admin')->user()->hasPermission('faqs-update'))
-                                                    <a href="{{ route('faq.edit', $item->id) }}"><button type="button"
-                                                            class="float-left btn btn-info" data-size="sm" title="Edit"><i
-                                                                class="fa fa-edit"></i></button></a>
+                                                    <button type="button" data-toggle="modal"
+                                                    data-target="#myModal{{ $item->id }}"
+                                                    class="float-left btn btn-info" data-size="sm" title="Edit"><i
+                                                        class="fa fa-edit"></i></button>
                                                     @endif
                                                     &ensp;
                                                     @if(Auth::guard('admin')->user()->hasPermission('faqs-delete'))
@@ -158,6 +159,84 @@
                                                     @endif
                                                 </td>
                                             </tr>
+                                                <!--  Modal content for the above example -->
+                                                <div id="myModal{{ $item->id }}" class="modal fade" tabindex="-1"
+                                                    role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                                    <div class="modal-dialog modal-lg">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title mt-0" id="myLargeModalLabel"
+                                                                    style="font-family: cairo;">تعديل  الاسئلة الشائعة</h5>
+                                                                <button type="button" class="close"
+                                                                    data-dismiss="modal" aria-label="Close">
+                                                                    <span aria-hidden="true">&times;</span>
+                                                                </button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <div class="card-body">
+                                                                    <form action="{{ route('faq.update', $item->id) }}"
+                                                                        method="POST" enctype="multipart/form-data">
+                                                                        @csrf
+                                                                        @method('patch')
+                                                                        
+                                                                        <div class="form-group row">
+                                                                            <label for="example-text-input"
+                                                                                class="col-sm-2 col-form-label">سؤال</label>
+                                                                            <div class="col-sm-10">
+                                                                                <input class="form-control" type="text" name="question_ar"
+                                                                                    id="example-text-input" placeholder="السؤال" value="{{$item->question_ar}}" required>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="form-group row">
+                                                                            <label for="example-text-input" class="col-sm-2 col-form-label">Question</label>
+                                                                            <div class="col-sm-10">
+                                                                                <input class="form-control" name="question_en"
+                                                                                    id="example-text-input" placeholder="Answer" value="{{$item->question_en}}" required>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="form-group row">
+                                                                            <label for="example-text-input"
+                                                                                class="col-sm-2 col-form-label">الإجابة</label>
+                                                                            <div class="col-sm-10">
+                                                                                <textarea class="form-control" name="answer_ar" id="editor{{ $item->id }}+5">{!! $item->answer_ar !!}</textarea>
+                                                                            <script>
+                                                                                    CKEDITOR.replace( 'editor{{ $item->id }}+5' );
+                                                                            </script>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="form-group row">
+                                                                            <label for="example-text-input" class="col-sm-2 col-form-label">Answer</label>
+                                                                            <div class="col-sm-10">
+                                                                                <textarea class="form-control" name="answer_en" id="editor{{ $item->id }}">{!! $item->answer_en !!}</textarea>
+                                                                                <script>
+                                                                                        CKEDITOR.replace( 'editor{{ $item->id }}' );
+                                                                                </script>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="form-group row">
+                                                                            <label for="example-text-input" class="col-sm-2 col-form-label">الحالة</label>
+                                                                            <div class="col-sm-10">
+                                                                                <select name="status" class="form-control show-tick">
+                                                                                    <option value="">--الحالة--</option>
+                                                                                    <option value="active" {{old('status')=='active'?'selected':''}}>مفعل</option>
+                                                                                    <option value="inactive" {{old('status')=='inactive'?'selected':''}}>غير مفعل</option>
+                                                                                </select>
+                                                                            </div>
+                                                                        </div>
+    
+                                                                        <div class="form-group text-center m-t-20">
+                                                                            <div class="col-12">
+                                                                                <button class="btn btn-primary btn-block btn-lg"
+                                                                                    name="submit"
+                                                                                    type="submit">تــعــديــل</button>
+                                                                            </div>
+                                                                        </div>
+                                                                    </form>
+                                                                </div>
+                                                            </div>
+                                                        </div><!-- /.modal-content -->
+                                                    </div><!-- /.modal-dialog -->
+                                                </div><!-- /.modal -->
                                         @endforeach
                                     </tbody>
                                 </table>

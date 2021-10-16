@@ -108,9 +108,10 @@
                                                 </td>
                                                 <td>
                                                     @if(Auth::guard('admin')->user()->hasPermission('adverts-update'))
-                                                    <a href="{{ route('advert.edit', $item->id) }}"><button type="button"
-                                                            class="float-left btn btn-info" data-size="sm" title="Edit"><i
-                                                                class="fa fa-edit"></i></button></a>
+                                                    <button type="button" data-toggle="modal"
+                                                    data-target="#myModal{{ $item->id }}"
+                                                    class="float-left btn btn-info" data-size="sm" title="Edit"><i
+                                                        class="fa fa-edit"></i></button>
                                                     @endif
                                                     &ensp;
                                                     @if(Auth::guard('admin')->user()->hasPermission('adverts-delete'))
@@ -128,6 +129,47 @@
                                                 </td>
                                                 
                                             </tr>
+                                                   <!--  Modal content for the above example -->
+                                                   <div id="myModal{{ $item->id }}" class="modal fade" tabindex="-1"
+                                                    role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                                    <div class="modal-dialog modal-lg">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title mt-0" id="myLargeModalLabel"
+                                                                    style="font-family: cairo;">تعديل الاعلانات</h5>
+                                                                <button type="button" class="close"
+                                                                    data-dismiss="modal" aria-label="Close">
+                                                                    <span aria-hidden="true">&times;</span>
+                                                                </button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <div class="card-body">
+                                                                    <form action="{{ route('advert.update', $item->id) }}"
+                                                                        method="POST" enctype="multipart/form-data">
+                                                                        @csrf
+                                                                        @method('patch')
+    
+                                                                        <div class="form-group row">
+                                                                            <img src="{{asset('upload/advert/' . $item->image)}}">
+                                                                                </div>
+                                                                                <div class="fileContainer sprite">
+                                                                                <span>اضف صورة جديدة</span>
+                                                                                <input type="file" name="image" value="{{asset('upload/advert/'.$item->image)}}">
+                                                                        </div>
+                                        
+                                                                        <div class="form-group text-center m-t-20">
+                                                                            <div class="col-12">
+                                                                                <button class="btn btn-primary btn-block btn-lg"
+                                                                                    name="submit"
+                                                                                    type="submit">تــعــديــل</button>
+                                                                            </div>
+                                                                        </div>
+                                                                    </form>
+                                                                </div>
+                                                            </div>
+                                                        </div><!-- /.modal-content -->
+                                                    </div><!-- /.modal-dialog -->
+                                                </div><!-- /.modal -->
                                         @endforeach
                                     </tbody>
 

@@ -142,8 +142,8 @@ class ProductController extends Controller
             $data = $request->all();
             if ($request->file('image')) {
                 $file = $request->file('image');
-                @unlink(public_path('upload/product/' . $data->image));
-                $filename = date('YmdHi') . $file->getClientOriginalName();
+                @unlink(public_path('upload/product/'.$data->image));
+                $filename = date('YmdHi').$file->getClientOriginalName();
                 $file->move(public_path('upload/product'), $filename);
                 $data['image'] = $filename;
             }

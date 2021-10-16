@@ -119,7 +119,6 @@ class AdvertController extends Controller
         $advert = Advert::find($id);
         if($advert){
             $this->validate($request,[
-                'image'=>'required',
                 'status'=>'nullable|in:active,inactive',
             ]);
             $data = $request->all();

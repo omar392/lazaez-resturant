@@ -152,9 +152,10 @@
                                                 </td>
                                                 <td>
                                                     @if(Auth::guard('admin')->user()->hasPermission('banners-update'))
-                                                    <a href="{{ route('banner.edit', $item->id) }}"><button type="button"
+                                                    <button type="button" data-toggle="modal"
+                                                            data-target="#myModal{{ $item->id }}"
                                                             class="float-left btn btn-info" data-size="sm" title="Edit"><i
-                                                                class="fa fa-edit"></i></button></a>
+                                                                class="fa fa-edit"></i></button>
                                                     @endif
                                                     &ensp;
                                                     @if(Auth::guard('admin')->user()->hasPermission('banners-delete'))
@@ -172,6 +173,98 @@
                                                 </td>
                                                 
                                             </tr>
+                                                    <!--  Modal content for the above example -->
+                                                    <div id="myModal{{ $item->id }}" class="modal fade" tabindex="-1"
+                                                        role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                                        <div class="modal-dialog modal-lg">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <h5 class="modal-title mt-0" id="myLargeModalLabel"
+                                                                        style="font-family: cairo;">تعديل  البنرات</h5>
+                                                                    <button type="button" class="close"
+                                                                        data-dismiss="modal" aria-label="Close">
+                                                                        <span aria-hidden="true">&times;</span>
+                                                                    </button>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    <div class="card-body">
+                                                                        <form action="{{ route('banner.update', $item->id) }}"
+                                                                            method="POST" enctype="multipart/form-data">
+                                                                            @csrf
+                                                                            @method('patch')
+        
+                                                                            <div class="form-group row">
+                                                                                <label for="example-text-input"
+                                                                                    class="col-sm-2 col-form-label">العنوان</label>
+                                                                                <div class="col-sm-10">
+                                                                                    <input class="form-control" type="text" name="name_ar"
+                                                                                        id="example-text-input" placeholder="عنوان" value="{{$item->name_ar}}" required>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="form-group row">
+                                                                                <label for="example-text-input" class="col-sm-2 col-form-label">Title</label>
+                                                                                <div class="col-sm-10">
+                                                                                    <input class="form-control" name="name_en"
+                                                                                        id="example-text-input" placeholder="Article Title" value="{{$item->name_en}}" required>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="form-group row">
+                                                                                <label for="example-text-input" class="col-sm-2 col-form-label">الرابط</label>
+                                                                                <div class="col-sm-10">
+                                                                                    <input class="form-control" name="url"
+                                                                                        id="example-text-input" placeholder="Article Title" value="{{$item->url}}" required>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="form-group row">
+                                                                                <label for="example-text-input"
+                                                                                    class="col-sm-2 col-form-label">التفاصيل</label>
+                                                                                <div class="col-sm-10">
+                                                                                    <textarea class="form-control" name="description_ar" id="editor{{ $item->id }}">{!! $item->description_ar !!}</textarea>
+                                                                                <script>
+                                                                                        CKEDITOR.replace( 'editor{{ $item->id }}' );
+                                                                                </script>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="form-group row">
+                                                                                <label for="example-text-input" class="col-sm-2 col-form-label">Description</label>
+                                                                                <div class="col-sm-10">
+                                                                                    <textarea class="form-control" name="description_en" id="editor{{ $item->id }}+2">{!! $item->description_en !!}</textarea>
+                                                                                    <script>
+                                                                                            CKEDITOR.replace( 'editor{{ $item->id }}+2' );
+                                                                                    </script>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="form-group row">
+                                                                                <img src="{{asset('upload/banners/' . $item->image)}}">
+                                                                                    </div>
+                                                                                    <div class="fileContainer sprite">
+                                                                                    <span>اضف صورة جديدة</span>
+                                                                                    <input type="file" name="image" value="{{asset('upload/banners/'.$item->image)}}">
+                                                                            </div>
+                                                                            <div class="form-group row">
+                                                                                <label for="example-text-input" class="col-sm-2 col-form-label">الحالة</label>
+                                                                                <div class="col-sm-10">
+                                                                                    <select name="status" class="form-control show-tick">
+                                                                                        <option value="">--الحالة--</option>
+                                                                                        <option value="active" {{old('status')=='active'?'selected':''}}>مفعل</option>
+                                                                                        <option value="inactive" {{old('status')=='inactive'?'selected':''}}>غير مفعل</option>
+                                                                                    </select>
+                                                                                </div>
+                                                                            </div>
+        
+                                                                            <div class="form-group text-center m-t-20">
+                                                                                <div class="col-12">
+                                                                                    <button class="btn btn-primary btn-block btn-lg"
+                                                                                        name="submit"
+                                                                                        type="submit">تــعــديــل</button>
+                                                                                </div>
+                                                                            </div>
+                                                                        </form>
+                                                                    </div>
+                                                                </div>
+                                                            </div><!-- /.modal-content -->
+                                                        </div><!-- /.modal-dialog -->
+                                                    </div><!-- /.modal -->
                                         @endforeach
                                     </tbody>
 

@@ -132,7 +132,6 @@ class BannerController extends Controller
                 'name_en'=>'string|required',
                 'description_ar'=>'string|required',
                 'description_en'=>'string|required',
-                'image'=>'required',
                 'status'=>'required|in:active,inactive',
             ]);
             $data = $request->all();

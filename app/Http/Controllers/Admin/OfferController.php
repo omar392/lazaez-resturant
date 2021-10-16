@@ -133,7 +133,6 @@ class OfferController extends Controller
                 'name_en'=>'string|required',
                 'description_ar'=>'string|required',
                 'description_en'=>'string|required',
-                'image'=>'required',
                 'status'=>'required|in:active,inactive',
                 'main_price' => 'nullable|numeric',
                 'discount' => 'nullable|numeric',
@@ -141,8 +140,8 @@ class OfferController extends Controller
             $data = $request->all();
             if ($request->file('image')) {
                 $file = $request->file('image');
-                @unlink(public_path('upload/offer/' . $data->image));
-                $filename = date('YmdHi') . $file->getClientOriginalName();
+                @unlink(public_path('upload/offer/'.$data->image));
+                $filename = date('YmdHi').$file->getClientOriginalName();
                 $file->move(public_path('upload/offer'), $filename);
                 $data['image'] = $filename;
             }

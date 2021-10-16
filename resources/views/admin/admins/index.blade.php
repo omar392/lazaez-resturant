@@ -137,9 +137,10 @@
                                                 </td>
                                                 <td>
                                                     @if(Auth::guard('admin')->user()->hasPermission('admins-update'))
-                                                    <a href="{{ route('admins.edit', $item->id) }}"><button type="button"
-                                                            class="float-left btn btn-info" data-size="sm" title="Edit"><i
-                                                                class="fa fa-edit"></i></button></a>
+                                                    <button type="button" data-toggle="modal"
+                                                    data-target="#myModal{{ $item->id }}"
+                                                    class="float-left btn btn-info" data-size="sm" title="Edit"><i
+                                                        class="fa fa-edit"></i></button>
                                                     @endif
                                                     &ensp;
                                                     @if(Auth::guard('admin')->user()->hasPermission('admins-delete'))
@@ -156,6 +157,73 @@
                                                     @endif
                                                 </td>
                                             </tr>
+                                                    <!--  Modal content for the above example -->
+                                                    <div id="myModal{{ $item->id }}" class="modal fade" tabindex="-1"
+                                                        role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                                        <div class="modal-dialog modal-lg">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <h5 class="modal-title mt-0" id="myLargeModalLabel"
+                                                                        style="font-family: cairo;">تعديل  المديرين</h5>
+                                                                    <button type="button" class="close"
+                                                                        data-dismiss="modal" aria-label="Close">
+                                                                        <span aria-hidden="true">&times;</span>
+                                                                    </button>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    <div class="card-body">
+                                                                        <form action="{{ route('admins.update', $item->id) }}"
+                                                                            method="POST" enctype="multipart/form-data">
+                                                                            @csrf
+                                                                            @method('patch')
+        
+                                                                            <div class="form-group row">
+                                                                                <label for="example-text-input"
+                                                                                    class="col-sm-2 col-form-label">الاسم</label>
+                                                                                <div class="col-sm-10">
+                                                                                    <input class="form-control" type="text" name="name"
+                                                                                        id="example-text-input" placeholder="الاسم" value="{{$item->name}}" required>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="form-group row">
+                                                                                <label for="example-text-input" class="col-sm-2 col-form-label">البريد الالكترونى</label>
+                                                                                <div class="col-sm-10">
+                                                                                    <input class="form-control" name="email" type="email"
+                                                                                        id="example-text-input" placeholder="البريد الالكترونى" value="{{$item->email}}" required>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="form-group row">
+                                                                                <label for="example-text-input" class="col-sm-2 col-form-label">الرقم السرى</label>
+                                                                                <div class="col-sm-10">
+                                                                                    <input class="form-control" name="password" type="password"
+                                                                                        id="example-text-input" placeholder="الرقم السرى" required>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="form-group row">
+                                                                                <label class="col-sm-2 col-form-label">@lang('admin.role')</label>
+                                                                                <div class="col-sm-10">
+                                                                                    <select class="form-control form-control-round" name="role_id" id="role_id" required>
+                                                                                    <option value="">---</option>
+                                                                                    @foreach($roles as $role)
+                                                                                    <option  value="{{$role->id}}" {{$item->hasRole($role->name) == 'true'? 'selected':''}}>{{$role->name}}</option>
+                                                                                        @endforeach
+                                                                                    </select>
+                                                                                </div>
+                                                                            </div>
+        
+                                                                            <div class="form-group text-center m-t-20">
+                                                                                <div class="col-12">
+                                                                                    <button class="btn btn-primary btn-block btn-lg"
+                                                                                        name="submit"
+                                                                                        type="submit">تــعــديــل</button>
+                                                                                </div>
+                                                                            </div>
+                                                                        </form>
+                                                                    </div>
+                                                                </div>
+                                                            </div><!-- /.modal-content -->
+                                                        </div><!-- /.modal-dialog -->
+                                                    </div><!-- /.modal -->
                                         @endforeach
                                     </tbody>
                                 </table>
