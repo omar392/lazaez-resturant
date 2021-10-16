@@ -51,6 +51,7 @@ class RoleController extends Controller
     {
         $role = Role::create($request->all());
         $role->attachPermissions($request->permissions);
+        toastr()->success('تم الحفظ بنجاح');
         return redirect()->route('roles.index');
     }
 
@@ -95,6 +96,7 @@ class RoleController extends Controller
         ]);
         $role->update($request->all());
         $role->syncPermissions($request->permissions);
+        toastr()->info('تم التعديل بنجاح');
         return redirect()->route('roles.index');
     }
 
@@ -110,7 +112,8 @@ class RoleController extends Controller
         if ($role) {
             $status = $role->delete();
             if ($status) {
-                return redirect()->route('roles.index')->with('success', 'تم الحذف بنجاح');
+                toastr()->error('تم الحذف بنجاح');
+                return redirect()->route('roles.index');
             } else {
                 return redirect()->with('error', 'هناك خطأ ما !!');
             }

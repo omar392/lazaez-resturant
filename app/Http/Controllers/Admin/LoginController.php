@@ -32,11 +32,11 @@ class LoginController extends Controller
 
         $credentials = $request->only('email', 'password');
         if (Auth::guard('admin')->attempt($credentials)) {
-            return redirect()->intended($this->redirectPath())->withSuccess('تم تسجيل الدخول بنجاح أهلا بك ');
+            toastr()->success('تم تسجيل الدخول بنجاح');
+            return redirect()->intended($this->redirectPath());
         }
-  
-        return redirect('admin')->with('error','لم يتم تسجيل الدخول راجع بياناتك ');
-
+        toastr()->error('لم يتم تسجيل الدخول راجع بياناتك ');
+        return redirect('admin');
     }
 
     protected function guard(){

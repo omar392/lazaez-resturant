@@ -57,7 +57,8 @@ class FaqController extends Controller
         $data = $request->all();
         $status = Faq::create($data);
         if($status){
-            return redirect()->route('faq.index')->with('success','تم الإنشاء بنجاح');
+            toastr()->success('تم الحفظ بنجاح');
+            return redirect()->route('faq.index');
         }else{
             return back()->with('error','هناك خطأ ما !!');
         }
@@ -126,7 +127,8 @@ class FaqController extends Controller
             
             $status = $faq->fill($data)->save();
             if($status){
-                return redirect()->route('faq.index')->with('success','تم التعديل بنجاح');
+                toastr()->info('تم التعديل بنجاح');
+                return redirect()->route('faq.index');
             }else{
                 return back()->with('error','هناك خطأ ما !!');
             }
@@ -147,7 +149,8 @@ class FaqController extends Controller
         if($faq){
         $status=$faq->delete();
         if($status){
-            return redirect()->route('faq.index')->with('success','تم الحذف بنجاح');
+            toastr()->error('تم الحذف بنجاح');
+            return redirect()->route('faq.index');
         }else{
             return redirect()->with('error','هناك خطأ ما !!');
         }

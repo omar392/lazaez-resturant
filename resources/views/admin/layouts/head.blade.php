@@ -24,7 +24,7 @@
     <link href='https://fonts.googleapis.com/css?family=Cairo' rel='stylesheet'>
     <script src="https://cdn.ckeditor.com/4.16.1/standard/ckeditor.js"></script>
     <script src="https://cdn.datatables.net/select/1.3.3/js/dataTables.select.min.js"></script>
-    
+    @toastr_css
 </head>
 <style>
       body {

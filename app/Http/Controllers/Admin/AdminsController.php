@@ -50,7 +50,8 @@ class AdminsController extends Controller
         $request->merge(['password' => Hash::make($request->password)]);
         $admin =  Admin::create($request->all());
         $admin->attachRoles([$request->role_id]);
-        return redirect()->route('admins.index')->with('success','تمت الاضافة بنجاح ');
+        toastr()->success('تمت الاضافة بنجاح');
+        return redirect()->route('admins.index');
     }
 
     /**
@@ -97,7 +98,8 @@ class AdminsController extends Controller
         $request->merge(['password' => bcrypt($request->password)]);
         $admin->update($request->all());
         $admin->syncRoles([$request->role_id]);
-        return redirect()->route('admins.index')->with('success','تمت الاضافة بنجاح ');
+        toastr()->info('تم التعديل بنجاح');
+        return redirect()->route('admins.index');
     }
 
     /**
@@ -112,7 +114,9 @@ class AdminsController extends Controller
         if($admin){
         $status=$admin->delete();
         if($status){
-            return redirect()->route('admins.index')->with('success','تم الحذف بنجاح');
+            toastr()->error('تم الحذف بنجاح');
+            return redirect()->route('admins.index');
+            
         }else{
             return redirect()->with('error','هناك خطأ ما !!');
         }

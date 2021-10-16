@@ -77,7 +77,8 @@ class OfferController extends Controller
         $data['end_price'] = (($request->main_price) - ($request->discount));
         $status = Offer::create($data);
         if ($status) {
-            return redirect()->route('offer.index')->with('success', 'تم الإنشاء بنجاح');
+            toastr()->success('تم الحفظ بنجاح');
+            return redirect()->route('offer.index');
         } else {
             return back()->with('error', 'هناك خطأ ما !!');
         }
@@ -148,7 +149,8 @@ class OfferController extends Controller
         $data['end_price'] = (($request->main_price) - ($request->discount));
         $status = $offer->fill($data)->save();
         if ($status) {
-            return redirect()->route('offer.index')->with('success', 'تم التعديل بنجاح');
+            toastr()->info('تم التعديل بنجاح');
+            return redirect()->route('offer.index');
         } else {
             return back()->with('error', 'هناك خطأ ما !!');
         }
@@ -170,7 +172,8 @@ class OfferController extends Controller
         if ($offer) {
             $status = $offer->delete();
             if ($status) {
-                return redirect()->route('offer.index')->with('success', 'تم الحذف بنجاح');
+                toastr()->error('تم الحذف بنجاح');
+                return redirect()->route('offer.index');
             } else {
                 return redirect()->with('error', 'هناك خطأ ما !!');
             }

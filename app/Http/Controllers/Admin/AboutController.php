@@ -30,6 +30,7 @@ class AboutController extends Controller
             'vision_en'=>$request->input('vision_en'),
         ]);
         $about->save();
-        return redirect()->back()->with('success','تم التعديل بنجاح ');
+        toastr()->info('تم التعديل بنجاح');
+        return redirect()->back();
     }
 }

@@ -54,7 +54,8 @@ class CuttingController extends Controller
         $data = $request->all();
         $status = Cutting::create($data);
         if($status){
-            return redirect()->route('cutting.index')->with('success','تم الإنشاء بنجاح');
+            toastr()->success('تم الحفظ بنجاح');
+            return redirect()->route('cutting.index');
         }else{
             return back()->with('error','هناك خطأ ما !!');
         }
@@ -119,7 +120,8 @@ class CuttingController extends Controller
             $data = $request->all();
             $status = $cutting->fill($data)->save();
             if($status){
-                return redirect()->route('cutting.index')->with('success','تم التعديل بنجاح');
+                toastr()->info('تم التعديل بنجاح');
+                return redirect()->route('cutting.index');
             }else{
                 return back()->with('error','هناك خطأ ما !!');
             }
@@ -140,7 +142,8 @@ class CuttingController extends Controller
         if($cutting){
         $status=$cutting->delete();
         if($status){
-            return redirect()->route('cutting.index')->with('success','تم الحذف بنجاح');
+            toastr()->error('تم الحذف بنجاح');
+            return redirect()->route('cutting.index');
         }else{
             return redirect()->with('error','هناك خطأ ما !!');
         }

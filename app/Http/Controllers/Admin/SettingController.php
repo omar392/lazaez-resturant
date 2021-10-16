@@ -32,6 +32,7 @@ class SettingController extends Controller
             'address_en'=>$request->input('address_en'),
         ]);
         $setting->save();
-        return redirect()->back()->with('success','تم التعديل بنجاح ');
+        toastr()->info('تم التعديل بنجاح');
+        return redirect()->back();
     }
 }

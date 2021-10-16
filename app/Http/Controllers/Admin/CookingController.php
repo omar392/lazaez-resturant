@@ -54,7 +54,8 @@ class CookingController extends Controller
         $data = $request->all();
         $status = Cooking::create($data);
         if($status){
-            return redirect()->route('cooking.index')->with('success','تم الإنشاء بنجاح');
+            toastr()->success('تم الحفظ بنجاح');
+            return redirect()->route('cooking.index');
         }else{
             return back()->with('error','هناك خطأ ما !!');
         }
@@ -119,7 +120,8 @@ class CookingController extends Controller
             $data = $request->all();
             $status = $cooking->fill($data)->save();
             if($status){
-                return redirect()->route('cooking.index')->with('success','تم التعديل بنجاح');
+                toastr()->info('تم التعديل بنجاح');
+                return redirect()->route('cooking.index');
             }else{
                 return back()->with('error','هناك خطأ ما !!');
             }
@@ -140,7 +142,8 @@ class CookingController extends Controller
         if($cooking){
         $status=$cooking->delete();
         if($status){
-            return redirect()->route('cooking.index')->with('success','تم الحذف بنجاح');
+            toastr()->error('تم الحذف بنجاح');
+            return redirect()->route('cooking.index');
         }else{
             return redirect()->with('error','هناك خطأ ما !!');
         }

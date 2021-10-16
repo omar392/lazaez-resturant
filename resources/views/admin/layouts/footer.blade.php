@@ -1,4 +1,8 @@
 
+    
+        @jquery
+        @toastr_js
+        @toastr_render
     <!-- jQuery  -->
     <script src="{{asset('dashboard/assets/js/jquery.min.js')}}"></script>
     <script src="{{asset('dashboard/assets/js/bootstrap.bundle.min.js')}}"></script>

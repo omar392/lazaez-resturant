@@ -16,7 +16,7 @@
     <link href="{{asset('dashboard/assets/css/icons.css')}}" rel="stylesheet" type="text/css">
     <link href="{{asset('dashboard/assets/css/style.css')}}" rel="stylesheet" type="text/css">
     <link href='https://fonts.googleapis.com/css?family=Cairo' rel='stylesheet'>
-
+    @toastr_css
 </head>
 <style>
       body {
@@ -87,7 +87,9 @@
         </div>
     </div>
     <!-- END wrapper -->
-
+    @jquery
+    @toastr_js
+    @toastr_render
     <!-- jQuery  -->
     <script src="{{asset('dashboard/assets/js/jquery.min.js')}}"></script>
     <script src="{{asset('dashboard/assets/js/bootstrap.bundle.min.js')}}"></script>

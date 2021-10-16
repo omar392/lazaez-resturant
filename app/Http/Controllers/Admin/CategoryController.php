@@ -82,7 +82,8 @@ class CategoryController extends Controller
 
         $status = Category::create($data);
         if($status){
-            return redirect()->route('category.index')->with('success','تم الإنشاء بنجاح');
+            toastr()->success('تم الحفظ بنجاح');
+            return redirect()->route('category.index');
         }else{
             return back()->with('error','هناك خطأ ما !!');
         }
@@ -150,7 +151,8 @@ class CategoryController extends Controller
             $data['is_parent']=$request->input('is_parent',0);
             $status = $category->fill($data)->save();
             if($status){
-                return redirect()->route('category.index')->with('success','تم التعديل بنجاح');
+                toastr()->info('تم التعديل بنجاح');
+                return redirect()->route('category.index');
             }else{
                 return back()->with('error','هناك خطأ ما !!');
             }
@@ -176,7 +178,8 @@ class CategoryController extends Controller
                if(count($child_cat_id)>0){
                    Category::shiftChild($child_cat_id);
                }
-            return redirect()->route('category.index')->with('success','تم الحذف بنجاح');
+               toastr()->error('تم الحذف بنجاح');
+               return redirect()->route('category.index');
            }else{
             return redirect()->with('error','هناك خطأ ما !!');}
         }else{
