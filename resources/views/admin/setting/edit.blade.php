@@ -53,6 +53,13 @@
                                     </div>
                                 </div>
                                 <div class="form-group row">
+                                    <label for="example-text-input" class="col-sm-2 col-form-label">رابط الموقع</label>
+                                    <div class="col-sm-10">
+                                        <input class="form-control" name="website_url" value="{{ $setting->website_url }}"
+                                            id="example-text-input" required>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
                                     <label for="example-text-input" class="col-sm-2 col-form-label">رابط الابل</label>
                                     <div class="col-sm-10">
                                         <input class="form-control" name="apple_url" value="{{ $setting->apple_url }}"

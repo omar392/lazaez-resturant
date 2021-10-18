@@ -18,6 +18,7 @@ class SettingSeeder extends Seeder
             'email'=>'email@email.com',
             'phone'=>'00966258369147',
             'whatsapp'=>'00966258369147',
+            'website_url'=>'https://www.apple.com/store',
             'apple_url'=>'https://www.apple.com/store',
             'android_url'=>'https://play.google.com/store',
             'twitter'=>'https://www.twitter.com',

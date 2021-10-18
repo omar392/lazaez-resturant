@@ -12,6 +12,7 @@ class Setting extends Model
         'email',
         'phone',
         'whatsapp',
+        'website_url',
         'apple_url',
         'android_url',
         'twitter',

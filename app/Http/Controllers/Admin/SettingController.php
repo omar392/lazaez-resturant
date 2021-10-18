@@ -23,6 +23,7 @@ class SettingController extends Controller
             'email'=>$request->input('email'),
             'phone'=>$request->input('phone'),
             'whatsapp'=>$request->input('whatsapp'),
+            'website_url'=>$request->input('website_url'),
             'apple_url'=>$request->input('apple_url'),
             'android_url'=>$request->input('android_url'),
             'twitter'=>$request->input('twitter'),
