@@ -12,6 +12,7 @@ use App\Http\Controllers\Admin\CuttingController;
 use App\Http\Controllers\Admin\FaqController;
 use App\Http\Controllers\Admin\LoginController;
 use App\Http\Controllers\Admin\OfferController;
+use App\Http\Controllers\Admin\OpinionController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\SettingController;
@@ -39,6 +40,9 @@ Route::post('category/{id}/child',[CategoryController::class,'getChildByParentID
 Route::resource('product', ProductController::class);
 Route::post('product_status',[ProductController::class,'productStatus'])->name('product.status');
 
+//opinions 
+Route::resource('opinion', OpinionController::class);
+Route::post('opinion_status',[OpinionController::class,'opinionStatus'])->name('opinion.status');
 
 //Admins 
 Route::resource('admins', AdminsController::class);
