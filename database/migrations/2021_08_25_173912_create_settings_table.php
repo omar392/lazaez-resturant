@@ -18,6 +18,7 @@ class CreateSettingsTable extends Migration
             $table->string('email');
             $table->string('phone');
             $table->string('whatsapp');
+            $table->string('website_url');
             $table->string('apple_url');
             $table->string('android_url');
             $table->string('twitter');

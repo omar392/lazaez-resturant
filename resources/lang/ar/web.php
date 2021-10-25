@@ -10,6 +10,8 @@ return [
     'roles'=>'الصلاحيات',
     'offers'=>'العروض',
     'categories'=>'الاقسام',
+    'products'=>'المنتجات',
+    'opinions'=>'أراء العملاء',
     'banners'=>'البنرات',
     'adverts'=>'الاعلانات',
     'settings'=>'الاعدادات',

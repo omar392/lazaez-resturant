@@ -24,6 +24,7 @@ return [
             'spices'=>'c,r,u,d',
             'wrappings'=>'c,r,u,d',
             'users'=>'c,r,u,d',
+            'opinions'=>'c,r,u,d',
             'categories'=>'c,r,u,d',
             'products'=>'c,r,u,d',
             'offers'=>'c,r,u,d',

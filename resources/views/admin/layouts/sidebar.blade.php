@@ -101,6 +101,13 @@
                             </a>
                         </li>
                         @endif
+                        @if(Auth::guard('admin')->user()->hasPermission('opinions-read'))
+                        <li>
+                            <a href="{{route('opinion.index')}}" class="waves-effect">
+                                <i class="fas fa-crown"></i><span style="font-family: cairo;">أراء الجمهور</span>
+                            </a>
+                        </li>
+                        @endif
                         @if(Auth::guard('admin')->user()->hasPermission('teams-read'))
                         <li>
                             <a href="{{route('team.index')}}" class="waves-effect">
