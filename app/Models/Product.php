@@ -26,6 +26,14 @@ class Product extends Model
         'spice_id',
     ];
 
+    public function getNameAttribute()
+    {
+        if (app()->getLocale() == 'ar') {
+            return $this->name_ar;
+        }
+        return $this->name_en;
+    }
+
     public function spice(){
         return $this->belongsTo('App\Models\Spice');
     }
