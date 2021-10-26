@@ -68,11 +68,9 @@ Route::post('advert_status',[AdvertController::class,'advertStatus'])->name('adv
 Route::resource('faq', FaqController::class);
 Route::post('faq_status',[FaqController::class,'faqStatus'])->name('faq.status');
 
-
 //cutting
 Route::resource('cutting', CuttingController::class);
 Route::post('cutting_status',[CuttingController::class,'cuttingStatus'])->name('cutting.status');
-
 
 //wrapping
 Route::resource('wrapping', WrappingController::class);
@@ -85,7 +83,6 @@ Route::post('cooking_status',[CookingController::class,'cookingStatus'])->name('
 //spice
 Route::resource('spice', SpiceController::class);
 Route::post('spice_status',[SpiceController::class,'spiceStatus'])->name('spice.status');
-
 
 //settings
 Route::get('setting',[SettingController::class,'index'])->name('setting');
@@ -102,7 +99,6 @@ Route::post('user_status',[UserController::class,'userStatus'])->name('user.stat
 //our team 
 Route::resource('team', TeamController::class);
 Route::post('team_status',[TeamController::class,'teamStatus'])->name('team.status');
-
 
 });
 
