@@ -19,7 +19,7 @@ class BannerResource extends JsonResource
             'id'=>$this->id,
             'name_ar'=>$this->name_ar,
             'name_en'=>$this->name_en,
-            'image'=>'upload/banners/'.$this->image,
+            'image'=>'/upload/banners/'.$this->image,
         ];
     }
 }

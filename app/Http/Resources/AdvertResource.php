@@ -17,7 +17,7 @@ class AdvertResource extends JsonResource
         // return parent::toArray($request);
         return [
             'id' => $this->id,
-            'image'=>'upload/Advert/'.$this->image,
+            'image'=>'/upload/Advert/'.$this->image,
         ];
     }
 }

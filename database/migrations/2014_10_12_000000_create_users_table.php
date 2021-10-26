@@ -20,7 +20,7 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->string('code');
+            $table->string('code')->default(rand(1111, 9999));
             $table->boolean('isVerified')->default(false);
             $table->string('google_token')->nullable();
             $table->enum('status',['active','inactive'])->default('active');

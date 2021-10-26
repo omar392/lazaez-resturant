@@ -18,6 +18,7 @@ use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\SpiceController;
 use App\Http\Controllers\Admin\TeamController;
+use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\WrappingController;
 use Illuminate\Support\Facades\Route;
 
@@ -93,6 +94,10 @@ Route::post('setting',[SettingController::class,'update'])->name('updatesetting'
 //about_us
 Route::get('about',[AboutController::class,'index'])->name('about');
 Route::post('about',[AboutController::class,'update'])->name('updateabout');
+
+//useers 
+Route::resource('user', UserController::class);
+Route::post('user_status',[UserController::class,'userStatus'])->name('user.status');
 
 //our team 
 Route::resource('team', TeamController::class);

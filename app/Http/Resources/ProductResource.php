@@ -24,7 +24,7 @@ class ProductResource extends JsonResource
             'price' => $this->price,
             'offer_price' => $this->offer_price,
             'discount' => $this->discount,
-            'image' => 'upload/product/'.$this->image,
+            'image' => '/upload/product/'.$this->image,
         ];
     }
 }

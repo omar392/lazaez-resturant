@@ -132,6 +132,27 @@
                             </a>
                         </div>
                         @endif
+                        @if(Auth::guard('admin')->user()->hasPermission('users-read'))
+                        <div class="col-sm-6 col-xl-4">
+                            <a href="{{route('user.index')}}">
+                            <div class="card">
+                                <div class="card-heading p-4">
+                                    <div class="mini-stat-icon float-right">
+                                        <i class="mdi mdi-account-multiple-plus bg-danger text-white"></i>
+                                    </div>
+                                    <div>
+                                        <h5 class="font-16" style="font-family: cairo;" >المستخدمين</h5>
+                                    </div>
+                                    <h3 class="mt-4">{{\App\Models\User::count()}}</h3>
+                                    <div class="progress mt-4" style="height: 4px;">
+                                        <div class="progress-bar bg-danger" role="progressbar" style="width: {{\App\Models\User::count()}}%" aria-valuenow="" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                    <p class="text-muted mt-2 mb-0">عدد المستخدمين <span class="float-right">{{\App\Models\User::count()}}</span></p>
+                                </div>
+                            </div>
+                            </a>
+                        </div>
+                        @endif
                         @if(Auth::guard('admin')->user()->hasPermission('offers-read'))
                         <div class="col-sm-6 col-xl-4">
                             <a href="{{route('offer.index')}}">

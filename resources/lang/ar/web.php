@@ -13,6 +13,7 @@ return [
     'products'=>'المنتجات',
     'opinions'=>'أراء العملاء',
     'banners'=>'البنرات',
+    'users'=>'المستخدمين',
     'adverts'=>'الاعلانات',
     'settings'=>'الاعدادات',
     'abouts'=>'من نحن',

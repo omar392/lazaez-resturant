@@ -26,6 +26,13 @@
                             </a>
                         </li>
                         @endif
+                        @if(Auth::guard('admin')->user()->hasPermission('users-read'))
+                        <li>
+                            <a href="{{route('user.index')}}" class="waves-effect">
+                                <i class="fas fa-users"></i><span style="font-family: cairo;"> المستخدمين </span>
+                            </a>
+                        </li>
+                        @endif
                         @if(Auth::guard('admin')->user()->hasPermission('categories-read'))
                         <li>
                             <a href="{{route('category.index')}}" class="waves-effect">
