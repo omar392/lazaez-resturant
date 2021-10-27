@@ -7,6 +7,7 @@ use App\Http\Controllers\Api\CategoryController;
 use App\Http\Controllers\Api\CollectController;
 use App\Http\Controllers\Api\FaqController;
 use App\Http\Controllers\Api\OfferController;
+use App\Http\Controllers\Api\ProductController;
 use App\Http\Controllers\Api\SearchController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -39,6 +40,8 @@ Route::group(['middleware' => 'auth.jwt'], function () {
     Route::post('update-user',[AuthController::class,'updateUser']);
     Route::get('banners',[BannerController::class,'banners']);
     Route::get('main-categories',[CategoryController::class,'mainCategories']);
+    Route::post('sub-categories',[CategoryController::class,'subCategories']);
+    Route::post('products',[ProductController::class,'products']);
     Route::get('faqs',[FaqController::class,'faqs']);
     Route::get('adverts',[AdvertController::class,'adverts']);
     Route::get('offers',[OfferController::class,'offers']);

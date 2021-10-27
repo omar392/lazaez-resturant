@@ -19,4 +19,17 @@ class CategoryController extends Controller
         ],200);
 
     }
+
+    public function subCategories(Request $request){
+
+        $data = $request->id;
+        $sub_categories = Category::where(['status'=>'active','is_parent'=>0,'parent_id' => $data])->get();
+        // dd($sub_categories);
+        return response()->json([
+            'status'=>'success',
+            'categories' =>CategoryResource::collection($sub_categories),
+        ],200);
+
+    }
+
 }
