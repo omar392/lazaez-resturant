@@ -3,6 +3,7 @@
 use App\Http\Controllers\Api\AdvertController;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\BannerController;
+use App\Http\Controllers\Api\BranchesController;
 use App\Http\Controllers\Api\CategoryController;
 use App\Http\Controllers\Api\CollectController;
 use App\Http\Controllers\Api\FaqController;
@@ -27,6 +28,11 @@ use Illuminate\Support\Facades\Route;
 Route::get('terms',[CollectController::class,'terms']);
 Route::get('about-us',[CollectController::class,'aboutUs']);
 Route::get('polices',[CollectController::class,'polices']);
+
+Route::get('cutting',[BranchesController::class,'cutting']);
+Route::get('wrapping',[BranchesController::class,'wrapping']);
+Route::get('cooking',[BranchesController::class,'cooking']);
+Route::get('spice',[BranchesController::class,'spice']);
 
 Route::post('register',[AuthController::class,'registerUser']);
 Route::post('verifycode',[AuthController::class,'verifyCode']);
