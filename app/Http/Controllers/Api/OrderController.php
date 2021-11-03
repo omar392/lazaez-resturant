@@ -30,7 +30,7 @@ class OrderController extends Controller
             return response()->json([
                 'status'=>'success',
                 'message'=>'Order Added Successfully',
-            ]);
+            ],200);
         }
     }
 }
