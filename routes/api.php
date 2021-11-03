@@ -8,6 +8,7 @@ use App\Http\Controllers\Api\CategoryController;
 use App\Http\Controllers\Api\CollectController;
 use App\Http\Controllers\Api\FaqController;
 use App\Http\Controllers\Api\OfferController;
+use App\Http\Controllers\Api\OrderController;
 use App\Http\Controllers\Api\ProductController;
 use App\Http\Controllers\Api\SearchController;
 use Illuminate\Http\Request;
@@ -23,7 +24,7 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-
+Route::post('make-order',[OrderController::class,'makeOrder']);
 
 Route::get('terms',[CollectController::class,'terms']);
 Route::get('about-us',[CollectController::class,'aboutUs']);
@@ -53,6 +54,7 @@ Route::group(['middleware' => 'auth.jwt'], function () {
     Route::get('offers',[OfferController::class,'offers']);
     Route::post('single-offer',[OfferController::class,'singleOffer']);
     Route::post('search',[SearchController::class,'searchProduct']);
+    
 
     Route::post('logout',[AuthController::class,'logout']);
 

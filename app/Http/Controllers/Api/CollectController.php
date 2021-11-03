@@ -29,8 +29,8 @@ class CollectController extends Controller
             return response()->json([
                 'status'=>'success',
                 'id' => $aboutus->id,
-                'terms_ar' => $aboutus->about_ar,
-                'terms_en' => $aboutus->about_en,
+                'about_ar' => $aboutus->about_ar,
+                'about_en' => $aboutus->about_en,
             ],200);
         }
 
@@ -43,8 +43,8 @@ class CollectController extends Controller
             return response()->json([
                 'status'=>'success',
                 'id' => $polices->id,
-                'terms_ar' => $polices->polices_ar,
-                'terms_en' => $polices->polices_en,
+                'polices_ar' => $polices->polices_ar,
+                'polices_en' => $polices->polices_en,
             ],200);
         }
 
