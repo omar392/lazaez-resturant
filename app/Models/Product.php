@@ -20,10 +20,10 @@ class Product extends Model
         'status',
         'cat_id',
         'child_cat_id',
-        'cutting_id',
-        'wrapping_id',
-        'cooking_id',
-        'spice_id',
+        // 'cutting_id',
+        // 'wrapping_id',
+        // 'cooking_id',
+        // 'spice_id',
     ];
 
     public function getNameAttribute()
@@ -34,24 +34,29 @@ class Product extends Model
         return $this->name_en;
     }
 
-    public function spice(){
-        return $this->belongsTo('App\Models\Spice');
-    }
+    // public function spice(){
+    //     return $this->belongsTo('App\Models\Spice');
+    // }
 
-    public function cooking(){
-        return $this->belongsTo('App\Models\Cooking');
-    }
+    // public function cooking(){
+    //     return $this->belongsTo('App\Models\Cooking');
+    // }
 
-    public function cutting(){
-        return $this->belongsTo('App\Models\Cutting');
-    }
+    // public function cutting(){
+    //     return $this->belongsTo('App\Models\Cutting');
+    // }
     
-    public function wrapping(){
-        return $this->belongsTo('App\Models\Wrapping');
-    }
+    // public function wrapping(){
+    //     return $this->belongsTo('App\Models\Wrapping');
+    // }
 
     public function rel_prods(){
         return $this->hasMany('App\Models\Product','cat_id','cat_id')->where('status','active')->limit(10);
+    }
+
+    public function orders()
+    {
+        return $this->hasMany(Order::class);
     }
 
 }

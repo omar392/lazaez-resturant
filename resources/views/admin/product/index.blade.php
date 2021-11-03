@@ -107,7 +107,7 @@
                                                     
                                                 </select>
                                             </div>
-                                            <div class="form-group row">
+                                            {{-- <div class="form-group row">
                                                 <label>التقطيع</label>
                                                 <select name="cutting_id" class="form-control show-tick">
                                                     <option value="">--التقطيع--</option>
@@ -115,8 +115,8 @@
                                                 <option value="{{$cutting->id}}" {{old('cutting_id')==$cutting->id? 'selected' : ''}}>{{$cutting->name_ar}}</option>
                                                 @endforeach
                                                 </select>
-                                            </div>
-                                            <div class="form-group row">
+                                            </div> --}}
+                                            {{-- <div class="form-group row">
                                                 <label>التغليف</label>
                                                 <select name="wrapping_id" class="form-control show-tick">
                                                     <option value="">--التغليف--</option>
@@ -124,8 +124,8 @@
                                                 <option value="{{$wrapping->id}}" {{old('wrapping_id')==$wrapping->id? 'selected' : ''}}>{{$wrapping->name_ar}}</option>
                                                 @endforeach
                                                 </select>
-                                            </div>
-                                            <div class="form-group row">
+                                            </div> --}}
+                                            {{-- <div class="form-group row">
                                                 <label>الطهى</label>
                                                 <select name="cooking_id" class="form-control show-tick">
                                                     <option value="">--الطهى--</option>
@@ -133,8 +133,8 @@
                                                 <option value="{{$cooking->id}}" {{old('cooking_id')==$cooking->id? 'selected' : ''}}>{{$cooking->name_ar}}</option>
                                                 @endforeach
                                                 </select>
-                                            </div>
-                                            <div class="form-group row">
+                                            </div> --}}
+                                            {{-- <div class="form-group row">
                                                 <label>التوابل</label>
                                                 <select name="spice_id" class="form-control show-tick">
                                                     <option value="">--التوابل--</option>
@@ -142,7 +142,7 @@
                                                 <option value="{{$spice->id}}" {{old('spice_id')==$spice->id? 'selected' : ''}}>{{$spice->name_ar}}</option>
                                                 @endforeach
                                                 </select>
-                                            </div>
+                                            </div> --}}
                                                 <div class="form-group row">
                                                     <label for="example-text-input" class="col-sm-2 col-form-label">الحالة</label>
                                                     <div class="col-sm-10">
@@ -253,7 +253,7 @@
                                                         <p>{{ $product->offer_price }}</p>
                                                     </div>
                                                 </div>
-                                                <div class="row">
+                                                {{-- <div class="row">
                                                     <div class="col-md-3">
                                                         <strong>التوابل : </strong>
                                                         <p>{{ \App\Models\Spice::where('id',$product->spice_id)->value('name_ar') }}</p>
@@ -270,7 +270,7 @@
                                                         <strong>التغليف : </strong>
                                                         <p>{{ \App\Models\Wrapping::where('id',$product->wrapping_id)->value('name_ar') }}</p>
                                                     </div>
-                                                </div>
+                                                </div> --}}
                                                 <div class="row">
                                                     <div class="col-md-6">
                                                         <strong>القسم : </strong>

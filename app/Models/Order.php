@@ -8,4 +8,36 @@ use Illuminate\Database\Eloquent\Model;
 class Order extends Model
 {
     use HasFactory;
+    protected $fillable = ['user_id','product_id','action','price','quantity','total_price',
+        'cutting_id',
+        'wrapping_id',
+        'cooking_id',
+        'spice_id',
+];
+    
+    public function users()
+    {
+        return $this->belongsTo(User::class,'user_id');
+    }
+
+    public function spice(){
+        return $this->belongsTo('App\Models\Spice');
+    }
+
+    public function cooking(){
+        return $this->belongsTo('App\Models\Cooking');
+    }
+
+    public function cutting(){
+        return $this->belongsTo('App\Models\Cutting');
+    }
+    
+    public function wrapping(){
+        return $this->belongsTo('App\Models\Wrapping');
+    }
+
+    public function products()
+    {
+        return $this->belongsTo(Product::class,'product_id');
+    }
 }
