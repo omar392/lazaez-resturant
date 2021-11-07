@@ -11,21 +11,25 @@ class OrderController extends Controller
 {
     public function makeOrder(Request $request)
     {
-        $this->validate($request,[
+
+        $validator = Validator::make($request->all(), [
             'user_id'           => 'required',
             'product_id'        => 'required',
             'spice_id'          => 'nullable',
             'cooking_id'        => 'nullable',
             'wrapping_id'       => 'nullable',
             'cutting_id'        => 'nullable',
-            'price'             => 'required|numeric',
-            'quantity'          => 'required|numeric',
+            'price'             => 'required',
+            'quantity'          => 'required',
             'action'            =>'required|in:wait,finished',
         ]);
-        $data = $request->all();
-        $data['total_price'] = (($request->price) * ($request->quantity));
-        $status = Order::create($data);
-        // dd($status);
+        if($validator->fails()){
+            return response()->json($validator->errors()->toJson(), 200);
+        }
+        $status = Order::create(array_merge(
+            $validator->validated(),
+            ['total_price' => (($request->price) * ($request->quantity)),]
+        ));
         if ($status) {
             return response()->json([
                 'status'=>'success',

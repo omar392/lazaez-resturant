@@ -40,7 +40,7 @@ class AuthController extends Controller
         'phone' => $user->phone,
         'code' => $user->code,
         'token' => $token
-        ], 201);
+        ], 200);
     }
 
     public function verifyCode(Request $request){
@@ -55,14 +55,14 @@ class AuthController extends Controller
             return response()->json([
                 'status' => 'success',
                 'message' => 'Phone number verified!'
-            ], 201);
+            ], 200);
 
             } else{
 
             return response()->json([
                 'status' => 'Error',
                 'message' => 'Invalid verification code entered'
-            ]);
+            ], 200);
         }
     }
 
