@@ -48,13 +48,13 @@ class AuthController extends Controller
             'code' => ['required', 'numeric'],
             'user_id' => ['required', 'string'],
         ]);
-        $user = tap(User::where('id', $data['user_id'])->where('code', $data['code']))->update(['isVerified' => true]);
-        if ($user == true) {
-            Auth::login($user->first());
+        $user = User::where('id', $data['user_id'])->where('code', $data['code'])->update(['isVerified' => true]);
+        if ($user == 1) {
+            // Auth::login($user->first());
 
             return response()->json([
                 'status' => 'success',
-                'message' => 'Phone number verified!'
+                'message' => 'Phone number verified!' 
             ], 200);
 
             } else{
