@@ -87,7 +87,7 @@ class AuthController extends Controller
         $request->validate([
             'phone' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:10',
             'password' => 'required|string',
-            // 'remember_me' => 'boolean'
+            'google_token' => 'required'
         ]);
 
         $credentials = request(['phone', 'password']);
@@ -108,6 +108,7 @@ class AuthController extends Controller
         }elseif (auth()->user()->isVerified == true){
 
             $user = $request->user();
+            $user->update(['google_token' => $request->google_token]);
             $token = JWTAuth::fromUser($user);
             // $token->save();
 
