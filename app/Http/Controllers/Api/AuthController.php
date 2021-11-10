@@ -98,7 +98,7 @@ class AuthController extends Controller
             return response()->json([
                 'status' => 'error',
                 'message' => 'Unauthorized'
-            ], 200);
+            ], 200); 
 
         }elseif (auth()->user()->isVerified == false){
 
