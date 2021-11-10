@@ -47,21 +47,20 @@ class AuthController extends Controller
 
     public function verifyCode(Request $request)
     {
-        // $data = $request->validate([
-        //     'code' => ['required', 'numeric'],
-        //     'user_id' => ['required', 'string'],
-        // ]);
         $rules = [
             'user_id'    => 'required',
-            'code'     => 'required',
+            'code'     => 'required|min:4',
         ];
         $validator = Validator::make($request->all(), $rules);
         if ($validator->fails())
-            return response()->json($validator->errors(), 400);
+            return response()->json([
+                'status'=>'error',
+                'errors'=>$validator->errors()
+            ],200);
         $user = User::where('code', $request->code)->first();
         if (!$user)
             return response()->json([
-                'status' => 'Error',
+                'status' => 'error',
                 'message' => 'Invalid verification code entered'
             ], 200);
         // $user->code   = null;
@@ -186,22 +185,35 @@ class AuthController extends Controller
 
     public function updateUser(Request $request)
     {
-
-        $request->validate([
-            'name' => 'required|string',
-            'email' => 'required|string|email|unique:users',
-            'password' => 'required|string|min:3',
-            'phone' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:10|unique:users,phone',
-        ]);
-        $user = User::where('id', auth()->user()->id)->first();
-        $user->name = $request->name;
-        $user->email = $request->email;
-        $user->phone = $request->phone;
+        $rules = [
+            'name' => 'nullable|string',
+            'email' => 'nullable|string|email|unique:users',
+            'password' => 'nullable|string|min:3',
+            'phone' => 'nullable|regex:/^([0-9\s\-\+\(\)]*)$/|min:10|unique:users,phone',
+        ];
+        $validator = Validator::make($request->all(),$rules);
+        if ($validator->fails()) {
+            return response()->json([
+                'status'=>'error',
+                'errors'=>$validator->errors()
+            ],200);
+        }
+        $user = User::where('id',auth()->user()->id)->first();
+        $user->name   = $request->input('name') ? $request->input('name') : $user->name;
+        $user->email   =  $request->input('email') ? $request->input('email') : $user->email;
+        $user->phone   =  $request->input('phone') ? $request->input('phone') : $user->phone;
         $user->password = bcrypt($request->password);
         $user->save();
-        return response()->json([
+        if($user){
+            return response()->json([
             'status' => 'success',
             'message' => 'profile updated successfully',
         ], 200);
+        }else{
+            return response()->json([
+                'status' => 'error',
+                'message' => 'error',
+            ], 200);
+        }
     }
 }
