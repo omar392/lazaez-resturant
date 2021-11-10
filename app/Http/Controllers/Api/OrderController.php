@@ -24,7 +24,7 @@ class OrderController extends Controller
             'action'            =>'required|in:wait,finished',
         ]);
         if($validator->fails()){
-            return response()->json($validator->errors()->toJson(), 200);
+            return response()->json($validator->errors(), 200);
         }
         $status = Order::create(array_merge(
             $validator->validated(),

@@ -25,7 +25,7 @@ class AuthController extends Controller
         ]);
         
         if($validator->fails()){
-            return response()->json($validator->errors()->toJson(), 400);
+            return response()->json($validator->errors(), 400);
         }
         $user = User::create(array_merge(
             $validator->validated(),
@@ -83,13 +83,14 @@ class AuthController extends Controller
 
     public function loginUser(Request $request)
     {
-
-        $request->validate([
-            'phone' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:10',
-            'password' => 'required|string',
-            'google_token' => 'required'
-        ]);
-
+        $rules = [
+            'phone'     => 'required|regex:/^([0-9\s\-\+\(\)]*)$/',
+            'password'  => 'required|string',
+            'google_token' => 'nullable|string'
+        ];
+        $validator = Validator::make($request->all(), $rules);
+        if ($validator->fails()){
+        return response()->json($validator->errors());}
         $credentials = request(['phone', 'password']);
 
         if (!Auth::attempt($credentials)){
