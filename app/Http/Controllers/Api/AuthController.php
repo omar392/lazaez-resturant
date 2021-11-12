@@ -57,11 +57,11 @@ class AuthController extends Controller
                 'status'=>'error',
                 'errors'=>$validator->errors()
             ],200);
-        $user = User::where('code', $request->code)->first();
+        $user = User::where(['code'=> $request->code,'id'=>$request->user_id])->first();
         if (!$user)
             return response()->json([
                 'status' => 'error',
-                'message' => 'Invalid verification code entered'
+                'message' => 'Error Data'
             ], 200);
         // $user->code   = null;
         $user->isVerified = 1;
