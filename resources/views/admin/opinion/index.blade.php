@@ -159,6 +159,7 @@
 @endsection
 @section('scripts')
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
     <script>
         $.ajaxSetup({
             headers: {
@@ -203,7 +204,7 @@
                 },
                 success: function(response) {
                     if (response.status) {
-                        // alert(response.msg);
+                        toastr.success(response.msg);
                     } else {
                         alert('من فضلك حاول مرة أخرى')
                     }
