@@ -34,11 +34,8 @@
             <!-- Responsive examples -->
             <script src="{{asset('dashboard/assets/datatables/dataTables.responsive.min.js')}}"></script>
             <script src="{{asset('dashboard/assets/datatables/responsive.bootstrap4.min.js')}}"></script>
-    
             <!-- Datatable init js -->
             <script src="{{asset('dashboard/assets/pages/datatables.init.js')}}"></script> 
-            
-
             <script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
             <!-- SweetAlert Plugin Js --> 
             <script src="{{asset('dashboard/assets/vendor/sweetalert/sweetalert.min.js')}}"></script> 
