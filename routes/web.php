@@ -1,5 +1,10 @@
 <?php
 
+use App\Http\Controllers\Frontend\AboutController;
+use App\Http\Controllers\Frontend\ContactController;
+use App\Http\Controllers\Frontend\HomeController;
+use App\Http\Controllers\Frontend\MasterController;
+use App\Http\Controllers\Frontend\OfferController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
@@ -14,9 +19,9 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-})->name('website');
+// Route::get('/', function () {
+//     return view('welcome');
+// })->name('website');
 
 Route::get('command', function () {
     \Artisan::call('route:clear');
@@ -36,9 +41,18 @@ Auth::routes([
             'prefix' => LaravelLocalization::setLocale(),
             'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' ]
         ], function(){ 
+
+            Route::get('/',[HomeController::class,'index'])->name('website');
+            Route::get('contact-us',[ContactController::class,'index'])->name('contact');
+            Route::get('about-us',[AboutController::class,'index'])->name('about.us');
+            Route::get('faqs',[MasterController::class,'faqs'])->name('faqs.index');
+            Route::get('terms',[MasterController::class,'terms'])->name('terms.index');
+            Route::get('privcy',[MasterController::class,'privcy'])->name('privcy.index');
+            Route::get('offers',[OfferController::class,'index'])->name('offers.index');
             
         });
 
     
     
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+

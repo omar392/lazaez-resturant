@@ -1,0 +1,27 @@
+.parent-slider
+{
+    .parent-slider-indicators
+    {
+        button
+        {
+            margin-right: 15px;
+            margin-left: 0px;
+            &:first-of-type
+            {
+                margin-right: 0px;
+            }
+        }
+    }
+    &-slides
+    {
+        .slider
+        {
+
+            &-text
+            {
+                left:  7% ;
+                text-align: left;
+            }
+        }
+    }
+}
