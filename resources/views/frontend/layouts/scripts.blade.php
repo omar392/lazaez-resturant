@@ -7,7 +7,7 @@ integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+
 <script src="{{ asset('frontend/js/searchindex.js') }}"></script>
 <script src="{{ asset('frontend/js/changeEnglishIndex.js') }}"></script>
 <script src="{{ asset('frontend/js/lockNav.js') }}"></script>
-
+<script src="{{asset('frontend/js/question.js')}}"></script>
 <script src="//unpkg.com/swiper/swiper-bundle.min.js"></script>
 
 <script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>

@@ -28,13 +28,13 @@
                             <a href="{{route('about.us')}}" class="footer-inf">{{__('website.about')}}</a>
                         </li>
                         <li>
-                            <a href="pages/privacyPolicy.html" class="footer-inf">الخصوصيه</a>
+                            <a href="{{route('privcy.index')}}" class="footer-inf">{{__('website.privcy')}}</a>
                         </li>
                         <li>
                             <a href="{{route('terms.index')}}" class="footer-inf">{{__('website.terms')}}</a>
                         </li>
                         <li>
-                            <a href="pages/question.html" class="footer-inf">الاسئله الشائعه</a>
+                            <a href="{{route('faqs.index')}}" class="footer-inf">{{__('website.faqs')}}</a>
                         </li>
                     </ul>
                 </div>

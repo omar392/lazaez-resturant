@@ -106,7 +106,7 @@
                     </li>
 
                     <li>
-                        <a href="index.html" class="brand">
+                        <a href="{{route('website')}}" class="brand">
                             <img src="{{ asset('frontend/images/brand.svg') }}" />
                         </a>
                     </li>
@@ -131,10 +131,10 @@
                                 <a href="{{route('terms.index')}}">{{__('website.terms')}}</a>
                             </li>
                             <li>
-                                <a href="pages/privacyPolicy.html">{{__('website.privcy')}}</a>
+                                <a href="{{route('privcy.index')}}">{{__('website.privcy')}}</a>
                             </li>
                             <li>
-                                <a href="pages/question.html">{{__('website.faqs')}}</a>
+                                <a href="{{route('faqs.index')}}">{{__('website.faqs')}}</a>
                             </li>
                         </ul>
                     </li>
@@ -145,7 +145,7 @@
                     </li>
 
                     <li class="nav-item">
-                        <a href="pages/offers.html">{{__('website.offers')}}</a>
+                        <a href="{{route('offers.index')}}">{{__('website.offers')}}</a>
                     </li>
 
                     <li class="nav-item">

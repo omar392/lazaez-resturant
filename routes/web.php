@@ -4,6 +4,7 @@ use App\Http\Controllers\Frontend\AboutController;
 use App\Http\Controllers\Frontend\ContactController;
 use App\Http\Controllers\Frontend\HomeController;
 use App\Http\Controllers\Frontend\MasterController;
+use App\Http\Controllers\Frontend\OfferController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
@@ -47,6 +48,7 @@ Auth::routes([
             Route::get('faqs',[MasterController::class,'faqs'])->name('faqs.index');
             Route::get('terms',[MasterController::class,'terms'])->name('terms.index');
             Route::get('privcy',[MasterController::class,'privcy'])->name('privcy.index');
+            Route::get('offers',[OfferController::class,'index'])->name('offers.index');
             
         });
 
