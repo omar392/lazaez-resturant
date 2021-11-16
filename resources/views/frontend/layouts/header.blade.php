@@ -116,7 +116,7 @@
             <nav class="container nav">
                 <ul>
                     <li class="nav-item">
-                        <a href="{{route('contact')}}">{{__('website.contact')}}</a>
+                        <a href="{{route('contact')}}" class="{{ URL::route('contact') === URL::current() ? 'active' : '' }}">{{__('website.contact')}}</a>
                     </li>
 
                     <li class="nav-item">
@@ -141,15 +141,15 @@
 
 
                     <li class="nav-item">
-                        <a href="{{route('about.us')}}">{{__('website.about')}}</a>
+                        <a href="{{route('about.us')}}" class="{{ URL::route('about.us') === URL::current() ? 'active' : '' }}">{{__('website.about')}}</a>
                     </li>
 
                     <li class="nav-item">
-                        <a href="{{route('offers.index')}}">{{__('website.offers')}}</a>
+                        <a href="{{route('offers.index')}}" class="{{ URL::route('offers.index') === URL::current() ? 'active' : '' }}">{{__('website.offers')}}</a>
                     </li>
 
                     <li class="nav-item">
-                        <a href="{{route('website')}}" class="active">{{__('website.home')}}</a>
+                        <a href="{{route('website')}}" class="{{ URL::route('website') === URL::current() ? 'active' : '' }}">{{__('website.home')}}</a>
                     </li>
 
                     <li class="nav-item">

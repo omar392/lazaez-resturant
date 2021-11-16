@@ -16,4 +16,25 @@ class About extends Model
         'terms_ar',
         'terms_en',
     ];
+    public function getAboutAttribute()
+    {
+        if (app()->getLocale() == 'ar') {
+            return $this->about_ar;
+        }
+        return $this->about_en;
+    }
+    public function getPolicesAttribute()
+    {
+        if (app()->getLocale() == 'ar') {
+            return $this->polices_ar;
+        }
+        return $this->polices_en;
+    }
+    public function getTermsAttribute()
+    {
+        if (app()->getLocale() == 'ar') {
+            return $this->terms_ar;
+        }
+        return $this->terms_en;
+    }
 }

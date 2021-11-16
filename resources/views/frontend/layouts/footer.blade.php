@@ -69,7 +69,7 @@
                     <div class="footor-join-call">
                         <div>
                             <p>للاستفسار ؟ تواصل معنا</p>
-                            <a href="tel:+800800185880600874548">(800) 8001-8588,(0600) 874 548</a>
+                            <a href="tel:{{$setting->phone}}">{{$setting->phone}}</a>
                         </div>
                         <div>
                             <img src="{{ asset('frontend/images/headphone.svg') }}">
@@ -78,7 +78,7 @@
 
                     <div class="footor-join-information">
                         <h5>معلومات التواصل</h5>
-                        <p> المنصوره , الدقهليه, جمهوريه مصر العربيه , مجمع المحاكم 10 بلوك شارع المحكمه </p>
+                        <p> {!! $setting->address !!} </p>
                     </div>
 
                 </div>
@@ -89,21 +89,21 @@
         <div class="container footer-before-footer">
 
             <div>
-                <a href="https://play.app.goo.gl/?link=https://play.google.com/store/apps/details?id=com.myapp">
+                <a href="{{$setting->apple_url}}">
                     <img src="{{ asset('frontend/images/app-store (1).svg') }}" />
                     <span>apple store</span>
                 </a>
-                <a href="https://play.app.goo.gl/?link=https://play.google.com/store/apps/details?id=com.myapp">
+                <a href="{{$setting->android_url}}">
                     <img src="{{ asset('frontend/images/google-play.svg') }}" />
                     <span>Google play</span>
                 </a>
-                <span class="d-none d-sm-inline-block">لتحميل التطبيق</span>
+                <span class="d-none d-sm-inline-block">{{__('website.downapp')}}</span>
             </div>
 
             <div>
-                <a href="" class="socail"><img src="{{ asset('frontend/images/snapchat.png') }}"></a>
-                <a href="" class="socail"><img src="{{ asset('frontend/images/NoPath - Copy.png') }}"></a>
-                <a href=""><img src="{{ asset('frontend/images/instagram.png') }}"></a>
+                <a href="{{$setting->snapchat}}" class="socail"><img src="{{ asset('frontend/images/snapchat.png') }}"></a>
+                <a href="{{$setting->twitter}}" class="socail"><img src="{{ asset('frontend/images/NoPath - Copy.png') }}"></a>
+                <a href="{{$setting->instagram}}"><img src="{{ asset('frontend/images/instagram.png') }}"></a>
             </div>
 
         </div>
