@@ -13,6 +13,7 @@ return [
     'writemessage'=>'Write Your Message',
     'send'=>'Send',
     'shop'=>'Shop Now',
+    'browse'=>'Browse Our Categories',
     'welcome'=>'Welcome to the site for that and delicious food for the best types of carcasses, meat and tools at the best prices',
 ];
 ?>

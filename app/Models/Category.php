@@ -11,6 +11,13 @@ class Category extends Model
 
     protected $fillable = ['name_ar','name_en','summary_ar','summary_en','image','is_parent','parent_id','status'];
 
+    public function getNameAttribute()
+    {
+        if (app()->getLocale() == 'ar') {
+            return $this->name_ar;
+        }
+        return $this->name_en;
+    }
     
     public static function shiftChild($cat_id){
 
