@@ -131,9 +131,8 @@
 .sec-card
 {
     direction: rtl;
-    &::after
+    .discard-card-swiper
     {
-        content: "5% خصم" !important;
         direction: ltr;
         right: 15px;
     }

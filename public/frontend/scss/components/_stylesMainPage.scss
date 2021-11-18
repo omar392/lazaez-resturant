@@ -332,9 +332,8 @@
     @include transtion;
     cursor: pointer;
     border: none !important;
-    &::after
+    .discard-card-swiper
     {
-     content: "%خصم 5";
      position: absolute;
      width: 81px !important;
      height: 29px;
@@ -352,7 +351,7 @@
      opacity: 0;
      @include transtion;
     }
-    &:hover::after
+    &:hover .discard-card-swiper
     {
      opacity: 1;
     }
@@ -519,13 +518,12 @@
 {
     .sec-card
     {
-        &::after
+        .discard-card-swiper
         {
-            content: "%خصم 5";
             position: absolute;
             opacity: 1 !important;
         }
-        &:hover::after
+        &:hover .discard-card-swiper
         {
          opacity: 1;
         }
@@ -940,7 +938,7 @@
 {
     .sec-card
         {
-            &::after
+            .discard-card-swiper
             {
                 opacity: 1;
             }

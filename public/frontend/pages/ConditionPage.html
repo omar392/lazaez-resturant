@@ -261,55 +261,45 @@
 
     <!-- slider  -->
     <!-- sass/components/_slider -->
-    <div id="carouselExampleCaptions" class="carousel slide parent-slider wow slideInRight" data-wow-duration="2.5s" data-bs-ride="carousel">
+    <div class="parent-slider">
+      <div class="swiper4 h-100 w-100" style="position: relative;" >
+        <div class="swiper-wrapper parent-slider-slides">
+          <div class="swiper-slide slider">
+            <img src="../images/front-image.png" class="d-block w-100" alt="...">
+            <div class="carousel-caption d-none d-md-flex slider-text">
 
-      <div class="carousel-indicators parent-slider-indicators">
-        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="indicator active" aria-current="true" aria-label="Slide 1"></button>
-        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"  aria-label="Slide 2"></button>
-        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
-      </div>
+              <span>لحوم عضويه طازجه %100</span>
+              <h5>اكتشف صققات موقع لذائذ واطياب الجديده والمذهله</h5>
+              <p>الغذاء الصحى الاكثر صحه هو امن صحه</p>
+              <button>تسوق الان</button>
 
+            </div>
+          </div>
+          <div class="swiper-slide slider">
+            <img src="../images/front-image.png" class="d-block w-100" alt="...">
+            <div class="carousel-caption d-none d-md-flex slider-text">
 
-      <div class="carousel-inner parent-slider-slides">
+              <span>لحوم عضويه طازجه %100</span>
+              <h5>اكتشف صققات موقع لذائذ واطياب الجديده والمذهله</h5>
+              <p>الغذاء الصحى الاكثر صحه هو امن صحه</p>
+              <button>تسوق الان</button>
 
-        <!-- ------ first slider ------ -->
-        <div class="carousel-item active slider">
-          <img src="../images/front-image.png" class="d-block w-100" alt="...">
-          <div class="carousel-caption d-none d-md-flex slider-text">
+            </div>
+          </div>
+          <div class="swiper-slide slider">
+            <img src="../images/front-image.png" class="d-block w-100" alt="...">
+            <div class="carousel-caption d-none d-md-flex slider-text">
 
-            <span>لحوم عضويه طازجه %100</span>
-            <h5>اكتشف صققات موقع لذائذ واطياب الجديده والمذهله</h5>
-            <p>الغذاء الصحى الاكثر صحه هو امن صحه</p>
-            <button>  تسوق الان</button>
+              <span>لحوم عضويه طازجه %100</span>
+              <h5>اكتشف صققات موقع لذائذ واطياب الجديده والمذهله</h5>
+              <p>الغذاء الصحى الاكثر صحه هو امن صحه</p>
+              <button>تسوق الان</button>
 
+            </div>
           </div>
         </div>
-
-        <!-- ------ second slider ------ -->
-        <div class="carousel-item slider">
-          <img src="../images/front-image.png" class="d-block w-100" alt="...">
-          <div class="carousel-caption d-none d-md-flex slider-text">
-
-            <span>لحوم عضويه طازجه %100</span>
-            <h5>اكتشف صققات موقع لذائذ واطياب الجديده والمذهله</h5>
-            <p>الغذاء الصحى الاكثر صحه هو امن صحه</p>
-            <button>تسوق الان</button>
-
-          </div>
-        </div>
-
-        <!-- ------ third slider ------ -->
-        <div class="carousel-item slider">
-          <img src="../images/front-image.png" class="d-block w-100" alt="...">
-          <div class="carousel-caption d-none d-md-flex slider-text">
-
-            <span>لحوم عضويه طازجه %100</span>
-            <h5>اكتشف صققات موقع لذائذ واطياب الجديده والمذهله</h5>
-            <p>الغذاء الصحى الاكثر صحه هو امن صحه</p>
-            <button>تسوق الان</button>
-
-          </div>
-        </div>
+           <!-- Add Pagination -->
+           <div class="swiper4-pagination parent-slider-indicators"></div>
       </div>
     </div>
     <!-- end ------- slider -->
@@ -526,6 +516,14 @@
 
   <script>
     new WOW().init();
+    
+    var swiper4 = new Swiper('.swiper4', 
+    {
+      pagination: {
+        el: '.swiper4-pagination',
+        clickable: true,
+      }
+    });
   </script>
 </body>
 </html>

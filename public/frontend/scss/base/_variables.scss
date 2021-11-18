@@ -111,3 +111,9 @@ ul
 {
     z-index: 0;
 }
+
+::selection
+{
+    background-color: var(--primary-color) !important;
+    color: var(--color-primary-light) !important;
+}

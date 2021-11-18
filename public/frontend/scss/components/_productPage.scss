@@ -36,9 +36,9 @@
             overflow: hidden;
             width: 100%;
             height: 100%;
-            &::after
+            .discard-product
             {
-                content: 'sale 15%';
+                display: inline-block;
                 width: 73px;
                 height: 72px;
                 border-radius: 50%;

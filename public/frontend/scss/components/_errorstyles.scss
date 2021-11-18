@@ -12,9 +12,12 @@
         width: 526px;
         background-color: var(--primary-color);
         text-align: center;
-        color: var(--secondary-color-light);
         border: none;
         outline: none;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: var(--secondary-color-light);
         @include media('phone')
         {
             margin-top: 15px;
@@ -41,7 +44,7 @@
     }
     .errorbtn
     {
-        font-size: 24;
+        font-size: 1.25rem;
         font-weight: 500;
         height: 70px;
         border-radius: 5px;

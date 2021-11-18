@@ -172,6 +172,7 @@ for (var i = 0; i < data.length; i++) {
           <span class="decrement">-</span>
         </div>
       </div>
+      <span class="discard-card-swiper">خصم %5</span>
     </div>
    </div>` ;
            

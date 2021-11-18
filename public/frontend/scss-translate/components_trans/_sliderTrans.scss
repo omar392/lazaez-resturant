@@ -1,7 +1,9 @@
 .parent-slider
 {
+    direction: ltr;
     .parent-slider-indicators
     {
+        right:0;
         button
         {
             margin-right: 15px;
@@ -14,8 +16,10 @@
     }
     &-slides
     {
+        direction: ltr;
         .slider
         {
+            direction: rtl;
 
             &-text
             {
