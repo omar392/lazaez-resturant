@@ -1,5 +1,6 @@
 @extends('frontend.layouts.master')
 @section('content')
+@section('pageTitle',__('website.terms-'))
 
   <!-- section for page -->
   <section class="main-page Pragraph-page">

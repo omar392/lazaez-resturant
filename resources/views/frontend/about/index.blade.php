@@ -1,5 +1,6 @@
 @extends('frontend.layouts.master')
 @section('content')
+@section('pageTitle',__('website.about-'))
     <!-- section for page -->
     <!-- scss/pragraph -->
     <section class="main-page">

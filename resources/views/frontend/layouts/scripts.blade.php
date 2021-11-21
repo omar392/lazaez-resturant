@@ -6,7 +6,7 @@
   <script src="{{asset('frontend/js/searchindex.js')}}"></script>
   <script src="{{asset('frontend/js/changeEnglishIndex.js')}}"></script>
   <script src="{{asset('frontend/js/lockNav.js')}}"></script>
-
+  <script src="{{asset('frontend/js/question.js')}}"></script>
   <script src="//unpkg.com/swiper/swiper-bundle.min.js"></script>
 
   <script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>

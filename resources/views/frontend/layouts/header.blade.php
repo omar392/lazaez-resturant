@@ -86,20 +86,14 @@
                         <div class="select">
                             <select class="search select-qesm filter-select" data-filter="productname">
                                 <option value="">
-                                    كل الاقسام
+                                   {{__('website.categories')}}
                                 </option>
-                                <option value="لحوم">
-                                    لحوم
+                                @foreach ($categories as $item)
+                                <option value="{{$item->name}}">
+                                    {{$item->name}}
                                 </option>
-                                <option value="ذبائح">
-                                    ذبائح
-                                </option>
-                                <option value="ادوات">
-                                    ادوات
-                                </option>
-                                <option value="توابل">
-                                    توابل
-                                </option>
+                                @endforeach
+              
                             </select>
                         </div>
 
@@ -155,22 +149,15 @@
                     <li class="nav-item">
                         <div class="menu-information-toggle">
                             <i class="fas fa-chevron-down"></i>
-                            <a> كل الاقسام</a>
+                            <a> {{__('website.categories')}} </a>
                         </div>
 
                         <ul class="menu-information">
-                            <li>
-                                <a href="pages/filterPage.html#meat">لحوم</a>
-                            </li>
-                            <li>
-                                <a href="pages/filterPage.html#zb2h">ذبائح</a>
-                            </li>
-                            <li>
-                                <a href="pages/filterPage.html#tools">ادوات</a>
-                            </li>
-                            <li>
-                                <a href="pages/filterPage.html#spices">توابل</a>
-                            </li>
+                         @foreach ($categories as $item)
+                         <li>
+                            <a href="pages/filterPage.html#meat">{{$item->name}}</a>
+                        </li>
+                         @endforeach
                         </ul>
 
                     </li>

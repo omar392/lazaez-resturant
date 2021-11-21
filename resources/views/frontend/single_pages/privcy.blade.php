@@ -1,6 +1,6 @@
 @extends('frontend.layouts.master')
 @section('content')
-
+@section('pageTitle',__('website.privcy-'))
   <!-- section for page -->
   <!-- scss/pragraph -->
   <section class="main-page">

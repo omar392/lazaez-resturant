@@ -1,6 +1,6 @@
 @extends('frontend.layouts.master')
 @section('content')
-
+@section('pageTitle',__('website.faqs-'))
 
     <!-- section for page -->
     <!-- scss/pragraph -->

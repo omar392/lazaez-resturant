@@ -65,7 +65,7 @@
                         <i class="fas fa-chevron-right arrow swiper-arrow-right"></i>
                     </div>
                     <h3>
-                        الاعلى سعرا
+                        {{__('website.high')}}
                     </h3>
                 </div>
                 <div class="sec-swiper swiper">
@@ -75,18 +75,23 @@
     
                     <div class="swiper-wrapper">
     
-                        <!-- fourth card -->
+                       @foreach ($products as $item)
+                            <!-- fourth card -->
                         <div class="swiper-slide">
                             <div class="card sec-card product-sec" id="90">
                                 <div class="sec-card-img">
-                                    <img src="{{ asset('frontend/images/slider1.png') }}" class="card-img-top"
+                                    <img src="{{ asset('upload/product/' . $item->image) }}" class="card-img-top"
                                         alt="...">
                                 </div>
     
                                 <!-- card-body consists of titles -->
                                 <div class="card-body sec-card-body">
-                                    <span class="sec-card-body-top">توابل</span>
-    
+                                    @if (app()->getLocale() == 'ar')
+                                    {{ \App\Models\Category::where('id',$item->cat_id)->value('name_ar') }}
+                                    @endif
+                                    @if (app()->getLocale() == 'en')
+                                    {{ \App\Models\Category::where('id',$item->cat_id)->value('name_en') }}
+                                    @endif
                                     <!-- //غنوان الكارد -->
                                     <div class="card-title sec-card-body-title">
                                         <div class="stars-card">
@@ -94,20 +99,19 @@
                                             <i class="fas fa-star"></i>
                                         </div>
                                         <a href="pages/productPage.html" class="name-product">
-                                            فريش بيف استربس 1 كيلو
+                                            {{$item->name}}
                                         </a>
                                     </div>
     
                                     <!-- price of card -->
                                     <p class="card-text card-price">
                                         ريال / كيلو
-                                        <span>150.00</span>
+                                        <span>{{$item->price}}</span>
                                     </p>
-                                    <p class="card-text card-price">100.00 ريال / كيلو</p>
+                                    <p class="card-text card-price">{{$item->offer_price}}</p>
     
                                 </div>
                                 <!-- end body card -->
-    
                                 <!-- footer of card -->
                                 <div class="sec-card-footer">
     
@@ -123,369 +127,8 @@
                                 </div>
                             </div>
                         </div>
-    
-    
-                        <!-- third card -->
-                        <div class="swiper-slide">
-                            <div class="card sec-card" id="5770">
-                                <div class="sec-card-img">
-                                    <img src="{{ asset('frontend/images/slider2.png') }}" class="card-img-top"
-                                        alt="...">
-                                </div>
-    
-                                <!-- card-body consists of titles -->
-                                <div class="card-body sec-card-body">
-                                    <span class="sec-card-body-top">ادوات</span>
-    
-                                    <!-- //غنوان الكارد -->
-                                    <div class="card-title sec-card-body-title">
-                                        <div class="stars-card">
-                                            <span>4.5</span>
-                                            <i class="fas fa-star"></i>
-                                        </div>
-                                        <a href="pages/productPage.html" class="name-product">
-                                            فريش بيف استربس 1 كيلو
-                                        </a>
-                                    </div>
-    
-                                    <!-- price of card -->
-                                    <p class="card-text card-price">
-                                        ريال / كيلو
-                                        <span>150.00</span>
-                                    </p>
-                                    <p class="card-text card-price">100.00 ريال / كيلو</p>
-    
-                                </div>
-                                <!-- end body card -->
-    
-                                <!-- footer of card -->
-                                <div class="sec-card-footer">
-    
-                                    <a href="" href="" class="card-bag">
-                                        <img src="{{ asset('frontend/images/bag-card.svg') }}"></i>
-                                    </a>
-    
-                                    <div class="card-increment-decrement">
-                                        <span class="increment">+</span>
-                                        <span class="number">0</span>
-                                        <span class="decrement">-</span>
-                                    </div>
-    
-                                </div>
-                            </div>
-                        </div>
-    
-                        <!-- second card -->
-                        <div class="swiper-slide">
-                            <div class="card sec-card" id="product-3">
-                                <div class="sec-card-img">
-                                    <img src="{{ asset('frontend/images/slider3.png') }}" class="card-img-top"
-                                        alt="...">
-                                </div>
-    
-                                <!-- card-body consists of titles -->
-                                <div class="card-body sec-card-body">
-                                    <span class="sec-card-body-top">ذبائح</span>
-    
-                                    <!-- //غنوان الكارد -->
-                                    <div class="card-title sec-card-body-title">
-                                        <div class="stars-card">
-                                            <span>4.5</span>
-                                            <i class="fas fa-star"></i>
-                                        </div>
-                                        <a href="pages/productPage.html" class="name-product">
-                                            فريش بيف استربس 1 كيلو
-                                        </a>
-                                    </div>
-    
-                                    <!-- price of card -->
-                                    <p class="card-text card-price">
-                                        ريال / كيلو
-                                        <span>150.00</span>
-                                    </p>
-                                    <p class="card-text card-price">100.00 ريال / كيلو</p>
-    
-                                </div>
-                                <!-- end body card -->
-    
-                                <!-- footer of card -->
-                                <div class="sec-card-footer">
-    
-                                    <a href="" href="" class="card-bag">
-                                        <img src="{{ asset('frontend/images/bag-card.svg') }}"></i>
-                                    </a>
-    
-                                    <div class="card-increment-decrement">
-                                        <span class="increment">+</span>
-                                        <span class="number">0</span>
-                                        <span class="decrement">-</span>
-                                    </div>
-    
-                                </div>
-                            </div>
-    
-                        </div>
-    
-                        <!-- first card -->
-                        <div class="swiper-slide">
-    
-    
-                            <div class="card sec-card" id="product-4">
-    
-                                <div class="sec-card-img">
-                                    <img src="{{ asset('frontend/images/slider4.png') }}" class="card-img-top"
-                                        alt="...">
-                                </div>
-    
-                                <!-- card-body consists of titles -->
-                                <div class="card-body sec-card-body">
-                                    <span class="sec-card-body-top">لحوم</span>
-                                    <!-- //غنوان الكارد -->
-                                    <div class="card-title sec-card-body-title">
-                                        <!-- كود النجمه والرقم -->
-                                        <div class="stars-card">
-                                            <span>4.5</span>
-                                            <i class="fas fa-star"></i>
-                                        </div>
-                                        <!-- كود اسم المنتج -->
-                                        <a href="pages/productPage.html" class="name-product">
-                                            فريش بيف استربس 1 كيلو
-                                        </a>
-                                    </div>
-                                    <!-- price of card -->
-                                    <p class="card-text card-price">
-                                        <span>150.00</span>
-                                        ريال / كيلو
-                                    </p>
-                                    <p class="card-text card-price">100.00 ريال / كيلو</p>
-    
-                                </div>
-                                <!-- end body card -->
-    
-                                <!-- footer of card -->
-                                <div class="sec-card-footer">
-                                    <a href="" href="" class="card-bag">
-                                        <img src="{{ asset('frontend/images/bag-card.svg') }}"></i>
-                                    </a>
-    
-                                    <div class="card-increment-decrement">
-                                        <span class="increment">+</span>
-                                        <span class="number">0</span>
-                                        <span class="decrement">-</span>
-                                    </div>
-                                </div>
-    
-                            </div>
-    
-    
-    
-                        </div>
-    
-                        <!-- fourth card -->
-                        <div class="swiper-slide">
-                            <div class="card sec-card product-sec" id="90">
-                                <div class="sec-card-img">
-                                    <img src="{{ asset('frontend/images/slider1.png') }}" class="card-img-top"
-                                        alt="...">
-                                </div>
-    
-                                <!-- card-body consists of titles -->
-                                <div class="card-body sec-card-body">
-                                    <span class="sec-card-body-top">توابل</span>
-    
-                                    <!-- //غنوان الكارد -->
-                                    <div class="card-title sec-card-body-title">
-                                        <div class="stars-card">
-                                            <span>4.5</span>
-                                            <i class="fas fa-star"></i>
-                                        </div>
-                                        <a href="pages/productPage.html" class="name-product">
-                                            فريش بيف استربس 1 كيلو
-                                        </a>
-                                    </div>
-    
-                                    <!-- price of card -->
-                                    <p class="card-text card-price">
-                                        ريال / كيلو
-                                        <span>150.00</span>
-                                    </p>
-                                    <p class="card-text card-price">100.00 ريال / كيلو</p>
-    
-                                </div>
-                                <!-- end body card -->
-    
-                                <!-- footer of card -->
-                                <div class="sec-card-footer">
-    
-                                    <a href="" href="" class="card-bag">
-                                        <img src="{{ asset('frontend/images/bag-card.svg') }}"></i>
-                                    </a>
-    
-                                    <div class="card-increment-decrement">
-                                        <span class="increment">+</span>
-                                        <span class="number">0</span>
-                                        <span class="decrement">-</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-    
-    
-                        <!-- third card -->
-                        <div class="swiper-slide">
-                            <div class="card sec-card" id="5770">
-                                <div class="sec-card-img">
-                                    <img src="{{ asset('frontend/images/slider2.png') }}" class="card-img-top"
-                                        alt="...">
-                                </div>
-    
-                                <!-- card-body consists of titles -->
-                                <div class="card-body sec-card-body">
-                                    <span class="sec-card-body-top">ادوات</span>
-    
-                                    <!-- //غنوان الكارد -->
-                                    <div class="card-title sec-card-body-title">
-                                        <div class="stars-card">
-                                            <span>4.5</span>
-                                            <i class="fas fa-star"></i>
-                                        </div>
-                                        <a href="pages/productPage.html" class="name-product">
-                                            فريش بيف استربس 1 كيلو
-                                        </a>
-                                    </div>
-    
-                                    <!-- price of card -->
-                                    <p class="card-text card-price">
-                                        ريال / كيلو
-                                        <span>150.00</span>
-                                    </p>
-                                    <p class="card-text card-price">100.00 ريال / كيلو</p>
-    
-                                </div>
-                                <!-- end body card -->
-    
-                                <!-- footer of card -->
-                                <div class="sec-card-footer">
-    
-                                    <a href="" href="" class="card-bag">
-                                        <img src="{{ asset('frontend/images/bag-card.svg') }}"></i>
-                                    </a>
-    
-                                    <div class="card-increment-decrement">
-                                        <span class="increment">+</span>
-                                        <span class="number">0</span>
-                                        <span class="decrement">-</span>
-                                    </div>
-    
-                                </div>
-                            </div>
-                        </div>
-    
-                        <!-- second card -->
-                        <div class="swiper-slide">
-                            <div class="card sec-card" id="product-3">
-                                <div class="sec-card-img">
-                                    <img src="{{ asset('frontend/images/slider3.png') }}" class="card-img-top"
-                                        alt="...">
-                                </div>
-    
-                                <!-- card-body consists of titles -->
-                                <div class="card-body sec-card-body">
-                                    <span class="sec-card-body-top">ذبائح</span>
-    
-                                    <!-- //غنوان الكارد -->
-                                    <div class="card-title sec-card-body-title">
-                                        <div class="stars-card">
-                                            <span>4.5</span>
-                                            <i class="fas fa-star"></i>
-                                        </div>
-                                        <a href="pages/productPage.html" class="name-product">
-                                            فريش بيف استربس 1 كيلو
-                                        </a>
-                                    </div>
-    
-                                    <!-- price of card -->
-                                    <p class="card-text card-price">
-                                        ريال / كيلو
-                                        <span>150.00</span>
-                                    </p>
-                                    <p class="card-text card-price">100.00 ريال / كيلو</p>
-    
-                                </div>
-                                <!-- end body card -->
-    
-                                <!-- footer of card -->
-                                <div class="sec-card-footer">
-    
-                                    <a href="" href="" class="card-bag">
-                                        <img src="{{ asset('frontend/images/bag-card.svg') }}"></i>
-                                    </a>
-    
-                                    <div class="card-increment-decrement">
-                                        <span class="increment">+</span>
-                                        <span class="number">0</span>
-                                        <span class="decrement">-</span>
-                                    </div>
-    
-                                </div>
-                            </div>
-    
-                        </div>
-    
-                        <!-- first card -->
-                        <div class="swiper-slide">
-    
-    
-                            <div class="card sec-card" id="product-4">
-    
-                                <div class="sec-card-img">
-                                    <img src="{{ asset('frontend/images/slider4.png') }}" class="card-img-top"
-                                        alt="...">
-                                </div>
-    
-                                <!-- card-body consists of titles -->
-                                <div class="card-body sec-card-body">
-                                    <span class="sec-card-body-top">لحوم</span>
-                                    <!-- //غنوان الكارد -->
-                                    <div class="card-title sec-card-body-title">
-                                        <!-- كود النجمه والرقم -->
-                                        <div class="stars-card">
-                                            <span>4.5</span>
-                                            <i class="fas fa-star"></i>
-                                        </div>
-                                        <!-- كود اسم المنتج -->
-                                        <a href="pages/productPage.html" class="name-product">
-                                            فريش بيف استربس 1 كيلو
-                                        </a>
-                                    </div>
-                                    <!-- price of card -->
-                                    <p class="card-text card-price">
-                                        <span>150.00</span>
-                                        ريال / كيلو
-                                    </p>
-                                    <p class="card-text card-price">100.00 ريال / كيلو</p>
-    
-                                </div>
-                                <!-- end body card -->
-    
-                                <!-- footer of card -->
-                                <div class="sec-card-footer">
-                                    <a href="" href="" class="card-bag">
-                                        <img src="{{ asset('frontend/images/bag-card.svg') }}"></i>
-                                    </a>
-    
-                                    <div class="card-increment-decrement">
-                                        <span class="increment">+</span>
-                                        <span class="number">0</span>
-                                        <span class="decrement">-</span>
-                                    </div>
-                                </div>
-    
-                            </div>
-    
-    
-    
-                        </div>
+                       @endforeach
+
     
                     </div>
     

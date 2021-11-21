@@ -1,5 +1,6 @@
 @extends('frontend.layouts.master')
 @section('content')
+@section('pageTitle',__('website.contact-'))
         <!-- section main-page -->
     <!-- scss/components/_form/scss -->
     <section class="main-page">

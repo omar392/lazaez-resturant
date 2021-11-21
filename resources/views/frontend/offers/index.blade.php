@@ -1,6 +1,6 @@
 @extends('frontend.layouts.master')
 @section('content')
-
+@section('pageTitle',__('website.offers-'))
     <!-- سكشن الصفحه -->
     <section class="main-page">
 

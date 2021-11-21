@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-compatible" content="IE-edge">
     <link rel="shortcut icon" href="{{asset('frontend/images/لوجو لذائذ.png')}}" />
     <link rel="icon" href="{{asset('frontend/images/لوجو لذائذ.png')}}" />
-    <title>لذائذ واطياب</title>
+    <title> {{__('website.company')}}@yield('pageTitle')</title>
     <!-- CSS only -->
     <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css"/>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
