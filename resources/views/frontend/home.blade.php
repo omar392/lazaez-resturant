@@ -40,12 +40,14 @@
             <div class="parent-col-1-4">
 
                 @foreach ($categories as $item)
+                    <a href="{{route('single.products',$item->id)}}">
                     <div class="col-1-4 sec1-card fourth-card">
                         <img src="{{ asset('upload/category/' . $item->image) }}">
                         <div class="col-1-4-card">
                             <span>{{ $item->name }}</span>
                         </div>
                     </div>
+                    </a>
                 @endforeach
 
             </div>

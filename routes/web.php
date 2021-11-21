@@ -41,7 +41,8 @@ Auth::routes([
             'prefix' => LaravelLocalization::setLocale(),
             'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' ]
         ], function(){ 
-
+            Route::get('products/{id}',[HomeController::class,'singleProducts'])->name('single.products');
+            Route::get('single_products/{id}',[HomeController::class,'singleProduct'])->name('single.product');
             Route::get('/',[HomeController::class,'index'])->name('website');
             Route::get('contact-us',[ContactController::class,'index'])->name('contact');
             Route::get('about-us',[AboutController::class,'index'])->name('about.us');

@@ -7,6 +7,12 @@
   <script src="{{asset('frontend/js/changeEnglishIndex.js')}}"></script>
   <script src="{{asset('frontend/js/lockNav.js')}}"></script>
   <script src="{{asset('frontend/js/question.js')}}"></script>
+ 
+     {{-- <script src="js/nav.js"></script> --}}
+  <script src="{{asset('frontend/js/starRating.js')}}"></script>
+  <script src="{{asset('frontend/js/productPage.js')}}"></script>
+  {{-- <script src="../js/changeStyleEnglish.js"></script> --}}
+   
   <script src="//unpkg.com/swiper/swiper-bundle.min.js"></script>
 
   <script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
@@ -132,11 +138,11 @@
       }
     });
 
-    var openPage=document.querySelectorAll('.sec1-card');
-    for(let i=0 ; i< openPage.length;i++)
-    {
-      openPage[i].addEventListener('click',function(){
-        window.location.href='pages/filterPage.html';
-      })
-    }
+    // var openPage=document.querySelectorAll('.sec1-card');
+    // for(let i=0 ; i< openPage.length;i++)
+    // {
+    //   openPage[i].addEventListener('click',function(){
+    //     window.location.href='pages/filterPage.html';
+    //   })
+    // }
   </script>

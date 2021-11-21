@@ -33,6 +33,13 @@ class Product extends Model
         }
         return $this->name_en;
     }
+    public function getDescriptionAttribute()
+    {
+        if (app()->getLocale() == 'ar') {
+            return $this->description_ar;
+        }
+        return $this->description_en;
+    }
 
     // public function spice(){
     //     return $this->belongsTo('App\Models\Spice');
