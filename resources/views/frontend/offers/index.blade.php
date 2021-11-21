@@ -49,45 +49,39 @@
 
                 <div class="swiper-wrapper page-offers">
 
-                    <!-- fourth card -->
+                    @foreach ($offers as $item)
                     <div class="swiper-slide">
-                        <div class="card sec-card">
+                        <div class="card sec-card" id="product-5">
                             <div class="sec-card-img">
-                                <img src="{{ asset('frontend/images/slider1.png') }}" class="card-img-top" alt="...">
+                                <img src="{{ asset('upload/offer/' . $item->image) }}" class="card-img-top"
+                                    alt="...">
                             </div>
-
                             <!-- card-body consists of titles -->
                             <div class="card-body sec-card-body">
-                                <span class="sec-card-body-top">توابل</span>
-
+                                <span class="sec-card-body-top">{{ $item->name }}</span>
                                 <!-- //غنوان الكارد -->
                                 <div class="card-title sec-card-body-title">
                                     <div class="stars-card">
                                         <span>4.5</span>
                                         <i class="fas fa-star"></i>
                                     </div>
-                                    <a href="productPage.html" class="name-product">
-                                        فريش بيف استربس 1 كيلو
+                                    <a href="pages/productPage.html" class="name-product">
+                                        {{ $item->name }}
                                     </a>
                                 </div>
-
                                 <!-- price of card -->
                                 <p class="card-text card-price">
                                     ريال / كيلو
-                                    <span>150.00</span>
+                                    <span>{{ $item->end_price }}</span>
                                 </p>
-                                <p class="card-text card-price">100.00 ريال / كيلو</p>
-
+                                <p class="card-text card-price">{{ $item->main_price }} ريال / كيلو</p>
                             </div>
                             <!-- end body card -->
-
                             <!-- footer of card -->
                             <div class="sec-card-footer">
-
-                                <a href="errorPage2.html" class="card-bag">
-                                    <img src="{{asset('frontend/images/bag-card.svg')}}"></i>
+                                <a href="" class="card-bag">
+                                    <img src="{{ asset('frontend/images/bag-card.svg') }}"></i>
                                 </a>
-
                                 <div class="card-increment-decrement">
                                     <span class="increment">+</span>
                                     <span class="number">0</span>
@@ -96,53 +90,8 @@
                             </div>
                         </div>
                     </div>
-                    <!-- fourth card -->
-                    <div class="swiper-slide">
-                        <div class="card sec-card">
-                            <div class="sec-card-img">
-                                <img src="{{ asset('frontend/images/slider1.png') }}" class="card-img-top" alt="...">
-                            </div>
+                    @endforeach
 
-                            <!-- card-body consists of titles -->
-                            <div class="card-body sec-card-body">
-                                <span class="sec-card-body-top">توابل</span>
-
-                                <!-- //غنوان الكارد -->
-                                <div class="card-title sec-card-body-title">
-                                    <div class="stars-card">
-                                        <span>4.5</span>
-                                        <i class="fas fa-star"></i>
-                                    </div>
-                                    <a href="productPage.html" class="name-product">
-                                        فريش بيف استربس 1 كيلو
-                                    </a>
-                                </div>
-
-                                <!-- price of card -->
-                                <p class="card-text card-price">
-                                    ريال / كيلو
-                                    <span>150.00</span>
-                                </p>
-                                <p class="card-text card-price">100.00 ريال / كيلو</p>
-
-                            </div>
-                            <!-- end body card -->
-
-                            <!-- footer of card -->
-                            <div class="sec-card-footer">
-
-                                <a href="errorPage2.html" class="card-bag">
-                                    <img src="{{asset('frontend/images/bag-card.svg')}}"></i>
-                                </a>
-
-                                <div class="card-increment-decrement">
-                                    <span class="increment">+</span>
-                                    <span class="number">0</span>
-                                    <span class="decrement">-</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
 
                 </div>
 
@@ -154,28 +103,25 @@
         <!-- sass/components/_stylesMainPage -->
         <section class="container sec-col-1-2">
             <div class="row justify-content-center col-1-2">
-
                 <div class="sec-col-1-2-text col-xl-4 col-lg-4 col-md-5 m-r-xs-0 row-1-2  col-xs-9 wow bounceInLeft"
                     data-wow-duration="2s">
                     <h3 class="row-1-2-title">تسوق اسرع مع تطبيق لذائذ واطياب</h3>
                     <p>متاح التطبيق الان للاندؤويد والايفون</p>
                     <div class="button-card">
-                        <a href="https://play.app.goo.gl/?link=https://play.google.com/store/apps/details?id=com.myapp">
+                        <a href="{{$setting->android_url}}">
                             <img src="{{ asset('frontend/images/google-play.svg') }}" />
                             <span>Google play</span>
                         </a>
-                        <a href="https://play.app.goo.gl/?link=https://play.google.com/store/apps/details?id=com.myapp">
+                        <a href="{{$setting->apple_url}}">
                             <img src="{{ asset('frontend/images/app-store (1).svg') }}" />
-                            <span>play store</span>
+                            <span>Apple store</span>
                         </a>
                     </div>
                     <div class="img">
                         <img src="{{ asset('frontend/images/android-screen.png') }}" alt="">
                         <img src="{{ asset('frontend/images/apple-screen.png') }}" alt="">
                     </div>
-
                 </div>
-
                 <div class="col-xl-7 col-lg-7 row-2-4 col-md-6  col-xs-9 wow bounceInRight" data-wow-duration="2s">
                     <img src="{{ asset('frontend/images/bkground.png') }}">
                     <div class="row-text">
@@ -184,13 +130,9 @@
                         <a href="signUp.html"> <button>سجل الان</button> </a>
                     </div>
                 </div>
-
             </div>
         </section>
         <!-- end section -->
-
-
-
     </section>
 
 @endsection

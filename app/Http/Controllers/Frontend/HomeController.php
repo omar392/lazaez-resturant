@@ -20,6 +20,7 @@ class HomeController extends Controller
         $data['setting']  = Setting::first();
         // Product::all()->orderBy('price','desc')->get();
         $data['products'] = Product::where(['status'=>'active'])->orderBy('price','DESC')->get();
+        $data['all_products'] = Product::where(['status'=>'active'])->get();
         return view('frontend.home',$data);
     }
 }

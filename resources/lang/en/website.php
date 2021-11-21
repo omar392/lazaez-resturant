@@ -21,6 +21,7 @@ return [
     'send'=>'Send',
     'shop'=>'Shop Now',
     'high'=>'Highest price',
+    'also'=>'You can watch it too',
     'categories'=>'Categories',
     'browse'=>'Browse Our Categories',
     'welcome'=>'Welcome to the site for that and delicious food for the best types of carcasses, meat and tools at the best prices',
