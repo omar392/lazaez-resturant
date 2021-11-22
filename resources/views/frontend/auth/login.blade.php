@@ -10,7 +10,7 @@
               <div class="form-sign-img col-lg-6 col-xl-5 d-sm-none d-none d-md-none d-lg-inline-block">
                   <img src="{{asset('frontend/images/signIn.svg')}}" />
               </div>
-              <form class="col-md-9 col-lg-6 col-xl-6 offset-xl-1 col-xs-9" action="{{route('user.sign')}}" name="signIn" method="POST" enctype="multipart/form-data">
+              <form class="col-md-9 col-lg-6 col-xl-6 offset-xl-1 col-xs-9" action="{{route('user.sign')}}" method="POST" enctype="multipart/form-data">
                   @csrf   
                   <h3 class="sec-title-from">تسجيل الدخول</h3>
                   <!-- البريد الالكترونى او الهاتف  -->
@@ -22,7 +22,6 @@
                   
                   <!--الرقم السري  -->
                   <div>
-
                     <div class="show-hide-password text-right">
                         <input class="password mb-0" type="password" name="password" placeholder="كلمه المرور" required/>
                         <i class="far fa-eye-slash show-hide-icon"></i>
@@ -33,8 +32,6 @@
               
                   <!-- check box -->
                   <div class="rember-password">
-                        
-                    
                         <a href="forgetPassword.html">نسيت كلمه السر ؟</a>
                         <div>
                           <label>
@@ -42,14 +39,10 @@
                           </label>
                           <input type="checkbox">
                         </div>
-
                   </div>
-
                   <!-- زرار الادخال ع الصفحه -->
                   <button class="submit" name="submit" type="submit">تسجيل الدخول</button>
-
                   <div class="question qus-signin">
-
                     <span>
                       أليس لديك حساب؟
                       <a href="{{route('user.register')}}">انشاء حساب جديد</a>

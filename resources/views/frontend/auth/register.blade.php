@@ -12,17 +12,17 @@
                 </div>
                 <div class="container">
                     <div class="row row-100vw form-sign form-sign-Up">
-                        <form method="POST" action="{{}}">
+                        <form action="{{route('user.signup')}}" method="POST" enctype="multipart/form-data">
                             @csrf
                             <div>
                                 <!-- الاسم -->
                                 <div>
-                                    <input type="text" placeholder="الاسم" name="yourName" required />
+                                    <input type="text" placeholder="الاسم" name="name" required />
                                     <div></div>
                                 </div>
                                 <!-- رقم الهاتف -->
                                 <div>
-                                    <input type="tel" class="number" placeholder="رقم الهاتف" name="yourphone"
+                                    <input type="tel" class="number" placeholder="رقم الهاتف" name="phone"
                                         required />
                                     <div></div>
                                 </div>
@@ -44,7 +44,7 @@
                                 <div>
                                     <div class="show-hide-password">
                                         <input class="password" type="password" placeholder="تأكيد كلمة المرور"
-                                            name="Surepassword" required />
+                                            name="password_confirmation" required />
                                         <i class="far fa-eye-slash show-hide-icon"></i>
                                     </div>
                                     <div></div>
