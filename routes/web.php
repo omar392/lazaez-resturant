@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Frontend\AboutController;
+use App\Http\Controllers\Frontend\AuthController;
 use App\Http\Controllers\Frontend\ContactController;
 use App\Http\Controllers\Frontend\HomeController;
 use App\Http\Controllers\Frontend\MasterController;
@@ -30,11 +31,10 @@ Route::get('command', function () {
     \Artisan::call('config:cache');
     return "cache is cleared successfully !! ";
 });
-
-Auth::routes([
-    'register'=>false,
-    // 'login'=>false,
-    ]);
+Route::get('user/login',[AuthController::class,'userLogin'])->name('user.login');
+Route::post('signin',[AuthController::class,'userSign'])->name('user.sign');
+Route::get('user/register',[AuthController::class,'userRegister'])->name('user.register');
+Auth::routes(['register'=>false]);
     
     Route::group(
         [
@@ -55,5 +55,5 @@ Auth::routes([
 
     
     
-    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+    // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 

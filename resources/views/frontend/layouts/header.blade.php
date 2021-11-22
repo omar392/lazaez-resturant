@@ -64,7 +64,7 @@
 
 
                     <li>
-                        <a href="pages/signIn.html">
+                        <a href="{{route('user.login')}}">
                             <span class="login">تسجيل دخول</span>
                             <img src="{{ asset('frontend/images/login.svg') }}"></i>
                         </a>
@@ -163,7 +163,7 @@
                     </li>
 
                     <li class="nav-item mob-toggle-link">
-                        <a href="pages/signIn.html">
+                        <a href="{{route('user.login')}}">
                             تسجيل الدخول
                         </a>
                     </li>

@@ -7,7 +7,9 @@
   <script src="{{asset('frontend/js/changeEnglishIndex.js')}}"></script>
   <script src="{{asset('frontend/js/lockNav.js')}}"></script>
   <script src="{{asset('frontend/js/question.js')}}"></script>
- 
+  {{-- <script src="{{asset('frontend/js/form.js')}}"></script>
+  <script src="{{asset('frontend/js/SignIn.js')}}"></script>
+  <script src="{{asset('frontend/js/isInputNumber.js')}}"></script> --}}
      {{-- <script src="js/nav.js"></script> --}}
   <script src="{{asset('frontend/js/starRating.js')}}"></script>
   <script src="{{asset('frontend/js/productPage.js')}}"></script>
