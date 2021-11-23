@@ -33,6 +33,8 @@ Route::get('command', function () {
 });
 Route::get('user/login',[AuthController::class,'userLogin'])->name('user.login');
 Route::post('signin',[AuthController::class,'userSign'])->name('user.sign');
+Route::get('code',[AuthController::class,'code'])->name('user.code');
+Route::get('verify',[AuthController::class,'verifyCode'])->name('user.verify');
 Route::get('user/register',[AuthController::class,'userRegister'])->name('user.register');
 Route::post('user/signup',[AuthController::class,'userSignUp'])->name('user.signup');
 Auth::routes(['register'=>false]);

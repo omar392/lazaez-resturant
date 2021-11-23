@@ -21,4 +21,5 @@
     @if (app()->getLocale() == 'en')
     <link rel="stylesheet" href="{{asset('frontend/css/mainTrans.css')}}">
     @endif
+    @toastr_css
 </head>

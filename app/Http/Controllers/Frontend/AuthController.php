@@ -67,31 +67,31 @@ class AuthController extends Controller
             'phone' => $request->phone,
             'password' => bcrypt($request->password),
             'code' => mt_rand(1000, 9999),
+            'isVerified' => 1,
         ]);
-        dd('dddd');
-        if ($user == true) {}
-        // // $data['code'] = $request->rand(1111, 9999);
-        // return $request->all();
-        // $this->validate($request,[
-        //     'name'=>'required|string',
-        //     'phone'=>'required|string',
-        //     'email'=>'required|email|unique:users,email',
-        //     'password'=>'min:4|required|confirmed',
-        //     'code' => mt_rand(1000, 9999),
-        // ]);
-        // $data = $request->all();
-        // // $data['code'] = $request->rand(1111, 9999);
-        // $check = $this->create($data);
-        // Session::put('user',$data['email']);
-        // Auth::login($check);
-        // if($check){
-        //     return redirect()->route('website')->with('success','نم التسجيل على الموقع بنجاح !!');
-        // }else{
-        //     return back()->with('error','من فظلك راجع ما تقوم به وحاول مرة ثانية !! ');
-        // }
-
-       
+        // dd('dddd');
+        Auth::login($user);
+        if ($user) {
+            toastr()->success('تم التسجيل بنجاح ');
+            return redirect()->route('user.code');
+        }
     }
+    public function code()
+    {
+        $data['categories'] = Category::where(['status'=>'active','is_parent'=>1])->limit(4)->orderBy('id','DESC')->get();
+        $data['offers'] = Offer::where(['status'=>'active'])->get();
+        $data['banner'] = Banner::where(['status'=>'active'])->get();
+        $data['setting']  = Setting::first();
+        $data['all_products'] = Product::where(['status'=>'active'])->get();
+        return view('frontend.auth.code',$data);
+        
+    }
+    // public function verifyCode(Request $request)
+    // {
+    //     $data = $request->validate([
+    //         'code'=>'required|string',
+    //     ]);
+    // }
     private function create(array $data){
 
         return User::create([
