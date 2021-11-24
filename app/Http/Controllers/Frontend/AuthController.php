@@ -84,7 +84,6 @@ class AuthController extends Controller
         $data['setting']  = Setting::first();
         $data['all_products'] = Product::where(['status'=>'active'])->get();
         return view('frontend.auth.code',$data);
-        
     }
     // public function verifyCode(Request $request)
     // {
