@@ -8,36 +8,34 @@ use Illuminate\Database\Eloquent\Model;
 class Order extends Model
 {
     use HasFactory;
-    protected $fillable = ['user_id','product_id','action','price','quantity','total_price',
-        'wrapping_id',
-        'cooking_id',
-        'spice_id',
-        'cutting_id',
-];
-    
-    public function users()
-    {
+    protected $fillable = [
+        'user_id',
+        // 'cart_id',
+        'city_id',
+        'country_id',
+        'name',
+        'phone',
+        'secondphone',
+        'address',
+        'address_details',
+        'payment',
+        'note',
+        'status',
+    ];
+    public function users(){
         return $this->belongsTo(User::class,'user_id');
     }
-
-    public function spice(){
-        return $this->belongsTo('App\Models\Spice');
-    }
-
-    public function cooking(){
-        return $this->belongsTo('App\Models\Cooking');
-    }
-
-    public function cutting(){
-        return $this->belongsTo('App\Models\Cutting');
-    }
-    
-    public function wrapping(){
-        return $this->belongsTo('App\Models\Wrapping');
-    }
-
+    // public function carts(){
+    //     return $this->belongsTo(Cart::class,'cart_id');
+    // }
     public function products()
     {
-        return $this->belongsTo(Product::class,'product_id');
+        return $this->belongsToMany(Product::class,'order_products','order_id','product_id');
+    }
+    public function cities(){
+        return $this->belongsTo(City::class,'city_id');
+    }
+    public function countries(){
+        return $this->belongsTo(Country::class,'country_id');
     }
 }

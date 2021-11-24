@@ -61,9 +61,12 @@ class Product extends Model
         return $this->hasMany('App\Models\Product','cat_id','cat_id')->where('status','active')->limit(10);
     }
 
-    public function orders()
+    public function carts()
     {
         return $this->hasMany(Order::class);
     }
-
+    public function orders()
+    {
+        return $this->belongsToMany(Order::class,'order_products','product_id','order_id');
+    }
 }

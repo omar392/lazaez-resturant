@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateOrdersTable extends Migration
+class CreateCartsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateOrdersTable extends Migration
      */
     public function up()
     {
-        Schema::create('orders', function (Blueprint $table) {
+        Schema::create('carts', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id')->nullable();
             $table->unsignedBigInteger('product_id')->nullable();
@@ -22,10 +22,11 @@ class CreateOrdersTable extends Migration
             $table->unsignedBigInteger('wrapping_id')->nullable();
             $table->unsignedBigInteger('cutting_id')->nullable();
 
-            $table->enum('action',['wait','finished'])->default('wait');
             $table->integer('price');
+            $table->integer('offer_price');
             $table->integer('quantity');
-            $table->integer('total_price');
+            $table->integer('total_price_before');
+            $table->integer('total_price_after');
 
             $table->foreign('spice_id')->references('id')->on('spices')->onDelete('cascade');
             $table->foreign('cooking_id')->references('id')->on('cookings')->onDelete('cascade');
@@ -44,6 +45,6 @@ class CreateOrdersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('orders');
+        Schema::dropIfExists('carts');
     }
 }

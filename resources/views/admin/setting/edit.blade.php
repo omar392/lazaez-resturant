@@ -46,6 +46,20 @@
                                     </div>
                                 </div>
                                 <div class="form-group row">
+                                    <label for="example-text-input" class="col-sm-2 col-form-label">رسوم الخدمات</label>
+                                    <div class="col-sm-10">
+                                        <input type="number" class="form-control" name="service" value="{{ $setting->service }}"
+                                            id="example-text-input" required>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="example-text-input" class="col-sm-2 col-form-label">ضريبة القيمة المضافة</label>
+                                    <div class="col-sm-10">
+                                        <input type="number" class="form-control" name="tax" value="{{ $setting->tax }}"
+                                            id="example-text-input" required>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
                                     <label for="example-text-input" class="col-sm-2 col-form-label">الوتساب </label>
                                     <div class="col-sm-10">
                                         <input class="form-control" name="whatsapp" value="{{ $setting->whatsapp }}"

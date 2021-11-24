@@ -24,7 +24,17 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-Route::post('make-order',[OrderController::class,'makeOrder']);
+//cart operations
+Route::post('add-to-cart',[OrderController::class,'addToCart']);
+Route::post('get-user-order',[OrderController::class,'getUserCart']);
+Route::post('delete-item',[OrderController::class,'deleteItem']);
+Route::post('delete-all-cart',[OrderController::class,'deleteCart']);
+//end cart operations
+
+//makeorder
+Route::post('add-order',[OrderController::class,'addOrder']);
+
+//end orders
 
 Route::get('terms',[CollectController::class,'terms']);
 Route::get('about-us',[CollectController::class,'aboutUs']);
@@ -55,7 +65,8 @@ Route::group(['middleware' => 'auth.jwt'], function () {
     Route::post('single-offer',[OfferController::class,'singleOffer']);
     Route::post('search',[SearchController::class,'searchProduct']);
     
-
+    Route::get('new-order',[OrderController::class,'newOrder']);
+    Route::get('finished-order',[OrderController::class,'finishedOrder']);
     Route::post('logout',[AuthController::class,'logout']);
 
 });

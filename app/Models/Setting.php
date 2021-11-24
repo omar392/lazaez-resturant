@@ -11,6 +11,8 @@ class Setting extends Model
     protected $fillable = [
         'email',
         'phone',
+        'tax',
+        'service',
         'whatsapp',
         'website_url',
         'apple_url',
