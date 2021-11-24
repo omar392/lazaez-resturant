@@ -28,6 +28,8 @@ return [
             'categories'=>'c,r,u,d',
             'products'=>'c,r,u,d',
             'offers'=>'c,r,u,d',
+            'cities'=>'c,r,u,d',
+            'countries'=>'c,r,u,d',
             'banners'=>'c,r,u,d',
             'admins'=>'c,r,u,d',
             'roles'=>'c,r,u,d',

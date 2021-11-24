@@ -24,6 +24,10 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+//cities and countries
+Route::get('cities',[BranchesController::class,'cities']);
+Route::get('countries',[BranchesController::class,'countries']);
+//
 //cart operations
 Route::post('add-to-cart',[OrderController::class,'addToCart']);
 Route::post('get-user-order',[OrderController::class,'getUserCart']);

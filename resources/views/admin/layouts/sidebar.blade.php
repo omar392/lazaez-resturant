@@ -61,6 +61,20 @@
                             </a>
                         </li>
                         @endif
+                        @if(Auth::guard('admin')->user()->hasPermission('cities-read'))
+                        <li>
+                            <a href="{{route('city.index')}}" class="waves-effect">
+                                <i class="far fa-images"></i><span style="font-family: cairo;">المدن</span>
+                            </a>
+                        </li>
+                        @endif
+                        @if(Auth::guard('admin')->user()->hasPermission('countries-read'))
+                        <li>
+                            <a href="{{route('country.index')}}" class="waves-effect">
+                                <i class="far fa-images"></i><span style="font-family: cairo;">المناطق</span>
+                            </a>
+                        </li>
+                        @endif
                         @if(Auth::guard('admin')->user()->hasPermission('adverts-read'))
                         <li>
                             <a href="{{route('advert.index')}}" class="waves-effect">

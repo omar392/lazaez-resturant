@@ -7,7 +7,9 @@ use App\Http\Controllers\Admin\AdminsController;
 use App\Http\Controllers\Admin\AdvertController;
 use App\Http\Controllers\Admin\BannerController;
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\CityController;
 use App\Http\Controllers\Admin\CookingController;
+use App\Http\Controllers\Admin\CountryController;
 use App\Http\Controllers\Admin\CuttingController;
 use App\Http\Controllers\Admin\FaqController;
 use App\Http\Controllers\Admin\LoginController;
@@ -83,6 +85,12 @@ Route::post('cooking_status',[CookingController::class,'cookingStatus'])->name('
 //spice
 Route::resource('spice', SpiceController::class);
 Route::post('spice_status',[SpiceController::class,'spiceStatus'])->name('spice.status');
+//country
+Route::resource('country', CountryController::class);
+Route::post('country_status',[CountryController::class,'countryStatus'])->name('country.status');
+//cities
+Route::resource('city', CityController::class);
+Route::post('city_status',[CityController::class,'cityStatus'])->name('city.status');
 
 //settings
 Route::get('setting',[SettingController::class,'index'])->name('setting');

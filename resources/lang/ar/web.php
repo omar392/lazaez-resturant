@@ -21,5 +21,7 @@ return [
     'update'=>'تعديل',
     'read'=>'رؤية',
     'delete'=>'حذف',
+    'countries'=>'المناطق',
+    'cities'=>'المدن',
 ];
 ?>
