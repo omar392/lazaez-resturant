@@ -75,6 +75,16 @@ class AuthController extends Controller
 
     public function resetCode(Request $request)
     {
+        $rules = [
+            'phone' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:10|exists:users,phone',
+        ];
+        $validator = Validator::make($request->all(), $rules);
+        if ($validator->fails()) {
+            return response()->json([
+                'status'=>'error',
+                'errors'=>$validator->errors()
+            ],200);
+        }
         $user = User::where('phone', $request->phone)->first();
         //dd($user);
         if ($user) {
