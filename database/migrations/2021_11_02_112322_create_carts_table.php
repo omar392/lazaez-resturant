@@ -17,6 +17,7 @@ class CreateCartsTable extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id')->nullable();
             $table->unsignedBigInteger('product_id')->nullable();
+            $table->unsignedBigInteger('offer_id')->nullable();
             $table->unsignedBigInteger('spice_id')->nullable();
             $table->unsignedBigInteger('cooking_id')->nullable();
             $table->unsignedBigInteger('wrapping_id')->nullable();
@@ -33,6 +34,7 @@ class CreateCartsTable extends Migration
             $table->foreign('wrapping_id')->references('id')->on('wrappings')->onDelete('cascade');
             $table->foreign('cutting_id')->references('id')->on('cuttings')->onDelete('cascade');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('offer_id')->references('id')->on('offers')->onDelete('cascade');
             $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
             $table->timestamps();
         });

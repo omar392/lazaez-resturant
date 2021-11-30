@@ -49,7 +49,7 @@
                 <div class="mob">
                     <span></span>
                 </div>
-
+                @auth
                 <!-- للتسجيل الدخول وايضا للاشياء تم شرائه -->
                 <ul class="second-header-left login-sec-cart-second">
                     <li class="d-none d-md-none d-lg-flex">
@@ -61,8 +61,9 @@
                         </a>
                         <span class="price-cart"> $0.00 </span>
                     </li>
-
-
+                </ul>
+                    @else
+                    <ul class="second-header-left login-sec-cart-second">
                     <li>
                         <a href="{{route('user.login')}}">
                             <span class="login">تسجيل دخول</span>
@@ -71,7 +72,7 @@
                     </li>
                 </ul>
 
-
+                @endauth
                 <!-- لمعرفه جميع الاقسام والبراند -->
                 <ul class="second-header-right">
                     <li>

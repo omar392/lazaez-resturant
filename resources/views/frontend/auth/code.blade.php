@@ -34,9 +34,6 @@
                     </div>
                     <button class="submit" name="submit" type="submit">إرسال</button>
                 </form>
-          
-
-
                 <div class="question">
                   <span class="timer-text" style="display: none; color: #1A0405;">
                     (<span class="time"style="color: #1A0405;">1:59</span>) اعاده الارسال بعد 

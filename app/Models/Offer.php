@@ -34,5 +34,13 @@ class Offer extends Model
         }
         return $this->description_en;
     }
-
+    public function carts()
+    {
+        return $this->hasMany(Order::class);
+    }
+    
+    public function orders()
+    {
+        return $this->belongsToMany(Order::class,'order_products','offer_id','order_id');
+    }
 }

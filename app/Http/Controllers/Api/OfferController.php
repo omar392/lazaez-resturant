@@ -13,16 +13,16 @@ class OfferController extends Controller
         $offers = Offer::where(['status'=>'active'])->get();
         return response()->json([
             'status'=>'success',
-            'banners'=> OfferResource::collection($offers),
+            'offers'=> OfferResource::collection($offers),
         ],200);
     }
-    
+
     public function singleOffer(Request $request){
         $data = $request->id;
         $single_offer = Offer::where(['status'=>'active', 'id' => $data])->get();
         return response()->json([
             'status'=>'success',
-            'banners'=> OfferResource::collection($single_offer),
+            'offers'=> OfferResource::collection($single_offer),
         ],200);
     }
 }

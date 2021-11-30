@@ -25,6 +25,7 @@ class ProductResource extends JsonResource
             'offer_price' => $this->offer_price,
             'discount' => $this->discount,
             'image' => '/upload/product/'.$this->image,
+            'rate' => $this->rates()->get()->avg('rate'),
         ];
     }
 }

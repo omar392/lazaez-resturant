@@ -10,7 +10,7 @@
               <div class="form-sign-img col-lg-6 col-xl-5 d-sm-none d-none d-md-none d-lg-inline-block">
                   <img src="{{asset('frontend/images/signIn.svg')}}" />
               </div>
-              <form class="col-md-9 col-lg-6 col-xl-6 offset-xl-1 col-xs-9" action="{{route('user.sign')}}" method="POST" enctype="multipart/form-data">
+              <form class="col-md-9 col-lg-6 col-xl-6 offset-xl-1 col-xs-9" action="{{route('user.sign')}}" method="POST">
                   @csrf   
                   <h3 class="sec-title-from">تسجيل الدخول</h3>
                   <!-- البريد الالكترونى او الهاتف  -->
@@ -32,7 +32,7 @@
               
                   <!-- check box -->
                   <div class="rember-password">
-                        <a href="forgetPassword.html">نسيت كلمه السر ؟</a>
+                        <a href="{{route('user.verify')}}">نسيت كلمه السر ؟</a>
                         <div>
                           <label>
                             تذكر كلمه المرور

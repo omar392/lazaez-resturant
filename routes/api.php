@@ -10,6 +10,7 @@ use App\Http\Controllers\Api\FaqController;
 use App\Http\Controllers\Api\OfferController;
 use App\Http\Controllers\Api\OrderController;
 use App\Http\Controllers\Api\ProductController;
+use App\Http\Controllers\Api\RateController;
 use App\Http\Controllers\Api\SearchController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -34,7 +35,10 @@ Route::post('get-user-order',[OrderController::class,'getUserCart']);
 Route::post('delete-item',[OrderController::class,'deleteItem']);
 Route::post('delete-all-cart',[OrderController::class,'deleteCart']);
 //end cart operations
-
+//add rate
+Route::post('add-rate',[RateController::class,'addRate']);
+Route::post('get-all-rates',[RateController::class,'getAllRates']);
+//end rate
 //makeorder
 Route::post('add-order',[OrderController::class,'addOrder']);
 
@@ -55,7 +59,7 @@ Route::post('resendcode',[AuthController::class,'resetCode']);
 Route::post('forgetpassword',[AuthController::class,'forgetPassword']);
 Route::post('login',[AuthController::class,'loginUser']);
 
-Route::group(['middleware' => 'auth.jwt'], function () {
+Route::group(['middleware' => 'auth.api'], function () {
 
     Route::get('user',[AuthController::class,'userData']);
     Route::post('update-user',[AuthController::class,'updateUser']);
@@ -63,6 +67,7 @@ Route::group(['middleware' => 'auth.jwt'], function () {
     Route::get('main-categories',[CategoryController::class,'mainCategories']);
     Route::post('sub-categories',[CategoryController::class,'subCategories']);
     Route::post('products',[ProductController::class,'products']);
+    Route::post('single-product',[ProductController::class,'singleProduct']);
     Route::get('faqs',[FaqController::class,'faqs']);
     Route::get('adverts',[AdvertController::class,'adverts']);
     Route::get('offers',[OfferController::class,'offers']);

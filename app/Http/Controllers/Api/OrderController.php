@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\CartOfferResource;
 use App\Http\Resources\CartResource;
 use App\Http\Resources\OrderResource;
 use App\Models\Cart;
@@ -22,13 +23,14 @@ class OrderController extends Controller
 
         $validator = Validator::make($request->all(), [
             'user_id'           => 'required',
-            'product_id'        => 'required',
+            'product_id'        => 'nullable',
+            'offer_id'          => 'nullable',
             'spice_id'          => 'nullable',
             'cooking_id'        => 'nullable',
             'wrapping_id'       => 'nullable',
             'cutting_id'        => 'nullable',
             'price'             => 'required',
-            'offer_price'             => 'required',
+            'offer_price'       => 'required',
             'quantity'          => 'required',
             // 'action'            =>'required|in:wait,finished',
         ]);
@@ -52,7 +54,8 @@ class OrderController extends Controller
     public function getUserCart(Request $request)
     {
         $data = $request->user_id;
-        $user_orders = Cart::where(['user_id' => $data])->get();
+        $user_orders = Cart::where(['user_id' => $data])->where('offer_id',null)->get();
+        $user_orders_offers = Cart::where(['user_id' => $data])->where('product_id',null)->get();
         // dd($user_orders);
         $total_price_before = Cart::where(['user_id' => $data])->sum('total_price_before');
         $total_price_after = Cart::where(['user_id' => $data])->sum('total_price_after');
@@ -66,6 +69,7 @@ class OrderController extends Controller
         return response()->json([
             'status'=>'success',
             'cart'=> CartResource::collection($user_orders),
+            'cart_offers'=> CartOfferResource::collection($user_orders_offers),
             'total_price_before'=>$total_price_before,
             'total_price_after'=>$total_price_after,
             'discount'=>$discount,
@@ -76,9 +80,9 @@ class OrderController extends Controller
     }
     public function deleteItem(Request $request)
     {
-        $product = $request->product_id;
-        $data = $request->user_id;
-        $delete_item = Cart::where(['product_id'=>$product,'user_id'=>$data])->delete();
+        $product = $request->id;
+        // $data = $request->user_id;
+        $delete_item = Cart::where(['id'=>$product])->delete();
         // dd('dddd');
         if ($delete_item) {
             return response()->json([
@@ -127,11 +131,11 @@ class OrderController extends Controller
             $validator->validated(),
         ));
         $products = Cart::where('user_id',$order->user_id)->get();
-        // dd($products);
         foreach ($products as $key => $product) {
             $order_products = OrderProduct::create([
                 'order_id' => $order->id,
                 'product_id' => $product->product_id,
+                'offer_id' => $product->offer_id,   
             ]);
         }
         // dd($order_products);
@@ -152,6 +156,7 @@ class OrderController extends Controller
         //    dd($value->products);
         // }
         $total_price_after = Cart::where(['user_id' => $user])->sum('total_price_after');
+       // dd($total_price_after);
         $setting = Setting::findOrFail(1);
         $tax = $setting->tax;
         $service = $setting->service;
@@ -163,7 +168,7 @@ class OrderController extends Controller
         return response()->json([
             'status'=>'success',
             'orders'=> OrderResource::collection($product_user),
-            'total' =>$final,
+            
         ],200);
     }
     public function finishedOrder()

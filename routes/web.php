@@ -31,12 +31,26 @@ Route::get('command', function () {
     \Artisan::call('config:cache');
     return "cache is cleared successfully !! ";
 });
+
+//login
 Route::get('user/login',[AuthController::class,'userLogin'])->name('user.login');
 Route::post('signin',[AuthController::class,'userSign'])->name('user.sign');
-Route::get('code',[AuthController::class,'code'])->name('user.code');
+//endlogin
+//forget password
 Route::get('verify',[AuthController::class,'verifyCode'])->name('user.verify');
+Route::post('sendverify',[AuthController::class,'sendVerify'])->name('send.verify');
+Route::get('forget-pass',[AuthController::class,'forgetPass'])->name('forget.pass');
+Route::post('reset-pass',[AuthController::class,'resetPass'])->name('reset.pass');
+//endforget password
+Route::get('code',[AuthController::class,'code'])->name('user.code');
+Route::post('code',[AuthController::class,'codeVerify'])->name('user.code');
+//user logout
+Route::get('user/logout',[AuthController::class,'userLogout'])->name('user.logout');
+//end user logout
+//register
 Route::get('user/register',[AuthController::class,'userRegister'])->name('user.register');
 Route::post('user/signup',[AuthController::class,'userSignUp'])->name('user.signup');
+//end register
 Auth::routes(['register'=>false]);
     
     Route::group(
@@ -55,8 +69,3 @@ Auth::routes(['register'=>false]);
             Route::get('offers',[OfferController::class,'index'])->name('offers.index');
             
         });
-
-    
-    
-    // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-

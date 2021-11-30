@@ -32,6 +32,12 @@ class Order extends Model
     {
         return $this->belongsToMany(Product::class,'order_products','order_id','product_id');
     }
+
+    public function offers()
+    {
+        return $this->belongsToMany(Product::class,'order_products','order_id','offer_id');
+    }
+
     public function cities(){
         return $this->belongsTo(City::class,'city_id');
     }

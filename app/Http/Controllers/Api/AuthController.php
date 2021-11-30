@@ -196,10 +196,10 @@ class AuthController extends Controller
     public function updateUser(Request $request)
     {
         $rules = [
-            'name' => 'nullable|string',
-            'email' => 'nullable|string|email|unique:users',
-            'password' => 'nullable|string|min:3',
-            'phone' => 'nullable|regex:/^([0-9\s\-\+\(\)]*)$/|min:10|unique:users,phone',
+            'name' => 'nullable',
+            'email' => 'nullable',
+            'password' => 'nullable',
+            'phone'     => 'nullable',
         ];
         $validator = Validator::make($request->all(),$rules);
         if ($validator->fails()) {

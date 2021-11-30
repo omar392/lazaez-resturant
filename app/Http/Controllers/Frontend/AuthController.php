@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Validator;
 class AuthController extends Controller
 {
     public function userLogin(){
@@ -26,22 +27,40 @@ class AuthController extends Controller
     }
     public function userSign(Request $request)
     {
-        $this->validate($request,[
-            'phone'     => 'required|regex:/^([0-9\s\-\+\(\)]*)$/',
-            'password'  => 'required|string',
-        ]);
-        if(Auth::attempt(['phone' => $request->phone , 'password' => $request->password , 'status' =>'active'])){
-            Session::put('user',$request->phone);
 
-            if(Session::get('url.intended')){
-                return Redirect::to(Session::get('url.intended'));
-            }else{
-                return redirect()->route('home')->with('success','تم تسجيل الدخول بنجاح ');
-            }
+        // dd($request->all());
+        // $this->validate($request,[
+        //     'phone'     => 'required|regex:/^([0-9\s\-\+\(\)]*)$/',
+        //     'password'  => 'required|string',
+        // ]);
+        // if(Auth::attempt(['phone' => $request->phone , 'password' => $request->password , 'status' =>'active'])){
+        //     Session::put('user',$request->phone);
+
+        //     if(Session::get('url.intended')){
+        //         toastr()->success('تم تسجيل الدخول بنجاح ');
+        //         return redirect()->route('website');
+        //     }else{
+        //         toastr()->success('تم تسجيل الدخول بنجاح ');
+        //         return redirect()->route('website');
+        //         // return redirect()->route('home')->with('success','تم تسجيل الدخول بنجاح ');
+        //     }
             
-        }else{
-            return redirect()->back('error','Invaild Email && Password');
+        // }else{
+        //     return redirect()->back('error','Invaild Email && Password');
+        // }
+        // $request->validate([
+        //     'phone'     => 'required|regex:/^([0-9\s\-\+\(\)]*)$/',
+        //     'password'  => 'required|string',
+        // ]);
+        
+        $credentials = request(['phone', 'password']);
+        if (Auth::attempt($credentials)) {
+            toastr()->success('تم تسجيل الدخول بنجاح ');
+            return redirect()->route('website');
         }
+        toastr()->error('حاول مرة اخرى');
+        return redirect()->back();
+       
     }
 
     public function userRegister()
@@ -85,12 +104,72 @@ class AuthController extends Controller
         $data['all_products'] = Product::where(['status'=>'active'])->get();
         return view('frontend.auth.code',$data);
     }
-    // public function verifyCode(Request $request)
-    // {
-    //     $data = $request->validate([
-    //         'code'=>'required|string',
-    //     ]);
-    // }
+
+    public function verifyCode(Request $request)
+    {
+        $data['categories'] = Category::where(['status'=>'active','is_parent'=>1])->limit(4)->orderBy('id','DESC')->get();
+        $data['offers'] = Offer::where(['status'=>'active'])->get();
+        $data['banner'] = Banner::where(['status'=>'active'])->get();
+        $data['setting']  = Setting::first();
+        $data['all_products'] = Product::where(['status'=>'active'])->get();
+        return view('frontend.auth.resentphone',$data);
+    }
+    public function sendVerify(Request $request)
+    {
+        $rules = [
+            'phone' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:10|exists:users,phone',
+        ];
+        $user = User::where('phone',$request->phone)->first();
+        $validator = Validator::make($request->all(), $rules);
+        if ($validator->fails()) {
+            toastr()->error('رقم الهاتف غير موجود ');
+            return redirect()->back();
+        }else{
+            toastr()->success('تم ارسال الكود بنجاح',$user->code);
+            return redirect()->route('forget.pass');
+        };
+        // if($user){
+        //     toastr()->success('رقم الهاتف غير موجود ');
+        //     return redirect()->back();
+        // } 
+    }
+    public function forgetPass()
+    {
+        $data['categories'] = Category::where(['status'=>'active','is_parent'=>1])->limit(4)->orderBy('id','DESC')->get();
+        $data['offers'] = Offer::where(['status'=>'active'])->get();
+        $data['banner'] = Banner::where(['status'=>'active'])->get();
+        $data['setting']  = Setting::first();
+        $data['all_products'] = Product::where(['status'=>'active'])->get();
+        return view('frontend.auth.forgetpass',$data);   
+    }
+    public function resetPass(Request $request)
+    {
+        $data = $request->validate([
+            'code' => 'required|numeric',
+            'password' => 'required|string|min:3',
+            'confirm_password' => 'required|string|min:3',
+        ]);
+        
+        $user = User::where('code', $data['code'])->first();
+
+        $user->update([
+            // 'password' =>Hash::make($data['password']),
+            'password' => bcrypt($request->password),
+        ]);
+
+        $user->save();
+        if ($user) {
+            toastr()->success(' تم التعديل بنجاح ');
+            return redirect()->back();
+        }
+    }
+
+    public function userLogout(Request $request)
+    {
+        Auth::logout();
+        toastr()->success('تم تسجيل الخروج بنجاح ');
+        return redirect()->back();
+    }
     private function create(array $data){
 
         return User::create([
