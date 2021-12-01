@@ -6,6 +6,7 @@ use App\Http\Controllers\Frontend\ContactController;
 use App\Http\Controllers\Frontend\HomeController;
 use App\Http\Controllers\Frontend\MasterController;
 use App\Http\Controllers\Frontend\OfferController;
+use App\Http\Controllers\Frontend\SearchController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
@@ -52,12 +53,12 @@ Route::get('user/register',[AuthController::class,'userRegister'])->name('user.r
 Route::post('user/signup',[AuthController::class,'userSignUp'])->name('user.signup');
 //end register
 Auth::routes(['register'=>false]);
-    
+Route::get('/search', [SearchController::class, 'search']);
     Route::group(
         [
             'prefix' => LaravelLocalization::setLocale(),
             'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' ]
-        ], function(){ 
+        ], function(){
             Route::get('products/{id}',[HomeController::class,'singleProducts'])->name('single.products');
             Route::get('single_products/{id}',[HomeController::class,'singleProduct'])->name('single.product');
             Route::get('/',[HomeController::class,'index'])->name('website');
@@ -67,5 +68,5 @@ Auth::routes(['register'=>false]);
             Route::get('terms',[MasterController::class,'terms'])->name('terms.index');
             Route::get('privcy',[MasterController::class,'privcy'])->name('privcy.index');
             Route::get('offers',[OfferController::class,'index'])->name('offers.index');
-            
+
         });

@@ -2,7 +2,6 @@
 @section('content')
     <!-- page sections -->
     <section class="main-page">
-
         <!-- slider  -->
         <!-- sass/components/_slider -->
         <div class="row row-100vw p-0 parent-slider">
@@ -26,8 +25,6 @@
             </div>
         </div>
         <!-- end ------- slider -->
-
-
         <!--- sec1  -->
         <!-- sass/components/_stylesMainPage -->
         <section class="container sec-imp-dep wow bounceInDown" data-wow-duration="2.5s">
@@ -36,9 +33,7 @@
                     {{ __('website.browse') }}
                 </h3>
             </div>
-
             <div class="parent-col-1-4">
-
                 @foreach ($categories as $item)
                     <a href="{{route('single.products',$item->id)}}">
                     <div class="col-1-4 sec1-card fourth-card">
@@ -53,12 +48,9 @@
             </div>
         </section>
         <!-- end ------ sec1 -->
-
-
         <!-- swiper for high price section -->
         <!-- sass/components/_stylesMainPage -->
         <section class="container sec-high-price wow bounceInUp" data-wow-duration="2s">
-
             <!-- tiltle -->
             <div class="sec-title">
                 <!-- arrows for slider -->
@@ -71,12 +63,7 @@
                 </h3>
             </div>
             <div class="sec-swiper swiper">
-
-
-
-
                 <div class="swiper-wrapper">
-
                     @foreach ($products as $item)
                         <!-- fourth card -->
                         <div class="swiper-slide">
@@ -85,7 +72,6 @@
                                     <img src="{{ asset('upload/product/' . $item->image) }}" class="card-img-top"
                                         alt="...">
                                 </div>
-
                                 <!-- card-body consists of titles -->
                                 <div class="card-body sec-card-body">
                                     @if (app()->getLocale() == 'ar')
@@ -104,23 +90,19 @@
                                             {{ $item->name }}
                                         </a>
                                     </div>
-
                                     <!-- price of card -->
                                     <p class="card-text card-price">
                                         ريال / كيلو
                                         <span>{{ $item->price }}</span>
                                     </p>
                                     <p class="card-text card-price">{{ $item->offer_price }}</p>
-
                                 </div>
                                 <!-- end body card -->
                                 <!-- footer of card -->
                                 <div class="sec-card-footer">
-
                                     <a href="" href="" class="card-bag">
                                         <img src="{{ asset('frontend/images/bag-card.svg') }}"></i>
                                     </a>
-
                                     <div class="card-increment-decrement">
                                         <span class="increment">+</span>
                                         <span class="number">0</span>
@@ -130,14 +112,10 @@
                             </div>
                         </div>
                     @endforeach
-
-
                 </div>
 
             </div>
         </section>
-
-
         <!-- swiper for offers section -->
         <!-- sass/components/_stylesMainPage -->
         <section class="container sec-offers wow bounceInDown" data-wow-duration="2s">
@@ -154,7 +132,6 @@
             </div>
             <div class="sec-swiper swiper1">
                 <div class="swiper-wrapper">
-
                     @foreach ($offers as $item)
                         <div class="swiper-slide">
                             <div class="card sec-card" id="product-5">
@@ -167,10 +144,10 @@
                                     <span class="sec-card-body-top">{{ $item->name }}</span>
                                     <!-- //غنوان الكارد -->
                                     <div class="card-title sec-card-body-title">
-                                        <div class="stars-card">
+                                        {{-- <div class="stars-card">
                                             <span>4.5</span>
                                             <i class="fas fa-star"></i>
-                                        </div>
+                                        </div> --}}
                                         <a href="pages/productPage.html" class="name-product">
                                             {{ $item->name }}
                                         </a>
@@ -197,19 +174,13 @@
                             </div>
                         </div>
                     @endforeach
-
-
                 </div>
-
             </div>
         </section>
-
-
         <!-- section for sign and mob -->
         <!-- sass/components/_stylesMainPage -->
         <section class="container sec-col-1-2">
             <div class="row row-100vw justify-content-start col-1-2">
-
                 <div class="sec-col-1-2-text col-xl-4 col-lg-4 col-md-5 m-r-xs-0 row-1-2  col-xs-9 wow bounceInLeft"
                     data-wow-duration="2s">
                     <h3 class="row-1-2-title">تسوق اسرع مع تطبيق لذائذ واطياب</h3>
@@ -228,9 +199,7 @@
                         <img src="{{ asset('frontend/images/android-screen.png') }}" alt="">
                         <img src="{{ asset('frontend/images/apple-screen.png') }}" alt="">
                     </div>
-
                 </div>
-
                 <div class="col-xl-7 col-lg-7 row-2-4 col-md-6  col-xs-9 wow bounceInRight" data-wow-duration="2s">
                     <img src="{{ asset('frontend/images/bkground.png') }}">
                     <div class="row-text">
@@ -239,16 +208,12 @@
                         <a href="pages/signUp.html"> <button>سجل الان</button> </a>
                     </div>
                 </div>
-
             </div>
         </section>
         <!-- end section -->
-
-
         <!-- swiper for you can watch section -->
         <!-- sass/components/_stylesMainPage -->
         <section class="container sec-Also-watch wow bounceInUp" data-wow-duration="2s">
-
             <!-- tiltle -->
             <div class="sec-title">
                 <!-- arrows for slider -->
@@ -260,11 +225,8 @@
                     {{ __('website.also') }}
                 </h3>
             </div>
-
             <div class="sec-swiper swiper2">
-
                 <div class="swiper-wrapper">
-
                     @foreach ($all_products as $item)
                         <!-- fourth card -->
                         <div class="swiper-slide">
@@ -273,7 +235,6 @@
                                     <img src="{{ asset('upload/product/' . $item->image) }}" class="card-img-top"
                                         alt="...">
                                 </div>
-
                                 <!-- card-body consists of titles -->
                                 <div class="card-body sec-card-body">
                                     @if (app()->getLocale() == 'ar')
@@ -282,7 +243,6 @@
                                     @if (app()->getLocale() == 'en')
                                         {{ \App\Models\Category::where('id', $item->cat_id)->value('name_en') }}
                                     @endif
-
                                     <!-- //غنوان الكارد -->
                                     <div class="card-title sec-card-body-title">
                                         <div class="stars-card">
@@ -293,17 +253,14 @@
                                             {{ $item->name }}
                                         </a>
                                     </div>
-
                                     <!-- price of card -->
                                     <p class="card-text card-price">
                                         ريال / كيلو
                                         <span>{{ $item->offer_price }}</span>
                                     </p>
                                     <p class="card-text card-price">{{ $item->price }} ريال / كيلو</p>
-
                                 </div>
                                 <!-- end body card -->
-
                                 <!-- footer of card -->
                                 <div class="sec-card-footer">
                                     <a href="" class="card-bag">

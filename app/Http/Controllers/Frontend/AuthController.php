@@ -44,7 +44,7 @@ class AuthController extends Controller
         //         return redirect()->route('website');
         //         // return redirect()->route('home')->with('success','تم تسجيل الدخول بنجاح ');
         //     }
-            
+
         // }else{
         //     return redirect()->back('error','Invaild Email && Password');
         // }
@@ -52,7 +52,7 @@ class AuthController extends Controller
         //     'phone'     => 'required|regex:/^([0-9\s\-\+\(\)]*)$/',
         //     'password'  => 'required|string',
         // ]);
-        
+
         $credentials = request(['phone', 'password']);
         if (Auth::attempt($credentials)) {
             toastr()->success('تم تسجيل الدخول بنجاح ');
@@ -60,7 +60,7 @@ class AuthController extends Controller
         }
         toastr()->error('حاول مرة اخرى');
         return redirect()->back();
-       
+
     }
 
     public function userRegister()
@@ -92,7 +92,7 @@ class AuthController extends Controller
         Auth::login($user);
         if ($user) {
             toastr()->success('تم التسجيل بنجاح ');
-            return redirect()->route('user.code');
+            return redirect()->route('website');
         }
     }
     public function code()
@@ -131,7 +131,7 @@ class AuthController extends Controller
         // if($user){
         //     toastr()->success('رقم الهاتف غير موجود ');
         //     return redirect()->back();
-        // } 
+        // }
     }
     public function forgetPass()
     {
@@ -140,7 +140,7 @@ class AuthController extends Controller
         $data['banner'] = Banner::where(['status'=>'active'])->get();
         $data['setting']  = Setting::first();
         $data['all_products'] = Product::where(['status'=>'active'])->get();
-        return view('frontend.auth.forgetpass',$data);   
+        return view('frontend.auth.forgetpass',$data);
     }
     public function resetPass(Request $request)
     {
@@ -149,7 +149,7 @@ class AuthController extends Controller
             'password' => 'required|string|min:3',
             'confirm_password' => 'required|string|min:3',
         ]);
-        
+
         $user = User::where('code', $data['code'])->first();
 
         $user->update([

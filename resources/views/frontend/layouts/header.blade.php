@@ -77,12 +77,15 @@
                 <ul class="second-header-right">
                     <li>
                         <!-- كود البحث -->
+                        <form class="card-body" action="/search" method="GET" role="search">
+                            {{ csrf_field() }}
                         <div class="search">
                             <img src="{{ asset('frontend/images/search-line (3).svg') }}">
                             <input data-filter="type" class="input-search search-placeholder" type="search"
                                 placeholder="ابحث عن المنتج">
                             <span class="space"></span>
                         </div>
+                        </form>
                         <!-- كود اختيار المنتجات -->
                         <div class="select">
                             <select class="search select-qesm filter-select" data-filter="productname">
@@ -94,7 +97,7 @@
                                     {{$item->name}}
                                 </option>
                                 @endforeach
-              
+
                             </select>
                         </div>
 

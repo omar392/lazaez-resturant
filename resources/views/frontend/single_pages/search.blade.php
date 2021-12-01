@@ -36,7 +36,7 @@
 
                     <!-- دى ال بيتحط فيها المنتجات من filter.js  -->
                     <div class="row" id="products">
-                        @foreach ($category_products->products as $item)
+                        @foreach ($search as $item)
                         <div class="sec-col-4-1-card col-xl-4 col-md-6 col-sm-10 col-xs-9 product wow slideInLeft"
                         data-wow-duration="1s" data-productname='${productName}' data-type='${type}'>
                         <div class="card sec-card">
@@ -109,7 +109,6 @@
                             </li>
                         </ul>
                     </div>
-
                     <!-- الاقسام الفرعيه ايضا معموله ب filter.js
                 لو هيتم مسح js يتم مسح التلات فروع الاخري -->
                     <form class="types-prod">
@@ -198,7 +197,6 @@
                             <a href="signUp.html"> <button>سجل الان</button> </a>
                         </div>
                     </div>
-
                     <div class="w-100">
                         <img class="w-100" src="{{ asset('frontend/images/Re-password.svg') }}">
                     </div>
